@@ -1,0 +1,358 @@
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  font-family: system-ui, sans-serif;
+}
+
+.mountain-banner {
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  background: #eef5ee;
+}
+
+.mountain-banner canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.mountain-banner-fallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #8cb794 0%, #eef5ee 100%);
+}
+
+.progress-header {
+  background: #eef5ee;
+  border: 1px solid #c9dcc9;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+.progress-header h2 {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+}
+
+.progress-points {
+  font-size: 1.5rem;
+  margin: 0.25rem 0;
+}
+
+.points-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.points-list th,
+.points-list td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.points-list th {
+  background: #f5f5f5;
+  padding: 0;
+}
+
+.sort-button {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  color: #1a1a1a;
+}
+
+.sort-button:hover {
+  background: #e9e9e9;
+}
+
+.trail-toggle {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.85rem;
+  border: 1px solid #2f6b2f;
+  border-radius: 4px;
+  background: #fff;
+  color: #2f6b2f;
+  cursor: pointer;
+}
+
+.point-detail-row td {
+  background: #f7f7f7;
+}
+
+.trail-info {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25rem 1rem;
+  margin: 0;
+}
+
+.trail-info dt {
+  font-weight: 600;
+  color: #555;
+}
+
+.trail-info dd {
+  margin: 0;
+}
+
+.trail-info-missing {
+  margin: 0;
+  color: #555;
+  font-style: italic;
+}
+
+.category-switcher {
+  display: flex;
+  gap: 1.25rem;
+  border-bottom: 2px solid #c9dcc9;
+  margin-bottom: 0.75rem;
+}
+
+.category-switcher button {
+  padding: 0.5rem 0.1rem;
+  margin-bottom: -2px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #555;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.category-switcher button.active {
+  color: #2f6b2f;
+  border-bottom-color: #2f6b2f;
+}
+
+.system-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.system-switcher button {
+  padding: 0.4rem 1rem;
+  border: 1px solid #2f6b2f;
+  border-radius: 999px;
+  background: #fff;
+  color: #2f6b2f;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.system-switcher button.active {
+  background: #2f6b2f;
+  color: #fff;
+}
+
+.system-placeholder {
+  background: #f5f5f5;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  color: #555;
+  text-align: center;
+}
+
+.view-switcher {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.view-switcher button {
+  padding: 0.4rem 1rem;
+  border: 1px solid #c9dcc9;
+  border-radius: 6px;
+  background: #fff;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+.view-switcher button.active {
+  background: #2f6b2f;
+  color: #fff;
+  border-color: #2f6b2f;
+}
+
+.point-marker-dot {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #b0b0b0;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+}
+
+.point-marker-dot.visited {
+  background: #2f6b2f;
+}
+
+.journal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.journal-form h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.journal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-weight: 600;
+}
+
+.journal-field input,
+.journal-field textarea {
+  font: inherit;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.point-checklist-field {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.point-checklist {
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.point-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: normal;
+}
+
+.journal-photos-hint {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.journal-form-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.journal-form button[type='submit'] {
+  padding: 0.5rem 1.25rem;
+  background: #2f6b2f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.journal-form-cancel {
+  padding: 0.5rem 1.25rem;
+  background: #fff;
+  color: #1a1a1a;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.journal-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.journal-entry {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.journal-entry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.journal-entry-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.journal-entry-actions button {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.85rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.journal-confirm-label {
+  font-size: 0.85rem;
+  color: #b02a2a;
+}
+
+.journal-confirm-yes {
+  background: #b02a2a !important;
+  color: #fff;
+  border-color: #b02a2a !important;
+}
+
+.journal-entry-points {
+  color: #2f6b2f;
+  font-weight: 600;
+}
+
+.journal-entry-gpx {
+  color: #555;
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0;
+}
+
+.entry-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.entry-photo-thumb {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
