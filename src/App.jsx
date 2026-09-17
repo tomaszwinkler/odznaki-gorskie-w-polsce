@@ -12,6 +12,7 @@ import { badgeSystems } from './data/badgeSystems'
 import { badgeLevelsBySystem } from './data/badgeLevels'
 import { calculateProgress } from './logic/progress'
 import { getVisitedPointIds } from './logic/visitedPoints'
+import { buildPeakGroups } from './logic/peakGroups'
 import { sortPoints } from './logic/sortPoints'
 import './App.css'
 
@@ -50,7 +51,8 @@ function App() {
 
   const entries = useLiveQuery(() => db.entries.toArray(), [], [])
 
-  const visitedIds = useMemo(() => getVisitedPointIds(entries), [entries])
+  const peakGroups = useMemo(() => buildPeakGroups(catalogPoints), [catalogPoints])
+  const visitedIds = useMemo(() => getVisitedPointIds(entries, peakGroups), [entries, peakGroups])
 
   const points = useMemo(
     () => catalogPoints.map((point) => ({ ...point, visited: visitedIds.has(point.id) })),
@@ -165,6 +167,7 @@ function App() {
           onSaveEntry={saveEntry}
           onDeleteEntry={deleteEntry}
           onImportEntries={importEntries}
+          peakGroups={peakGroups}
         />
       )}
     </main>

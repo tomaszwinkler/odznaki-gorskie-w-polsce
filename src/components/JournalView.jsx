@@ -7,7 +7,7 @@ function todayIsoDate() {
   return new Date().toISOString().slice(0, 10)
 }
 
-function JournalView({ points, entries, onSaveEntry, onDeleteEntry, onImportEntries }) {
+function JournalView({ points, entries, onSaveEntry, onDeleteEntry, onImportEntries, peakGroups }) {
   const [editingEntry, setEditingEntry] = useState(null)
   const [backupMessage, setBackupMessage] = useState(null)
 
@@ -72,8 +72,15 @@ function JournalView({ points, entries, onSaveEntry, onDeleteEntry, onImportEntr
         editingEntry={editingEntry}
         onSubmit={handleSave}
         onCancel={() => setEditingEntry(null)}
+        peakGroups={peakGroups}
       />
-      <JournalList entries={entries} points={points} onEdit={setEditingEntry} onDelete={handleDelete} />
+      <JournalList
+        entries={entries}
+        points={points}
+        onEdit={setEditingEntry}
+        onDelete={handleDelete}
+        peakGroups={peakGroups}
+      />
     </section>
   )
 }
