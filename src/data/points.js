@@ -1,5 +1,11 @@
-// GOT: przykładowy, ograniczony zestaw punktów na potrzeby MVP — pełna,
-// oficjalna baza PTTK zostanie podłączona w dalszym etapie.
+// GOT: rozszerzony zestaw głównych, rozpoznawalnych szczytów każdego pasma
+// górskiego w Polsce (ok. 64 punktów) — NIE jest to jednak 1:1 odwzorowanie
+// oficjalnego regulaminu PTTK. Prawdziwy GOT PTTK punktuje przebyte trasy
+// (1 pkt/km + 1 pkt/100m przewyższenia albo z tabeli tras punktowanych;
+// zob. ktg.pttk.pl/regulamin-got-pttk), a nie sam fakt zdobycia szczytu —
+// wdrożenie tego wymagałoby modelu tras, nie katalogu punktów. `points`
+// poniżej to orientacyjna wartość per szczyt (przybliżona skala trudności/
+// wysokości), zachowująca uproszczenie przyjęte dla MVP.
 //
 // Korona Gór Polski: pełna, oficjalna lista 28 szczytów (najwyższy punkt
 // każdego polskiego pasma górskiego), zweryfikowana względem kgp.info.pl
@@ -23,23 +29,83 @@
 // w takim wypadku występuje jako osobne punkty katalogu (różne id), bo
 // każdy system liczy postęp niezależnie.
 export const initialPoints = [
-  // --- GOT ---
-  { id: 'sniezka', name: 'Śnieżka', region: 'Sudety', points: 10, lat: 50.736, lng: 15.74, badgeSystem: 'GOT' },
-  { id: 'sniezniki', name: 'Śnieżnik', region: 'Sudety', points: 8, lat: 50.2011, lng: 16.8433, badgeSystem: 'GOT' },
-  { id: 'wielka-sowa', name: 'Wielka Sowa', region: 'Sudety', points: 5, lat: 50.6667, lng: 16.4667, badgeSystem: 'GOT' },
-  { id: 'chojnik', name: 'Chojnik', region: 'Sudety', points: 3, lat: 50.9333, lng: 15.6333, badgeSystem: 'GOT' },
-  { id: 'szrenica', name: 'Szrenica', region: 'Sudety', points: 7, lat: 50.7667, lng: 15.5167, badgeSystem: 'GOT' },
-  { id: 'wielki-szyszak', name: 'Wielki Szyszak', region: 'Sudety', points: 6, lat: 50.735, lng: 15.723, badgeSystem: 'GOT' },
-  { id: 'rysy', name: 'Rysy', region: 'Karpaty', points: 12, lat: 49.1794, lng: 20.0881, badgeSystem: 'GOT' },
-  { id: 'giewont', name: 'Giewont', region: 'Karpaty', points: 10, lat: 49.2447, lng: 19.9339, badgeSystem: 'GOT' },
-  { id: 'babia-gora', name: 'Babia Góra', region: 'Karpaty', points: 10, lat: 49.5735, lng: 19.5283, badgeSystem: 'GOT' },
-  { id: 'turbacz', name: 'Turbacz', region: 'Karpaty', points: 6, lat: 49.5219, lng: 20.0919, badgeSystem: 'GOT' },
-  { id: 'lysica', name: 'Łysica', region: 'Karpaty', points: 4, lat: 50.8814, lng: 21.0489, badgeSystem: 'GOT' },
-  { id: 'tarnica', name: 'Tarnica', region: 'Karpaty', points: 8, lat: 49.0783, lng: 22.5814, badgeSystem: 'GOT' },
-  { id: 'radziejowa', name: 'Radziejowa', region: 'Karpaty', points: 6, lat: 49.4667, lng: 20.6333, badgeSystem: 'GOT' },
-  { id: 'trzy-korony', name: 'Trzy Korony', region: 'Karpaty', points: 5, lat: 49.4256, lng: 20.4442, badgeSystem: 'GOT' },
-  { id: 'polica', name: 'Policzka (Polica)', region: 'Karpaty', points: 4, lat: 49.6167, lng: 19.6167, badgeSystem: 'GOT' },
-  { id: 'kasprowy-wierch', name: 'Kasprowy Wierch', region: 'Karpaty', points: 8, lat: 49.2319, lng: 19.9814, badgeSystem: 'GOT' },
+  // --- GOT: Sudety ---
+  { id: 'sniezka', name: 'Śnieżka', region: 'Karkonosze', points: 10, lat: 50.736, lng: 15.74, badgeSystem: 'GOT' },
+  { id: 'sniezniki', name: 'Śnieżnik', region: 'Masyw Śnieżnika', points: 8, lat: 50.2011, lng: 16.8433, badgeSystem: 'GOT' },
+  { id: 'wielka-sowa', name: 'Wielka Sowa', region: 'Góry Sowie', points: 5, lat: 50.6667, lng: 16.4667, badgeSystem: 'GOT' },
+  { id: 'chojnik', name: 'Chojnik', region: 'Karkonosze', points: 3, lat: 50.9333, lng: 15.6333, badgeSystem: 'GOT' },
+  { id: 'szrenica', name: 'Szrenica', region: 'Karkonosze', points: 7, lat: 50.7667, lng: 15.5167, badgeSystem: 'GOT' },
+  { id: 'wielki-szyszak', name: 'Wielki Szyszak', region: 'Karkonosze', points: 6, lat: 50.735, lng: 15.723, badgeSystem: 'GOT' },
+  { id: 'skalnik', name: 'Skalnik', region: 'Rudawy Janowickie', points: 5, lat: 50.8085, lng: 15.9003, badgeSystem: 'GOT' },
+  { id: 'waligora', name: 'Waligóra', region: 'Góry Kamienne', points: 5, lat: 50.6808, lng: 16.2781, badgeSystem: 'GOT' },
+  { id: 'chelmiec', name: 'Chełmiec', region: 'Góry Wałbrzyskie', points: 4, lat: 50.7792, lng: 16.2103, badgeSystem: 'GOT' },
+  { id: 'trojgarb', name: 'Trójgarb', region: 'Góry Wałbrzyskie', points: 3, lat: 50.8129, lng: 16.1633, badgeSystem: 'GOT' },
+  { id: 'wlodarz', name: 'Włodarz', region: 'Góry Sowie', points: 4, lat: 50.6956, lng: 16.4098, badgeSystem: 'GOT' },
+  { id: 'skopiec', name: 'Skopiec', region: 'Góry Kaczawskie', points: 3, lat: 50.944, lng: 15.8847, badgeSystem: 'GOT' },
+  { id: 'szczeliniec-wielki', name: 'Szczeliniec Wielki', region: 'Góry Stołowe', points: 5, lat: 50.4858, lng: 16.3392, badgeSystem: 'GOT' },
+  { id: 'jagodna', name: 'Jagodna', region: 'Góry Bystrzyckie', points: 5, lat: 50.2525, lng: 16.5647, badgeSystem: 'GOT' },
+  { id: 'orlica', name: 'Orlica', region: 'Góry Orlickie', points: 6, lat: 50.3532, lng: 16.3607, badgeSystem: 'GOT' },
+  { id: 'rudawiec', name: 'Rudawiec', region: 'Góry Bialskie', points: 6, lat: 50.2441, lng: 16.9759, badgeSystem: 'GOT' },
+  { id: 'postawna', name: 'Postawna', region: 'Góry Bialskie', points: 6, lat: 50.2233, lng: 17.0117, badgeSystem: 'GOT' },
+  { id: 'kowadlo', name: 'Kowadło', region: 'Góry Złote', points: 5, lat: 50.2644, lng: 17.0132, badgeSystem: 'GOT' },
+  { id: 'wysoka-kopa', name: 'Wysoka Kopa', region: 'Góry Izerskie', points: 6, lat: 50.8503, lng: 15.42, badgeSystem: 'GOT' },
+  { id: 'biskupia-kopa', name: 'Biskupia Kopa', region: 'Góry Opawskie', points: 4, lat: 50.2567, lng: 17.4286, badgeSystem: 'GOT' },
+  { id: 'sleza', name: 'Ślęża', region: 'Masyw Ślęży', points: 3, lat: 50.865, lng: 16.7086, badgeSystem: 'GOT' },
+
+  // --- GOT: Beskidy ---
+  { id: 'skrzyczne', name: 'Skrzyczne', region: 'Beskid Śląski', points: 9, lat: 49.6836, lng: 19.0189, badgeSystem: 'GOT' },
+  { id: 'klimczok', name: 'Klimczok', region: 'Beskid Śląski', points: 8, lat: 49.7385, lng: 19.0074, badgeSystem: 'GOT' },
+  { id: 'wielka-czantoria', name: 'Wielka Czantoria', region: 'Beskid Śląski', points: 6, lat: 49.6786, lng: 18.8044, badgeSystem: 'GOT' },
+  { id: 'barania-gora', name: 'Barania Góra', region: 'Beskid Śląski', points: 9, lat: 49.5808, lng: 19.0311, badgeSystem: 'GOT' },
+  { id: 'babia-gora', name: 'Babia Góra', region: 'Beskid Żywiecki', points: 10, lat: 49.5735, lng: 19.5283, badgeSystem: 'GOT' },
+  { id: 'pilsko', name: 'Pilsko', region: 'Beskid Żywiecki', points: 12, lat: 49.5272, lng: 19.3183, badgeSystem: 'GOT' },
+  { id: 'wielka-racza', name: 'Wielka Racza', region: 'Beskid Żywiecki', points: 9, lat: 49.4133, lng: 18.9688, badgeSystem: 'GOT' },
+  { id: 'jalowiec', name: 'Jałowiec', region: 'Beskid Żywiecki', points: 7, lat: 49.6609, lng: 19.4773, badgeSystem: 'GOT' },
+  { id: 'romanka', name: 'Romanka', region: 'Beskid Żywiecki', points: 10, lat: 49.5194, lng: 19.2464, badgeSystem: 'GOT' },
+  { id: 'polica', name: 'Polica', region: 'Beskid Żywiecki', points: 4, lat: 49.6167, lng: 19.6167, badgeSystem: 'GOT' },
+  { id: 'czupel', name: 'Czupel', region: 'Beskid Mały', points: 5, lat: 49.7679, lng: 19.1606, badgeSystem: 'GOT' },
+  { id: 'lamana-skala', name: 'Łamana Skała', region: 'Beskid Mały', points: 5, lat: 49.7636, lng: 19.396, badgeSystem: 'GOT' },
+  { id: 'lubomir', name: 'Lubomir', region: 'Beskid Makowski', points: 4, lat: 49.7669, lng: 20.0597, badgeSystem: 'GOT' },
+  { id: 'koskowa-gora', name: 'Koskowa Góra', region: 'Beskid Makowski', points: 4, lat: 49.7507, lng: 19.7829, badgeSystem: 'GOT' },
+  { id: 'mogielica', name: 'Mogielica', region: 'Beskid Wyspowy', points: 8, lat: 49.6552, lng: 20.2767, badgeSystem: 'GOT' },
+  { id: 'lubon-wielki', name: 'Luboń Wielki', region: 'Beskid Wyspowy', points: 6, lat: 49.6536, lng: 19.9918, badgeSystem: 'GOT' },
+  { id: 'cwilin', name: 'Ćwilin', region: 'Beskid Wyspowy', points: 6, lat: 49.6887, lng: 20.1918, badgeSystem: 'GOT' },
+  { id: 'modyn', name: 'Modyń', region: 'Beskid Wyspowy', points: 6, lat: 49.6212, lng: 20.376, badgeSystem: 'GOT' },
+  { id: 'radziejowa', name: 'Radziejowa', region: 'Beskid Sądecki', points: 6, lat: 49.4667, lng: 20.6333, badgeSystem: 'GOT' },
+  { id: 'jaworzyna-krynicka', name: 'Jaworzyna Krynicka', region: 'Beskid Sądecki', points: 7, lat: 49.4179, lng: 20.8955, badgeSystem: 'GOT' },
+  { id: 'kraczonik', name: 'Kraczonik', region: 'Beskid Sądecki', points: 5, lat: 49.3153, lng: 20.9394, badgeSystem: 'GOT' },
+  { id: 'lackowa', name: 'Lackowa', region: 'Beskid Niski', points: 6, lat: 49.4283, lng: 21.0961, badgeSystem: 'GOT' },
+  { id: 'watkowa', name: 'Wątkowa', region: 'Beskid Niski', points: 4, lat: 49.5761, lng: 21.3667, badgeSystem: 'GOT' },
+  { id: 'cergowa-gora', name: 'Cergowa Góra', region: 'Beskid Niski', points: 3, lat: 49.5967, lng: 21.6167, badgeSystem: 'GOT' },
+
+  // --- GOT: Tatry ---
+  { id: 'rysy', name: 'Rysy', region: 'Tatry', points: 12, lat: 49.1794, lng: 20.0881, badgeSystem: 'GOT' },
+  { id: 'giewont', name: 'Giewont', region: 'Tatry', points: 10, lat: 49.2447, lng: 19.9339, badgeSystem: 'GOT' },
+  { id: 'kasprowy-wierch', name: 'Kasprowy Wierch', region: 'Tatry', points: 8, lat: 49.2319, lng: 19.9814, badgeSystem: 'GOT' },
+  { id: 'swinica', name: 'Świnica', region: 'Tatry', points: 14, lat: 49.2194, lng: 20.0093, badgeSystem: 'GOT' },
+  { id: 'krzesanica', name: 'Krzesanica', region: 'Tatry', points: 13, lat: 49.2317, lng: 19.9095, badgeSystem: 'GOT' },
+  { id: 'kopa-kondracka', name: 'Kopa Kondracka', region: 'Tatry', points: 13, lat: 49.2367, lng: 19.9414, badgeSystem: 'GOT' },
+  { id: 'wolowiec', name: 'Wołowiec', region: 'Tatry', points: 13, lat: 49.1994, lng: 19.8791, badgeSystem: 'GOT' },
+
+  // --- GOT: Pieniny ---
+  { id: 'trzy-korony', name: 'Trzy Korony', region: 'Pieniny', points: 5, lat: 49.4256, lng: 20.4442, badgeSystem: 'GOT' },
+  { id: 'wysoka-pieniny', name: 'Wysoka (Wysokie Skałki)', region: 'Pieniny', points: 6, lat: 49.3803, lng: 20.5556, badgeSystem: 'GOT' },
+
+  // --- GOT: Gorce ---
+  { id: 'turbacz', name: 'Turbacz', region: 'Gorce', points: 6, lat: 49.5219, lng: 20.0919, badgeSystem: 'GOT' },
+  { id: 'luban', name: 'Lubań', region: 'Gorce', points: 8, lat: 49.4893, lng: 20.339, badgeSystem: 'GOT' },
+
+  // --- GOT: Bieszczady ---
+  { id: 'tarnica', name: 'Tarnica', region: 'Bieszczady', points: 8, lat: 49.0783, lng: 22.5814, badgeSystem: 'GOT' },
+  { id: 'wielka-rawka', name: 'Wielka Rawka', region: 'Bieszczady', points: 9, lat: 49.0994, lng: 22.5764, badgeSystem: 'GOT' },
+  { id: 'polonina-wetlinska', name: 'Połonina Wetlińska', region: 'Bieszczady', points: 9, lat: 49.1974, lng: 22.4538, badgeSystem: 'GOT' },
+  { id: 'polonina-carynska', name: 'Połonina Caryńska', region: 'Bieszczady', points: 9, lat: 49.165, lng: 22.525, badgeSystem: 'GOT' },
+  { id: 'halicz', name: 'Halicz', region: 'Bieszczady', points: 9, lat: 49.085, lng: 22.6206, badgeSystem: 'GOT' },
+  { id: 'krzemien', name: 'Krzemień', region: 'Bieszczady', points: 9, lat: 49.0917, lng: 22.6033, badgeSystem: 'GOT' },
+
+  // --- GOT: Góry Świętokrzyskie ---
+  { id: 'lysica', name: 'Łysica', region: 'Góry Świętokrzyskie', points: 4, lat: 50.8814, lng: 21.0489, badgeSystem: 'GOT' },
+  { id: 'lysa-gora-swiety-krzyz', name: 'Łysa Góra (Święty Krzyż)', region: 'Góry Świętokrzyskie', points: 3, lat: 50.8608, lng: 21.0511, badgeSystem: 'GOT' },
 
   // --- Korona Gór Polski (pełne 28 szczytów, od najwyższego do najniższego) ---
   { id: 'rysy-kgp', name: 'Rysy', region: 'Tatry', points: 1, lat: 49.1794, lng: 20.0881, badgeSystem: 'KGP' },
