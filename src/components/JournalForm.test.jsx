@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import JournalForm from './JournalForm'
+import { buildPeakGroups } from '../logic/peakGroups'
 
 vi.mock('../logic/imageCompression', () => ({
   compressImageFile: vi.fn((file) => Promise.resolve(file)),
@@ -89,5 +90,45 @@ describe('JournalForm', () => {
     await user.upload(screen.getByLabelText('Zdjęcia'), photo)
 
     expect(await screen.findByText('Wybrano 1 zdjęć.')).toBeInTheDocument()
+  })
+
+  it('scala punkty tego samego szczytu w jedną pozycję z plakietkami wszystkich systemów', async () => {
+    const user = userEvent.setup()
+    const groupedPoints = [
+      { id: 'sniezka', name: 'Śnieżka', region: 'Karkonosze', badgeSystem: 'GOT', lat: 50.736, lng: 15.74, sharesPeakWith: ['sniezka-kgp'] },
+      { id: 'sniezka-kgp', name: 'Śnieżka', region: 'Karkonosze', badgeSystem: 'KGP', lat: 50.736, lng: 15.74 },
+    ]
+    const peakGroups = buildPeakGroups(groupedPoints)
+    const onSubmit = vi.fn()
+
+    render(<JournalForm points={groupedPoints} editingEntry={null} onSubmit={onSubmit} onCancel={vi.fn()} peakGroups={peakGroups} />)
+
+    expect(screen.getAllByRole('checkbox')).toHaveLength(1)
+    expect(screen.getByRole('checkbox', { name: 'Śnieżka (Karkonosze, GOT, KGP)' })).toBeInTheDocument()
+
+    await user.click(screen.getByRole('checkbox'))
+    await user.click(screen.getByRole('button', { name: 'Zapisz wpis' }))
+
+    expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ pointIds: ['sniezka'] }))
+  })
+
+  it('odznaczenie scalonej pozycji usuwa wszystkie powiązane id z zaznaczenia', async () => {
+    const user = userEvent.setup()
+    const groupedPoints = [
+      { id: 'sniezka', name: 'Śnieżka', region: 'Karkonosze', badgeSystem: 'GOT', lat: 50.736, lng: 15.74, sharesPeakWith: ['sniezka-kgp'] },
+      { id: 'sniezka-kgp', name: 'Śnieżka', region: 'Karkonosze', badgeSystem: 'KGP', lat: 50.736, lng: 15.74 },
+    ]
+    const peakGroups = buildPeakGroups(groupedPoints)
+    // Wpis sprzed tej zmiany, z osobno zapisanym tylko jednym id z grupy.
+    const editingEntry = { id: 1, date: '2026-05-01', note: '', pointIds: ['sniezka-kgp'], photos: [], gpxTrack: [] }
+
+    render(<JournalForm points={groupedPoints} editingEntry={editingEntry} onSubmit={vi.fn()} onCancel={vi.fn()} peakGroups={peakGroups} />)
+
+    const checkbox = screen.getByRole('checkbox', { name: /Śnieżka/ })
+    expect(checkbox).toBeChecked()
+
+    await user.click(checkbox)
+
+    expect(checkbox).not.toBeChecked()
   })
 })

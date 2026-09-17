@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { parseGpxTrackPoints, findMatchedPointIds } from '../logic/gpx'
 import { compressImageFile } from '../logic/imageCompression'
 
@@ -15,7 +15,7 @@ function pointNames(ids, points) {
 // więc przełączenie się między wpisami/trybem dodawania montuje formularz od
 // nowa i poniższe useState mogą bezpiecznie czytać editingEntry raz, przy
 // montowaniu, zamiast synchronizować się efektem.
-function JournalForm({ points, editingEntry, onSubmit, onCancel }) {
+function JournalForm({ points, editingEntry, onSubmit, onCancel, peakGroups = new Map() }) {
   const [date, setDate] = useState(editingEntry ? editingEntry.date : todayIsoDate)
   const [note, setNote] = useState(editingEntry ? editingEntry.note : '')
   const [selectedIds, setSelectedIds] = useState(editingEntry ? editingEntry.pointIds : [])
@@ -24,10 +24,34 @@ function JournalForm({ points, editingEntry, onSubmit, onCancel }) {
   const [gpxMessage, setGpxMessage] = useState(null)
   const [isProcessingPhotos, setIsProcessingPhotos] = useState(false)
 
-  const togglePointSelection = (id) => {
-    setSelectedIds((current) =>
-      current.includes(id) ? current.filter((pointId) => pointId !== id) : [...current, id],
-    )
+  const pointsById = useMemo(() => new Map(points.map((point) => [point.id, point])), [points])
+
+  const checklistRows = useMemo(() => {
+    const rendered = new Set()
+    const rows = []
+    for (const point of points) {
+      if (rendered.has(point.id)) continue
+      const siblingIds = peakGroups.get(point.id) ?? []
+      const groupIds = [point.id, ...siblingIds]
+      groupIds.forEach((id) => rendered.add(id))
+      rows.push({
+        representativeId: point.id,
+        groupIds,
+        name: point.name,
+        region: point.region,
+        badgeSystems: groupIds.map((id) => pointsById.get(id)?.badgeSystem ?? id),
+      })
+    }
+    return rows
+  }, [points, peakGroups, pointsById])
+
+  const toggleGroupSelection = (representativeId, groupIds) => {
+    setSelectedIds((current) => {
+      const isChecked = groupIds.some((id) => current.includes(id))
+      return isChecked
+        ? current.filter((id) => !groupIds.includes(id))
+        : [...current, representativeId]
+    })
   }
 
   const handleGpxFile = async (event) => {
@@ -95,14 +119,14 @@ function JournalForm({ points, editingEntry, onSubmit, onCancel }) {
       <fieldset className="point-checklist-field">
         <legend>Odwiedzone punkty</legend>
         <div className="point-checklist">
-          {points.map((point) => (
-            <label key={point.id} className="point-checklist-item">
+          {checklistRows.map((row) => (
+            <label key={row.representativeId} className="point-checklist-item">
               <input
                 type="checkbox"
-                checked={selectedIds.includes(point.id)}
-                onChange={() => togglePointSelection(point.id)}
+                checked={row.groupIds.some((id) => selectedIds.includes(id))}
+                onChange={() => toggleGroupSelection(row.representativeId, row.groupIds)}
               />
-              {point.name} ({point.region}, {point.badgeSystem})
+              {row.name} ({row.region}, {row.badgeSystems.join(', ')})
             </label>
           ))}
         </div>
