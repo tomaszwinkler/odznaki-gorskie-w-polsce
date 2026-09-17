@@ -27,10 +27,13 @@ export const badgeSystems = [
 
   {
     id: 'KORONA_SUDETOW',
-    name: 'Korona Sudetów Polskich',
+    // Oficjalna nazwa odznaki PTTK to "Korona Sudetów" (bez "Polskich") —
+    // regulamin obejmuje szczyty niezależnie od granic państwowych, w tym
+    // 10 z 22 szczytów leżących w Czechach.
+    name: 'Korona Sudetów',
     category: 'korony-makroregionalne',
     subcategory: 'Sudety',
-    available: false,
+    available: true,
   },
   {
     id: 'KORONA_BESKIDOW',

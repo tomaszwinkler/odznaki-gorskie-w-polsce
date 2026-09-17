@@ -25,4 +25,13 @@ export const badgeLevelsBySystem = {
     { name: '60 zdobytych szczytów (75%)', minPoints: 60 },
     { name: 'Diadem Polskich Gór zdobyty (80/80)', minPoints: 80 },
   ],
+  // Oficjalnie odznaka jednostopniowa (regulamin PTTK Oddziału
+  // Wrocławskiego) — progi pośrednie to, tak jak w KGP/Diademie,
+  // dodatkowa motywacja w UI, nie część oficjalnego regulaminu.
+  KORONA_SUDETOW: [
+    { name: '6 zdobytych szczytów (25%)', minPoints: 6 },
+    { name: '11 zdobytych szczytów (50%)', minPoints: 11 },
+    { name: '17 zdobytych szczytów (75%)', minPoints: 17 },
+    { name: 'Korona Sudetów zdobyta (22/22)', minPoints: 22 },
+  ],
 }

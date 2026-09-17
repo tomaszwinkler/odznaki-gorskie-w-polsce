@@ -69,6 +69,17 @@ describe('App', () => {
 
     await user.click(screen.getByRole('button', { name: 'Korony makroregionalne' }))
 
+    expect(screen.getByRole('button', { name: 'Korona Sudetów' })).toHaveClass('active')
+  })
+
+  it('pokazuje placeholder dla systemu w tej kategorii, który wciąż nie ma katalogu', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await screen.findByText('Śnieżka')
+
+    await user.click(screen.getByRole('button', { name: 'Korony makroregionalne' }))
+    await user.click(screen.getByRole('button', { name: 'Korona Beskidów (wkrótce)' }))
+
     expect(await screen.findByText(/w przygotowaniu/)).toBeInTheDocument()
   })
 

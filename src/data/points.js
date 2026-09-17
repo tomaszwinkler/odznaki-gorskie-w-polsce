@@ -15,14 +15,19 @@
 // Korony — niektóre pasma reprezentowane kilkoma szczytami zamiast
 // jednego), zweryfikowana względem mynaszlaku.pl i gorskim-szlakiem.pl.
 //
+// Korona Sudetów: pełna, oficjalna lista 22 szczytów wg regulaminu
+// Komisji Turystyki Górskiej Oddziału Wrocławskiego PTTK — obejmuje
+// szczyty "niezależnie od granic państwowych" (10 z 22 leży w Czechach).
+// Źródło: pttk.wroclaw.pl/wp-content/uploads/Regulamin-Odznaki-Korona-Sudetow.pdf.
+//
 // Współrzędne wszystkich punktów są przybliżone (dokładność rzędu
 // pojedynczych set metrów) — wystarczające do wyświetlenia na mapie, nie
 // do nawigacji GPS co do metra.
 //
 // Liczba punktów jest orientacyjna dla GOT (system punktowy) i zawsze
-// równa 1 dla KGP oraz Diademu (systemy liczone liczbą zdobytych
-// szczytów). Status "odwiedzony" nie jest tu przechowywany — jest
-// wyliczany z wpisów w dzienniku wypraw (src/logic/visitedPoints.js).
+// równa 1 dla KGP, Diademu oraz Korony Sudetów (systemy liczone liczbą
+// zdobytych szczytów). Status "odwiedzony" nie jest tu przechowywany —
+// jest wyliczany z wpisów w dzienniku wypraw (src/logic/visitedPoints.js).
 //
 // Ten sam fizyczny szczyt może należeć do kilku systemów naraz (np.
 // Śnieżka jest punktem GOT, Korony Gór Polski i Diademu jednocześnie) —
@@ -136,6 +141,34 @@ export const initialPoints = [
   { id: 'skopiec-kgp', name: 'Skopiec', region: 'Góry Kaczawskie', points: 1, lat: 50.944, lng: 15.8847, badgeSystem: 'KGP' },
   { id: 'sleza-kgp', name: 'Ślęża', region: 'Masyw Ślęży', points: 1, lat: 50.865, lng: 16.7086, badgeSystem: 'KGP' },
   { id: 'lysica-kgp', name: 'Łysica', region: 'Góry Świętokrzyskie', points: 1, lat: 50.8814, lng: 21.0489, badgeSystem: 'KGP' },
+
+  // --- Korona Sudetów (pełne 22 szczyty wg regulaminu PTTK Oddziału
+  // Wrocławskiego) — 12 w Polsce, 10 w Czechach ("niezależnie od granic
+  // państwowych", zob. regulamin). Współrzędne czeskich szczytów są
+  // orientacyjne, zweryfikowane względem treking.cz, turistika.cz i
+  // czeskiej Wikipedii. ---
+  { id: 'luz-ks', name: 'Luž', region: 'Góry Łużyckie', points: 1, lat: 50.8375, lng: 14.6892, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'jested-ks', name: 'Ještěd', region: 'Grzbiet Jesztiedsko-Kozakowski', points: 1, lat: 50.7309, lng: 14.9827, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'wysoka-kopa-ks', name: 'Wysoka Kopa', region: 'Góry Izerskie', points: 1, lat: 50.8503, lng: 15.42, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'sniezka-ks', name: 'Śnieżka', region: 'Karkonosze', points: 1, lat: 50.736, lng: 15.74, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'skalnik-ks', name: 'Skalnik', region: 'Rudawy Janowickie', points: 1, lat: 50.8085, lng: 15.9003, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'skopiec-ks', name: 'Skopiec', region: 'Góry Kaczawskie', points: 1, lat: 50.944, lng: 15.8847, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'borowa-ks', name: 'Borowa', region: 'Góry Wałbrzyskie', points: 1, lat: 50.723, lng: 16.3045, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'waligora-ks', name: 'Waligóra', region: 'Góry Kamienne', points: 1, lat: 50.6808, lng: 16.2781, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'zaltman-ks', name: 'Žaltman', region: 'Góry Jastrzębie', points: 1, lat: 50.534, lng: 16.003, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'szczeliniec-wielki-ks', name: 'Szczeliniec Wielki', region: 'Góry Stołowe', points: 1, lat: 50.4858, lng: 16.3392, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'wielka-sowa-ks', name: 'Wielka Sowa', region: 'Góry Sowie', points: 1, lat: 50.6667, lng: 16.4667, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'klodzka-gora-ks', name: 'Kłodzka Góra', region: 'Góry Bardzkie', points: 1, lat: 50.4517, lng: 16.7532, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'velka-destna-ks', name: 'Velká Deštná', region: 'Góry Orlickie', points: 1, lat: 50.3078, lng: 16.4614, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'jagodna-ks', name: 'Jagodna', region: 'Góry Bystrzyckie', points: 1, lat: 50.2525, lng: 16.5647, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'smrk-ks', name: 'Smrk', region: 'Góry Złote', points: 1, lat: 50.23, lng: 17.0339, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'snieznik-ks', name: 'Śnieżnik', region: 'Masyw Śnieżnika', points: 1, lat: 50.2011, lng: 16.8433, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'pricny-vrch-ks', name: 'Příčný vrch', region: 'Góry Opawskie', points: 1, lat: 50.2429, lng: 17.3897, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'praded-ks', name: 'Praděd', region: 'Wysoki Jesionik', points: 1, lat: 50.0836, lng: 17.2306, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'jerab-ks', name: 'Jeřáb', region: 'Wyżyna Hanuszowicka', points: 1, lat: 50.0489, lng: 16.8567, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'lazek-ks', name: 'Lázek', region: 'Wyżyna Zabrzeska', points: 1, lat: 49.8828, lng: 16.8944, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'slunecna-ks', name: 'Slunečná', region: 'Niski Jesionik', points: 1, lat: 49.8975, lng: 17.5975, badgeSystem: 'KORONA_SUDETOW' },
+  { id: 'sleza-ks', name: 'Ślęża', region: 'Masyw Ślęży', points: 1, lat: 50.865, lng: 16.7086, badgeSystem: 'KORONA_SUDETOW' },
 
   // --- Diadem Polskich Gór (pełne 80 szczytów) ---
   { id: 'wielka-czantoria-diadem', name: 'Wielka Czantoria', region: 'Beskid Śląski', points: 1, lat: 49.6786, lng: 18.8044, badgeSystem: 'DIADEM' },
