@@ -37,10 +37,15 @@ export const badgeSystems = [
   },
   {
     id: 'KORONA_BESKIDOW',
+    // Oficjalna "Korona Beskidów" (odznaka PTTK Oddziału Krakowskiego,
+    // ustanowiona 2012) jest odznaką międzynarodową — 27 najwyższych
+    // szczytów pasm beskidzkich w Polsce, Czechach, na Słowacji i Ukrainie.
+    // To inna, większa odznaka niż "Korona Polskich Beskidów" (10 szczytów,
+    // tylko Polska, PTTK Bochnia).
     name: 'Korona Beskidów',
     category: 'korony-makroregionalne',
     subcategory: 'Beskidy',
-    available: false,
+    available: true,
   },
   {
     id: 'KORONA_TATR',

@@ -78,7 +78,7 @@ describe('App', () => {
     await screen.findByText('Śnieżka')
 
     await user.click(screen.getByRole('button', { name: 'Korony makroregionalne' }))
-    await user.click(screen.getByRole('button', { name: 'Korona Beskidów (wkrótce)' }))
+    await user.click(screen.getByRole('button', { name: 'Korona Tatr Polskich (wkrótce)' }))
 
     expect(await screen.findByText(/w przygotowaniu/)).toBeInTheDocument()
   })

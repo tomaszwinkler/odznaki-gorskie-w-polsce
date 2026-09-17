@@ -34,4 +34,12 @@ export const badgeLevelsBySystem = {
     { name: '17 zdobytych szczytów (75%)', minPoints: 17 },
     { name: 'Korona Sudetów zdobyta (22/22)', minPoints: 22 },
   ],
+  // Odznaka jednostopniowa (regulamin PTTK Oddziału Krakowskiego) —
+  // progi pośrednie to dodatkowa motywacja w UI, jak w pozostałych koronach.
+  KORONA_BESKIDOW: [
+    { name: '7 zdobytych szczytów (25%)', minPoints: 7 },
+    { name: '14 zdobytych szczytów (50%)', minPoints: 14 },
+    { name: '20 zdobytych szczytów (75%)', minPoints: 20 },
+    { name: 'Korona Beskidów zdobyta (27/27)', minPoints: 27 },
+  ],
 }
