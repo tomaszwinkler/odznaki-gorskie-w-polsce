@@ -50,8 +50,9 @@ describe('MapView', () => {
     expect(popups[1]).toHaveTextContent('Jeszcze nieodwiedzony')
   })
 
-  it('pokazuje komunikat o braku danych o trasie dla punktu bez wpisu w trailInfo (GOT nie ma jeszcze tych danych)', () => {
-    render(<MapView points={[points[0]]} />)
+  it('pokazuje komunikat o braku danych o trasie dla punktu bez wpisu w trailInfo', () => {
+    const pointWithoutTrailInfo = { id: 'nieznany-punkt-testowy', name: 'Testowa Góra', region: 'Testy', points: 1, lat: 50, lng: 20, visited: false }
+    render(<MapView points={[pointWithoutTrailInfo]} />)
 
     expect(screen.getByTestId('popup')).toHaveTextContent('Dane o trasie w przygotowaniu.')
   })

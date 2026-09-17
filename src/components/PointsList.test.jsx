@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event'
 import PointsList from './PointsList'
 
 const points = [
-  { id: 'sniezka', name: 'Śnieżka', region: 'Sudety', points: 10, visited: true },
+  { id: 'nieznany-punkt-testowy', name: 'Testowa Góra', region: 'Sudety', points: 10, visited: true },
   { id: 'rysy-kgp', name: 'Rysy', region: 'Tatry', points: 1, visited: false },
 ]
 
@@ -28,7 +28,7 @@ describe('PointsList', () => {
   it('oznacza checkboxem punkty odwiedzone i nieodwiedzone', () => {
     render(<PointsList points={points} sortKey="region" sortDirection="asc" onSort={vi.fn()} />)
 
-    expect(screen.getByRole('checkbox', { name: 'Śnieżka: odwiedzony' })).toBeChecked()
+    expect(screen.getByRole('checkbox', { name: 'Testowa Góra: odwiedzony' })).toBeChecked()
     expect(screen.getByRole('checkbox', { name: 'Rysy: nieodwiedzony' })).not.toBeChecked()
   })
 
@@ -48,7 +48,7 @@ describe('PointsList', () => {
     render(<PointsList points={points} sortKey="region" sortDirection="asc" onSort={vi.fn()} />)
 
     const detailButtons = screen.getAllByRole('button', { name: 'Szczegóły' })
-    await user.click(detailButtons[0]) // Śnieżka (id: sniezka) nie ma wpisu w trailInfo.js
+    await user.click(detailButtons[0]) // Testowa Góra — syntetyczne id spoza trailInfo.js
 
     expect(screen.getByText('Dane o trasie i dojeździe są w przygotowaniu dla tego punktu.')).toBeInTheDocument()
   })
