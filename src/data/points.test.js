@@ -38,4 +38,14 @@ describe('initialPoints', () => {
     const diademPoints = initialPoints.filter((point) => point.badgeSystem === 'DIADEM')
     expect(diademPoints).toHaveLength(80)
   })
+
+  it('każde sharesPeakWith wskazuje na istniejące id i nie zawiera samego siebie', () => {
+    const idsSet = new Set(initialPoints.map((point) => point.id))
+    for (const point of initialPoints) {
+      for (const siblingId of point.sharesPeakWith ?? []) {
+        expect(idsSet.has(siblingId)).toBe(true)
+        expect(siblingId).not.toBe(point.id)
+      }
+    }
+  })
 })
