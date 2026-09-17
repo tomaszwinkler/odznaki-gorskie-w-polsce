@@ -30,3 +30,10 @@ export async function syncPoints() {
   }
   await db.points.bulkPut(initialPoints)
 }
+
+// Dokłada zaimportowane wpisy dziennika do istniejących (merge) — nigdy nie
+// nadpisuje ani nie usuwa danych. `bulkAdd` nadaje nowe klucze `++id`, więc
+// wielokrotny import tego samego pliku tworzy duplikaty zamiast nadpisywać.
+export async function importEntries(entries) {
+  await db.entries.bulkAdd(entries)
+}

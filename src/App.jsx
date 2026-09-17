@@ -6,7 +6,7 @@ import PointsList from './components/PointsList'
 import MapView from './components/MapView'
 import JournalView from './components/JournalView'
 import SystemPlaceholder from './components/SystemPlaceholder'
-import { db, syncPoints } from './db/db'
+import { db, syncPoints, importEntries } from './db/db'
 import { badgeCategories } from './data/badgeCategories'
 import { badgeSystems } from './data/badgeSystems'
 import { badgeLevelsBySystem } from './data/badgeLevels'
@@ -159,7 +159,13 @@ function App() {
           <SystemPlaceholder systemName={currentSystem.name} />
         ))}
       {view === 'journal' && (
-        <JournalView points={catalogPoints} entries={entries} onSaveEntry={saveEntry} onDeleteEntry={deleteEntry} />
+        <JournalView
+          points={catalogPoints}
+          entries={entries}
+          onSaveEntry={saveEntry}
+          onDeleteEntry={deleteEntry}
+          onImportEntries={importEntries}
+        />
       )}
     </main>
   )

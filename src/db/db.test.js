@@ -1,6 +1,6 @@
 import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { db, syncPoints } from './db'
+import { db, syncPoints, importEntries } from './db'
 import { initialPoints } from '../data/points'
 
 beforeEach(async () => {
@@ -32,5 +32,17 @@ describe('syncPoints', () => {
     const stored = await db.points.toArray()
     expect(stored.find((point) => point.id === 'nieaktualny-punkt')).toBeUndefined()
     expect(stored).toHaveLength(initialPoints.length)
+  })
+})
+
+describe('importEntries', () => {
+  it('dokłada zaimportowane wpisy do istniejących, nadając nowe id', async () => {
+    await db.entries.add({ date: '2026-01-01', note: 'stary wpis', pointIds: [], photos: [], gpxTrack: [] })
+
+    await importEntries([{ date: '2026-05-01', note: 'nowy wpis', pointIds: [], photos: [], gpxTrack: [] }])
+
+    const stored = await db.entries.toArray()
+    expect(stored).toHaveLength(2)
+    expect(stored.map((entry) => entry.note)).toEqual(expect.arrayContaining(['stary wpis', 'nowy wpis']))
   })
 })
