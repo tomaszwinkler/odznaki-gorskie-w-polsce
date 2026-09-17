@@ -49,10 +49,14 @@ export const badgeSystems = [
   },
   {
     id: 'KORONA_TATR',
-    name: 'Korona Tatr Polskich',
+    // "Korona Tatr Polskich" nie istnieje jako osobna odznaka — najbliższa
+    // realna to "Turystyczna Korona Tatr" (PTT, 2015): 54 szczyty + 6
+    // przełęczy dostępnych szlakami turystycznymi, po polskiej I słowackiej
+    // stronie Tatr (60 pozycji łącznie).
+    name: 'Turystyczna Korona Tatr',
     category: 'korony-makroregionalne',
     subcategory: 'Tatry',
-    available: false,
+    available: true,
   },
 
   {

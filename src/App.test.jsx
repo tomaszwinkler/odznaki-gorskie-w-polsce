@@ -77,8 +77,8 @@ describe('App', () => {
     render(<App />)
     await screen.findByText('Śnieżka')
 
-    await user.click(screen.getByRole('button', { name: 'Korony makroregionalne' }))
-    await user.click(screen.getByRole('button', { name: 'Korona Tatr Polskich (wkrótce)' }))
+    await user.click(screen.getByRole('button', { name: 'Odznaki regionalne' }))
+    await user.click(screen.getByRole('button', { name: 'Sudecka Odznaka Turystyczna (wkrótce)' }))
 
     expect(await screen.findByText(/w przygotowaniu/)).toBeInTheDocument()
   })

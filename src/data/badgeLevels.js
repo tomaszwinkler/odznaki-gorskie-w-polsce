@@ -42,4 +42,12 @@ export const badgeLevelsBySystem = {
     { name: '20 zdobytych szczytów (75%)', minPoints: 20 },
     { name: 'Korona Beskidów zdobyta (27/27)', minPoints: 27 },
   ],
+  // Oficjalnie odznaka trójstopniowa (regulamin PTT): brąz 20, srebro 40,
+  // złoto komplet — progi poniżej odpowiadają tym wprost, nie są dodatkową
+  // motywacją jak w pozostałych koronach.
+  KORONA_TATR: [
+    { name: 'Brązowa Turystyczna Korona Tatr (20/60)', minPoints: 20 },
+    { name: 'Srebrna Turystyczna Korona Tatr (40/60)', minPoints: 40 },
+    { name: 'Złota Turystyczna Korona Tatr (60/60)', minPoints: 60 },
+  ],
 }
