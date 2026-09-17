@@ -1,20 +1,29 @@
 # Odznaki górskie w Polsce
 
-Aplikacja (PWA) do śledzenia postępu w zdobywaniu polskich odznak turystycznych: **GOT**, **Korona Gór Polski** i **Diadem Polskich Gór**. Pozwala oznaczać odwiedzone szczyty, prowadzić dziennik wypraw ze zdjęciami i importem tras GPX oraz przeglądać punkty na liście i interaktywnej mapie.
+Aplikacja (PWA) do śledzenia postępu w zdobywaniu polskich odznak turystycznych: **GOT**, **Korona Gór Polski**, **Diadem Polskich Gór**, **Korona Sudetów**, **Korona Beskidów** i **Turystyczna Korona Tatr**. Pozwala oznaczać odwiedzone szczyty, prowadzić dziennik wypraw ze zdjęciami i importem tras GPX oraz przeglądać punkty na liście i interaktywnej mapie.
 
 ## Funkcje
 
-- **Wiele systemów odznak** pogrupowanych w kategorie (odznaki ogólnopolskie, korony makroregionalne, odznaki regionalne) — GOT (16 przykładowych punktów), pełna Korona Gór Polski (28 szczytów) i pełny Diadem Polskich Gór (80 szczytów)
+- **Sześć systemów odznak** pogrupowanych w kategorie (odznaki ogólnopolskie, korony makroregionalne, odznaki regionalne):
+  - **GOT** — 64 szczyty w całej Polsce (rozszerzony, orientacyjny zestaw; realny regulamin GOT PTTK punktuje przebyte trasy, nie sam fakt zdobycia szczytu)
+  - **Korona Gór Polski** — pełna, oficjalna lista 28 szczytów
+  - **Diadem Polskich Gór** — pełna, oficjalna lista 80 szczytów
+  - **Korona Sudetów** — pełne 22 szczyty wg regulaminu PTTK, w tym 10 w Czechach (odznaka niezależna od granic państwowych)
+  - **Korona Beskidów** — pełne 27 szczytów wg regulaminu PTTK, odznaka międzynarodowa: Polska, Czechy, Słowacja i Ukraina
+  - **Turystyczna Korona Tatr** — pełne 60 pozycji (54 szczyty + 6 przełęczy) wg regulaminu PTT, po polskiej i słowackiej stronie Tatr
+  - Odznaki regionalne (Sudecka Odznaka Turystyczna, Beskidzka Odznaka Turystyczna, Odznaka „Bieszczady”) — jeszcze w przygotowaniu
+- **Ten sam fizyczny szczyt liczy się do wielu systemów naraz** — np. wejście na Śnieżkę zaznaczone raz w dzienniku automatycznie zalicza się do GOT, Korony Gór Polski, Diademu i Korony Sudetów jednocześnie
 - **Lista i mapa** punktów z sortowaniem (odwiedzone, nazwa, pasmo, punkty) i filtrowaniem po wybranym systemie odznak
-- **Dziennik wypraw** — dodawanie, edycja i usuwanie wpisów (data, notatka, zdjęcia, wybrane punkty), automatyczne wyliczanie postępu na podstawie wpisów
+- **Dziennik wypraw** — dodawanie, edycja i usuwanie wpisów (data, notatka, zdjęcia, wybrane punkty), automatyczne wyliczanie postępu na podstawie wpisów, kompresja zdjęć przed zapisem
+- **Eksport i import dziennika** do pliku JSON — kopia zapasowa niezależna od przeglądarki
 - **Import tras GPX** z automatycznym dopasowaniem odwiedzonych punktów na podstawie odległości
-- **Szczegóły tras** (punkt startowy, dojazd, kolor szlaku, czas wejścia, przewyższenie) dla szczytów Korony Gór Polski
+- **Szczegóły tras** (punkt startowy, dojazd, kolor szlaku, czas wejścia, przewyższenie) dla szczytów wszystkich dostępnych systemów
 - **PWA** — instalowalna, działa offline (cache danych i kafelków mapy)
 - Dane trzymane lokalnie w przeglądarce (IndexedDB) — bez konta, bez backendu
 
 ## Stos technologiczny
 
-React + Vite, Leaflet (mapa, kafelki OpenStreetMap), Dexie.js (IndexedDB), vite-plugin-pwa, Vitest.
+React + Vite, Leaflet (mapa, kafelki OpenStreetMap), Dexie.js (IndexedDB), vite-plugin-pwa, Vitest + Testing Library (jsdom), oxlint.
 
 ## Uruchomienie
 
@@ -29,4 +38,4 @@ npm run preview   # podgląd builda produkcyjnego
 
 ## Status danych
 
-Dane katalogowe (nazwy szczytów, współrzędne, wysokości, trasy) pochodzą z publicznie dostępnych źródeł turystycznych i są orientacyjne — projekt nie jest oficjalnie powiązany z PTTK.
+Dane katalogowe (nazwy szczytów, współrzędne, wysokości, trasy) pochodzą z publicznie dostępnych źródeł turystycznych i są orientacyjne — projekt nie jest oficjalnie powiązany z PTTK ani PTT. Korona Sudetów, Korona Beskidów i Turystyczna Korona Tatr obejmują szczyty poza granicami Polski (Czechy, Słowacja, Ukraina) zgodnie z oficjalnymi regulaminami tych odznak — współrzędne i dane tras dla szczytów zagranicznych są mniej pewne niż dla polskich, region jest rzadziej opisywany w źródłach polskojęzycznych.
