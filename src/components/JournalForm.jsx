@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { parseGpxTrackPoints, findMatchedPointIds } from '../logic/gpx'
+import { compressImageFile } from '../logic/imageCompression'
 
 function todayIsoDate() {
   return new Date().toISOString().slice(0, 10)
@@ -21,6 +22,7 @@ function JournalForm({ points, editingEntry, onSubmit, onCancel }) {
   const [photos, setPhotos] = useState(editingEntry ? (editingEntry.photos ?? []) : [])
   const [gpxTrack, setGpxTrack] = useState(editingEntry ? (editingEntry.gpxTrack ?? []) : [])
   const [gpxMessage, setGpxMessage] = useState(null)
+  const [isProcessingPhotos, setIsProcessingPhotos] = useState(false)
 
   const togglePointSelection = (id) => {
     setSelectedIds((current) =>
@@ -112,9 +114,18 @@ function JournalForm({ points, editingEntry, onSubmit, onCancel }) {
           type="file"
           accept="image/*"
           multiple
-          onChange={(event) => setPhotos((current) => [...current, ...Array.from(event.target.files)])}
+          disabled={isProcessingPhotos}
+          onChange={async (event) => {
+            const files = Array.from(event.target.files)
+            event.target.value = ''
+            setIsProcessingPhotos(true)
+            const compressed = await Promise.all(files.map((file) => compressImageFile(file)))
+            setPhotos((current) => [...current, ...compressed])
+            setIsProcessingPhotos(false)
+          }}
         />
       </label>
+      {isProcessingPhotos && <p className="journal-photos-hint">Przetwarzanie zdjęć…</p>}
       {photos.length > 0 && <p className="journal-photos-hint">Wybrano {photos.length} zdjęć.</p>}
 
       <div className="journal-form-actions">
