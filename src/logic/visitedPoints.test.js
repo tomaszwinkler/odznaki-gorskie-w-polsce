@@ -23,4 +23,18 @@ describe('getVisitedPointIds', () => {
     const entries = [{ id: 1, pointIds: [] }]
     expect(getVisitedPointIds(entries)).toEqual(new Set())
   })
+
+  it('rozszerza zbiór odwiedzonych o punkty z tej samej grupy (peakGroups)', () => {
+    const entries = [{ id: 1, pointIds: ['sniezka'] }]
+    const peakGroups = new Map([['sniezka', ['sniezka-kgp', 'sniezka-diadem']]])
+
+    expect(getVisitedPointIds(entries, peakGroups)).toEqual(new Set(['sniezka', 'sniezka-kgp', 'sniezka-diadem']))
+  })
+
+  it('nie rozszerza zbioru, gdy id nie ma grupy w peakGroups', () => {
+    const entries = [{ id: 1, pointIds: ['rysy'] }]
+    const peakGroups = new Map([['sniezka', ['sniezka-kgp']]])
+
+    expect(getVisitedPointIds(entries, peakGroups)).toEqual(new Set(['rysy']))
+  })
 })
