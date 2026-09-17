@@ -26,16 +26,22 @@ function EntryPhotos({ photos }) {
   )
 }
 
-function pointNames(pointIds, pointsById) {
+function pointNames(pointIds, pointsById, peakGroups) {
   return pointIds
     .map((id) => {
       const point = pointsById.get(id)
-      return point ? `${point.name} (${point.badgeSystem})` : id
+      if (!point) return id
+
+      const siblingIds = peakGroups.get(id) ?? []
+      const badgeSystems = [point.badgeSystem, ...siblingIds.map((siblingId) => pointsById.get(siblingId)?.badgeSystem)].filter(
+        Boolean,
+      )
+      return `${point.name} (${badgeSystems.join(', ')})`
     })
     .join(', ')
 }
 
-function JournalList({ entries, points, onEdit, onDelete }) {
+function JournalList({ entries, points, onEdit, onDelete, peakGroups = new Map() }) {
   const pointsById = useMemo(() => new Map(points.map((point) => [point.id, point])), [points])
   const sorted = useMemo(() => [...entries].sort((a, b) => b.date.localeCompare(a.date)), [entries])
   const [confirmingId, setConfirmingId] = useState(null)
@@ -80,7 +86,7 @@ function JournalList({ entries, points, onEdit, onDelete }) {
           </div>
           {entry.note && <p>{entry.note}</p>}
           {entry.pointIds.length > 0 && (
-            <p className="journal-entry-points">{pointNames(entry.pointIds, pointsById)}</p>
+            <p className="journal-entry-points">{pointNames(entry.pointIds, pointsById, peakGroups)}</p>
           )}
           {entry.gpxTrack?.length > 0 && (
             <p className="journal-entry-gpx">Ślad GPX: {entry.gpxTrack.length} punktów</p>

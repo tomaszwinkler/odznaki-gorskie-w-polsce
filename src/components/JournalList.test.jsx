@@ -60,4 +60,17 @@ describe('JournalList', () => {
     expect(onDelete).not.toHaveBeenCalled()
     expect(screen.getByRole('button', { name: 'Usuń' })).toBeInTheDocument()
   })
+
+  it('pokazuje wszystkie systemy, do których liczy się wpis z połączonego szczytu', () => {
+    const groupedPoints = [
+      { id: 'sniezka', name: 'Śnieżka', region: 'Karkonosze', badgeSystem: 'GOT' },
+      { id: 'sniezka-kgp', name: 'Śnieżka', region: 'Karkonosze', badgeSystem: 'KGP' },
+    ]
+    const peakGroups = new Map([['sniezka', ['sniezka-kgp']]])
+    const entry = { id: 1, date: '2026-05-01', note: '', pointIds: ['sniezka'], photos: [] }
+
+    render(<JournalList entries={[entry]} points={groupedPoints} onEdit={vi.fn()} onDelete={vi.fn()} peakGroups={peakGroups} />)
+
+    expect(screen.getByText('Śnieżka (GOT, KGP)')).toBeInTheDocument()
+  })
 })
