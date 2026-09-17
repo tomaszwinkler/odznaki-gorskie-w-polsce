@@ -27,18 +27,23 @@ function EntryPhotos({ photos }) {
 }
 
 function pointNames(pointIds, pointsById, peakGroups) {
-  return pointIds
-    .map((id) => {
-      const point = pointsById.get(id)
-      if (!point) return id
-
-      const siblingIds = peakGroups.get(id) ?? []
-      const badgeSystems = [point.badgeSystem, ...siblingIds.map((siblingId) => pointsById.get(siblingId)?.badgeSystem)].filter(
-        Boolean,
-      )
-      return `${point.name} (${badgeSystems.join(', ')})`
-    })
-    .join(', ')
+  const seen = new Set()
+  const labels = []
+  for (const id of pointIds) {
+    if (seen.has(id)) continue
+    const point = pointsById.get(id)
+    if (!point) {
+      labels.push(id)
+      continue
+    }
+    const siblingIds = peakGroups.get(id) ?? []
+    ;[id, ...siblingIds].forEach((groupId) => seen.add(groupId))
+    const badgeSystems = [point.badgeSystem, ...siblingIds.map((siblingId) => pointsById.get(siblingId)?.badgeSystem)].filter(
+      Boolean,
+    )
+    labels.push(`${point.name} (${badgeSystems.join(', ')})`)
+  }
+  return labels.join(', ')
 }
 
 function JournalList({ entries, points, onEdit, onDelete, peakGroups = new Map() }) {

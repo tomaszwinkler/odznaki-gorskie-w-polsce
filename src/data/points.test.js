@@ -1,6 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import { initialPoints } from './points'
 import { badgeSystems } from './badgeSystems'
+import { buildPeakGroups } from '../logic/peakGroups'
+
+// Znane, świadome wyjątki: pary id o identycznych (przybliżonych) współrzędnych,
+// które mimo to NIE są tym samym fizycznym szczytem i celowo nie są linkowane
+// przez sharesPeakWith. Klucz to para id posortowana rosnąco i połączona '|'.
+const KNOWN_COORDINATE_COINCIDENCES = new Set(['slonny-pd-wsch-diadem|slonny-pn-zach-diadem'])
 
 // Przybliżony prostokąt obejmujący całą Polskę — łapie literówki we
 // współrzędnych (np. zamienione lat/lng).
@@ -47,5 +53,41 @@ describe('initialPoints', () => {
         expect(siblingId).not.toBe(point.id)
       }
     }
+  })
+
+  it('każdy klaster punktów o identycznych współrzędnych tworzy jedną spójną grupę sharesPeakWith (poza udokumentowanym wyjątkiem Słonny)', () => {
+    const peakGroups = buildPeakGroups(initialPoints)
+
+    const clustersByCoord = new Map()
+    for (const point of initialPoints) {
+      const key = `${point.lat},${point.lng}`
+      if (!clustersByCoord.has(key)) clustersByCoord.set(key, [])
+      clustersByCoord.get(key).push(point.id)
+    }
+
+    let checkedClusterCount = 0
+
+    for (const ids of clustersByCoord.values()) {
+      if (ids.length < 2) continue
+
+      const pairKey = [...ids].sort().join('|')
+      if (ids.length === 2 && KNOWN_COORDINATE_COINCIDENCES.has(pairKey)) {
+        // Świadomy wyjątek: dwa różne szczyty masywu Słonny, celowo niepołączone.
+        const [firstId, secondId] = ids
+        expect(peakGroups.get(firstId) ?? []).not.toContain(secondId)
+        continue
+      }
+
+      const expectedGroup = new Set(ids)
+      for (const id of ids) {
+        const actualGroup = new Set([id, ...(peakGroups.get(id) ?? [])])
+        expect(actualGroup).toEqual(expectedGroup)
+      }
+      checkedClusterCount += 1
+    }
+
+    // Upewnij się, że test faktycznie coś sprawdził (nie przechodzi trywialnie
+    // przy pustym/zdegenerowanym katalogu).
+    expect(checkedClusterCount).toBeGreaterThan(0)
   })
 })

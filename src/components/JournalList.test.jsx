@@ -73,4 +73,21 @@ describe('JournalList', () => {
 
     expect(screen.getByText('Śnieżka (GOT, KGP)')).toBeInTheDocument()
   })
+
+  it('nie duplikuje etykiety szczytu, gdy wpis zawiera kilka id z tej samej grupy', () => {
+    const groupedPoints = [
+      { id: 'sniezka', name: 'Śnieżka', region: 'Karkonosze', badgeSystem: 'GOT' },
+      { id: 'sniezka-kgp', name: 'Śnieżka', region: 'Karkonosze', badgeSystem: 'KGP' },
+    ]
+    const peakGroups = new Map([
+      ['sniezka', ['sniezka-kgp']],
+      ['sniezka-kgp', ['sniezka']],
+    ])
+    const entry = { id: 1, date: '2026-05-01', note: '', pointIds: ['sniezka', 'sniezka-kgp'], photos: [] }
+
+    render(<JournalList entries={[entry]} points={groupedPoints} onEdit={vi.fn()} onDelete={vi.fn()} peakGroups={peakGroups} />)
+
+    expect(screen.getByText('Śnieżka (GOT, KGP)')).toBeInTheDocument()
+    expect(screen.queryByText('Śnieżka (GOT, KGP), Śnieżka (KGP, GOT)')).not.toBeInTheDocument()
+  })
 })
