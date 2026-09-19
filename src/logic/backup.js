@@ -23,7 +23,9 @@ async function photoToExportable(photo) {
 
 export async function buildExportPayload(entries) {
   const exportableEntries = await Promise.all(
-    entries.map(async ({ id: _id, photos, ...entry }) => ({
+    // Pomijamy id oraz pola synchronizacji Dexie Cloud — kopia nie może nieść
+    // tożsamości ani przynależności do realmu z konkretnego konta.
+    entries.map(async ({ id: _id, owner: _owner, realmId: _realmId, photos, ...entry }) => ({
       ...entry,
       photos: await Promise.all(photos.map(photoToExportable)),
     })),

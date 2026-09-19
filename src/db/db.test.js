@@ -46,6 +46,20 @@ describe('importEntries', () => {
     expect(stored).toHaveLength(2)
     expect(stored.map((entry) => entry.note)).toEqual(expect.arrayContaining(['stary wpis', 'nowy wpis']))
     expect(stored.every((entry) => typeof entry.id === 'string')).toBe(true)
+    expect(stored.find((entry) => entry.note === 'nowy wpis').id.startsWith('jrn')).toBe(true)
+  })
+
+  it('odrzuca pola id, owner i realmId z importowanych wpisów', async () => {
+    await importEntries([
+      { id: 'obce-id', owner: 'ktos@example.com', realmId: 'cudzy-realm', date: '2026-05-01', note: 'x', pointIds: [], photos: [], gpxTrack: [] },
+    ])
+
+    const [stored] = await db.journal.toArray()
+    expect(stored.id).not.toBe('obce-id')
+    expect(stored.id.startsWith('jrn')).toBe(true)
+    // Addon sam dopisuje własne owner/realmId przy zapisie — ważne, że nie są to wartości z pliku.
+    expect(stored.owner).not.toBe('ktos@example.com')
+    expect(stored.realmId).not.toBe('cudzy-realm')
   })
 })
 
@@ -69,7 +83,7 @@ describe('migracja bazy z wersji 2', () => {
 
     expect(rows).toHaveLength(2)
     expect(rows.map((row) => row.note).sort()).toEqual(['a', 'b'])
-    expect(rows.every((row) => typeof row.id === 'string' && row.id.length > 0)).toBe(true)
+    expect(rows.every((row) => /^jrn[0-9a-f]{32}$/.test(row.id))).toBe(true)
     expect(new Set(rows.map((row) => row.id)).size).toBe(2)
     expect(rows.find((row) => row.note === 'a').pointIds).toEqual(['sniezka'])
     expect(migrated.tables.map((table) => table.name)).not.toContain('entries')
@@ -87,6 +101,7 @@ describe('configureCloud', () => {
       databaseUrl: 'https://przyklad.dexie.cloud',
       requireAuth: false,
       unsyncedTables: ['points'],
+      nameSuffix: false,
     })
   })
 })

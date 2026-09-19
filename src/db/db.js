@@ -2,6 +2,14 @@ import Dexie from 'dexie'
 import dexieCloud from 'dexie-cloud-addon'
 import { initialPoints } from '../data/points'
 
+// Dexie Cloud wymaga, by klucze tabel z `@id` zaczynały się od prefiksu `jrn`
+// (prefiks = pierwsze trzy litery nazwy tabeli), a resztę mogą stanowić
+// dowolne losowe, globalnie unikalne znaki. Usuwamy stare pole `id` oraz pola
+// synchronizacji (`owner`, `realmId`), żeby wpis nie przeniósł obcych metadanych.
+function toJournalRow({ id: _id, owner: _owner, realmId: _realmId, ...entry }) {
+  return { id: 'jrn' + crypto.randomUUID().replaceAll('-', ''), ...entry }
+}
+
 // Fabryka istnieje po to, żeby test migracji mógł otworzyć bazę o innej nazwie.
 export function createDb(name = 'odznaki-gorskie') {
   const database = new Dexie(name, { addons: [dexieCloud] })
@@ -27,9 +35,7 @@ export function createDb(name = 'odznaki-gorskie') {
     })
     .upgrade(async (tx) => {
       const legacyEntries = await tx.table('entries').toArray()
-      await tx
-        .table('journal')
-        .bulkAdd(legacyEntries.map(({ id: _legacyId, ...entry }) => ({ id: 'jrn' + crypto.randomUUID().replaceAll('-', ''), ...entry })))
+      await tx.table('journal').bulkAdd(legacyEntries.map(toJournalRow))
     })
 
   database.version(4).stores({
@@ -51,10 +57,14 @@ export function configureCloud(database, databaseUrl) {
     databaseUrl,
     requireAuth: false,
     unsyncedTables: ['points'],
+    // Domyślnie addon zmienia nazwę bazy na `<nazwa>-<dbid>`, przez co
+    // włączenie chmury otworzyłoby pustą bazę i porzuciło dotychczasowe dane
+    // lokalne (razem z migracją do `journal`). Zachowujemy oryginalną nazwę.
+    nameSuffix: false,
   })
 }
 
-const cloudUrl = import.meta.env.VITE_DEXIE_CLOUD_URL
+const cloudUrl = import.meta.env.VITE_DEXIE_CLOUD_URL?.trim()
 export const cloudEnabled = Boolean(cloudUrl)
 
 if (cloudEnabled) {
@@ -84,5 +94,5 @@ export async function syncPoints() {
 // nadpisuje ani nie usuwa danych. `bulkAdd` nadaje nowe klucze `@id`, więc
 // wielokrotny import tego samego pliku tworzy duplikaty zamiast nadpisywać.
 export async function importEntries(entries) {
-  await db.journal.bulkAdd(entries)
+  await db.journal.bulkAdd(entries.map(toJournalRow))
 }

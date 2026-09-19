@@ -35,6 +35,18 @@ describe('buildExportPayload', () => {
     ])
   })
 
+  it('pomija pola synchronizacji Dexie Cloud (owner, realmId)', async () => {
+    const entries = [
+      { id: 'jrnabc', owner: 'jan@example.com', realmId: 'rlm123', date: '2026-05-01', note: '', pointIds: [], photos: [], gpxTrack: [] },
+    ]
+
+    const payload = await buildExportPayload(entries)
+
+    expect(payload.entries[0]).not.toHaveProperty('owner')
+    expect(payload.entries[0]).not.toHaveProperty('realmId')
+    expect(payload.entries[0]).not.toHaveProperty('id')
+  })
+
   it('koduje zdjęcia (File) jako obiekty z nazwą, typem i base64 data URL', async () => {
     const photo = new File(['hello'], 'widok.png', { type: 'image/png' })
     const entries = [{ id: 1, date: '2026-05-01', note: '', pointIds: [], photos: [photo], gpxTrack: [] }]
