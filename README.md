@@ -45,9 +45,15 @@ Konfiguracja:
 ```bash
 npx dexie-cloud create            # zwraca URL bazy
 npx dexie-cloud whitelist http://localhost:5173
-npx dexie-cloud whitelist https://<domena-vercel>
+npx dexie-cloud whitelist https://<domena produkcyjna>
 # ustaw VITE_DEXIE_CLOUD_URL w .env.local (wzór: .env.example) oraz w zmiennych środowiskowych Vercel
 ```
+
+Uwaga: nazwy poleceń CLI sprawdź w aktualnej dokumentacji Dexie Cloud — mogły się zmienić. Pliki `dexie-cloud.json` i `.env.dexie-cloud` (CLI zapisuje w drugim z nich `DEXIE_CLOUD_CLIENT_SECRET`) nigdy nie mogą trafić do repozytorium; oba są w `.gitignore`.
+
+Zdjęcia w dzienniku synchronizują się domyślnie od razu (pierwsze zalogowane urządzenie pobiera wszystkie zdjęcia). Przed prawdziwym użyciem sprawdź limity synchronizacji blobów i koszty wybranego planu Dexie Cloud.
+
+Wylogowanie zawsze wymaga potwierdzenia i usuwa z urządzenia wszystkie lokalne tabele, także katalog punktów (aplikacja synchronizuje go ponownie); dane wracają po ponownym zalogowaniu. Wylogowanie z wymuszeniem (`force: true`, „Wyloguj mimo to”) bezpowrotnie usuwa niezsynchronizowane zmiany.
 
 Logowanie odbywa się kodem jednorazowym wysyłanym e-mailem. Wpisy dziennika mają tekstowe id z prefiksem `jrn` (wymóg tabel `@id` w Dexie Cloud); przy pierwszym otwarciu nowej wersji istniejące wpisy z lokalnej bazy są automatycznie migrowane do nowej tabeli `journal` z takimi id.
 
@@ -55,11 +61,11 @@ Logowanie odbywa się kodem jednorazowym wysyłanym e-mailem. Wpisy dziennika ma
 
 Poniższe kroki nie były jeszcze wykonane — wymagają założonej bazy Dexie Cloud (`VITE_DEXIE_CLOUD_URL` w `.env.local`, potem `npm run dev`):
 
-1. Stara baza z wpisami (v2) → po otwarciu wpisy widoczne w Dzienniku (migracja).
+1. Stara baza z wpisami (v2) → po otwarciu wpisy widoczne w Dzienniku (migracja; działa dzięki `nameSuffix: false`, które zachowuje nazwę bazy `odznaki-gorskie`).
 2. „Zaloguj się” → kod z e-maila → wskaźnik przechodzi do „Zsynchronizowano”.
 3. Dodaj wpis ze zdjęciem; druga karta/przeglądarka po zalogowaniu na to samo konto pokazuje wpis i zdjęcie.
 4. Tryb offline (DevTools) → „Offline”; dodaj wpis, wróć online → synchronizacja.
-5. „Wyloguj” przy niezsynchronizowanych zmianach → ostrzeżenie; sprawdź, co dzieje się z danymi lokalnymi po wylogowaniu i dopisz obserwację tutaj.
+5. „Wyloguj” → potwierdzenie (przy niezsynchronizowanych zmianach ostrzeżenie o ich utracie). Znane zachowanie: po wylogowaniu lokalne tabele są czyszczone, a katalog punktów odtwarza aplikacja. Zweryfikuj: dziennik znika z urządzenia, katalog wraca, a po ponownym zalogowaniu wpisy wracają.
 6. Bez `VITE_DEXIE_CLOUD_URL` → brak menu konta, aplikacja działa jak wcześniej.
 
 ## Status danych
