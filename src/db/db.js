@@ -43,6 +43,24 @@ export function createDb(name = 'odznaki-gorskie') {
 
 export const db = createDb()
 
+// Chmura jest włączana tylko po ustawieniu VITE_DEXIE_CLOUD_URL — bez niej
+// aplikacja działa lokalnie, jak dotychczas. Katalog `points` jest statyczny
+// (syncPoints nadpisuje go przy każdym starcie), więc nie może się synchronizować.
+export function configureCloud(database, databaseUrl) {
+  database.cloud.configure({
+    databaseUrl,
+    requireAuth: false,
+    unsyncedTables: ['points'],
+  })
+}
+
+const cloudUrl = import.meta.env.VITE_DEXIE_CLOUD_URL
+export const cloudEnabled = Boolean(cloudUrl)
+
+if (cloudEnabled) {
+  configureCloud(db, cloudUrl)
+}
+
 // Synchronizuje katalog punktów (nazwa, pasmo, punkty, współrzędne) z
 // aktualną zawartością src/data/points.js. Katalog nie przechowuje już
 // statusu "odwiedzony" — ten jest wyliczany z wpisów w tabeli `journal`

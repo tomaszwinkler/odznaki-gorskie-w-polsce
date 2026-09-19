@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto'
 import Dexie from 'dexie'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
-import { createDb, db, syncPoints, importEntries } from './db'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { createDb, db, syncPoints, importEntries, configureCloud } from './db'
 import { initialPoints } from '../data/points'
 
 beforeEach(async () => {
@@ -74,5 +74,19 @@ describe('migracja bazy z wersji 2', () => {
     expect(rows.find((row) => row.note === 'a').pointIds).toEqual(['sniezka'])
     expect(migrated.tables.map((table) => table.name)).not.toContain('entries')
     migrated.close()
+  })
+})
+
+describe('configureCloud', () => {
+  it('konfiguruje chmurę z opcjonalnym logowaniem i bez synchronizacji katalogu', () => {
+    const fakeDb = { cloud: { configure: vi.fn() } }
+
+    configureCloud(fakeDb, 'https://przyklad.dexie.cloud')
+
+    expect(fakeDb.cloud.configure).toHaveBeenCalledWith({
+      databaseUrl: 'https://przyklad.dexie.cloud',
+      requireAuth: false,
+      unsyncedTables: ['points'],
+    })
   })
 })
