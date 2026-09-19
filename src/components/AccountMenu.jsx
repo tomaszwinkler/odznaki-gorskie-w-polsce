@@ -10,8 +10,16 @@ const SYNC_LABELS = {
   error: 'Błąd synchronizacji',
 }
 
-function AccountMenu({ user, syncState, onLogin, onLogout }) {
+function AccountMenu({ user, syncState, error, onLogin, onLogout }) {
   const [confirmingLogout, setConfirmingLogout] = useState(false)
+
+  if (user?.isLoading) {
+    return (
+      <div className="account-menu">
+        <small>Ładowanie konta…</small>
+      </div>
+    )
+  }
 
   if (!user?.isLoggedIn) {
     return (
@@ -20,6 +28,7 @@ function AccountMenu({ user, syncState, onLogin, onLogout }) {
           Zaloguj się
         </button>
         <small>Dane zapisane tylko na tym urządzeniu</small>
+        {error && <p role="alert">{error}</p>}
       </div>
     )
   }
@@ -27,36 +36,35 @@ function AccountMenu({ user, syncState, onLogin, onLogout }) {
   const phase = syncState?.phase
   const inSync = phase === 'in-sync'
 
-  const handleLogoutClick = () => {
-    if (inSync) {
-      onLogout({ force: false })
-    } else {
-      setConfirmingLogout(true)
-    }
+  const confirmLogout = () => {
+    setConfirmingLogout(false)
+    onLogout({ force: !inSync })
   }
 
   return (
     <div className="account-menu">
       <span>{user.email}</span>
-      <small>{SYNC_LABELS[phase] ?? SYNC_LABELS.initial}</small>
+      <small role="status">{SYNC_LABELS[phase] ?? SYNC_LABELS.initial}</small>
+      {error && <p role="alert">{error}</p>}
       {confirmingLogout ? (
-        <p role="alert">
-          Masz niezsynchronizowane zmiany — po wylogowaniu mogą zostać utracone.
-          <button
-            type="button"
-            onClick={() => {
-              setConfirmingLogout(false)
-              onLogout({ force: true })
-            }}
-          >
-            Wyloguj mimo to
-          </button>
-          <button type="button" onClick={() => setConfirmingLogout(false)}>
-            Anuluj
-          </button>
-        </p>
+        <>
+          {/* Komunikat wyliczany na bieżąco, więc śledzi zmianę fazy synchronizacji. */}
+          <p role="alert">
+            {inSync
+              ? 'Po wylogowaniu dane zostaną usunięte z tego urządzenia; wrócą po ponownym zalogowaniu.'
+              : 'Masz niezsynchronizowane zmiany — zostaną usunięte bez możliwości odzyskania.'}
+          </p>
+          <div>
+            <button type="button" onClick={confirmLogout}>
+              {inSync ? 'Wyloguj' : 'Wyloguj mimo to'}
+            </button>
+            <button type="button" onClick={() => setConfirmingLogout(false)}>
+              Anuluj
+            </button>
+          </div>
+        </>
       ) : (
-        <button type="button" onClick={handleLogoutClick}>
+        <button type="button" onClick={() => setConfirmingLogout(true)}>
           Wyloguj
         </button>
       )}

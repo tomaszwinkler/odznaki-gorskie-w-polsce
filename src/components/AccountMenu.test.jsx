@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import AccountMenu from './AccountMenu'
 
+const loggedIn = { isLoggedIn: true, email: 'a@b.pl' }
+
 describe('AccountMenu', () => {
   it('dla niezalogowanego pokazuje przycisk logowania i informację o danych lokalnych', async () => {
     const onLogin = vi.fn()
@@ -15,18 +17,32 @@ describe('AccountMenu', () => {
     expect(onLogin).toHaveBeenCalledTimes(1)
   })
 
-  it('dla zalogowanego pokazuje e-mail i stan synchronizacji', () => {
+  it('w trakcie ustalania konta pokazuje "Ładowanie konta…" zamiast przycisku logowania', () => {
+    render(<AccountMenu user={{ isLoggedIn: false, isLoading: true }} syncState={undefined} onLogin={vi.fn()} onLogout={vi.fn()} />)
+
+    expect(screen.getByText('Ładowanie konta…')).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Zaloguj się' })).not.toBeInTheDocument()
+  })
+
+  it('pokazuje błąd logowania w elemencie role="alert" dla niezalogowanego', () => {
     render(
       <AccountMenu
-        user={{ isLoggedIn: true, email: 'jan@example.com' }}
-        syncState={{ phase: 'in-sync' }}
+        user={{ isLoggedIn: false }}
+        syncState={undefined}
+        error="Nie udało się zalogować. Spróbuj ponownie."
         onLogin={vi.fn()}
         onLogout={vi.fn()}
       />,
     )
 
-    expect(screen.getByText('jan@example.com')).toBeInTheDocument()
-    expect(screen.getByText('Zsynchronizowano')).toBeInTheDocument()
+    expect(screen.getByRole('alert')).toHaveTextContent('Nie udało się zalogować. Spróbuj ponownie.')
+  })
+
+  it('dla zalogowanego pokazuje e-mail i stan synchronizacji w role="status"', () => {
+    render(<AccountMenu user={loggedIn} syncState={{ phase: 'in-sync' }} onLogin={vi.fn()} onLogout={vi.fn()} />)
+
+    expect(screen.getByText('a@b.pl')).toBeInTheDocument()
+    expect(screen.getByRole('status')).toHaveTextContent('Zsynchronizowano')
   })
 
   it.each([
@@ -35,46 +51,44 @@ describe('AccountMenu', () => {
     ['offline', 'Offline'],
     ['error', 'Błąd synchronizacji'],
     ['not-in-sync', 'Oczekuje na synchronizację'],
+    ['initial', 'Łączenie…'],
   ])('pokazuje etykietę dla fazy %s', (phase, label) => {
-    render(
-      <AccountMenu user={{ isLoggedIn: true, email: 'a@b.pl' }} syncState={{ phase }} onLogin={vi.fn()} onLogout={vi.fn()} />,
-    )
+    render(<AccountMenu user={loggedIn} syncState={{ phase }} onLogin={vi.fn()} onLogout={vi.fn()} />)
 
     expect(screen.getByText(label)).toBeInTheDocument()
   })
 
-  it('wylogowuje od razu, gdy wszystko jest zsynchronizowane', async () => {
-    const onLogout = vi.fn()
-    const user = userEvent.setup()
-    render(
-      <AccountMenu
-        user={{ isLoggedIn: true, email: 'a@b.pl' }}
-        syncState={{ phase: 'in-sync' }}
-        onLogin={vi.fn()}
-        onLogout={onLogout}
-      />,
-    )
+  it('bez syncState pokazuje etykietę "Łączenie…"', () => {
+    render(<AccountMenu user={loggedIn} syncState={undefined} onLogin={vi.fn()} onLogout={vi.fn()} />)
 
-    await user.click(screen.getByRole('button', { name: 'Wyloguj' }))
-
-    expect(onLogout).toHaveBeenCalledWith({ force: false })
+    expect(screen.getByText('Łączenie…')).toBeInTheDocument()
   })
 
-  it('przy niezsynchronizowanych zmianach prosi o potwierdzenie przed wylogowaniem', async () => {
+  it('przy pełnej synchronizacji prosi o potwierdzenie i wylogowuje bez force', async () => {
     const onLogout = vi.fn()
     const user = userEvent.setup()
-    render(
-      <AccountMenu
-        user={{ isLoggedIn: true, email: 'a@b.pl' }}
-        syncState={{ phase: 'offline' }}
-        onLogin={vi.fn()}
-        onLogout={onLogout}
-      />,
-    )
+    render(<AccountMenu user={loggedIn} syncState={{ phase: 'in-sync' }} onLogin={vi.fn()} onLogout={onLogout} />)
 
     await user.click(screen.getByRole('button', { name: 'Wyloguj' }))
     expect(onLogout).not.toHaveBeenCalled()
-    expect(screen.getByText(/niezsynchronizowane zmiany/i)).toBeInTheDocument()
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'Po wylogowaniu dane zostaną usunięte z tego urządzenia; wrócą po ponownym zalogowaniu.',
+    )
+
+    await user.click(screen.getByRole('button', { name: 'Wyloguj' }))
+    expect(onLogout).toHaveBeenCalledWith({ force: false })
+  })
+
+  it('przy niezsynchronizowanych zmianach ostrzega o utracie i wylogowuje z force', async () => {
+    const onLogout = vi.fn()
+    const user = userEvent.setup()
+    render(<AccountMenu user={loggedIn} syncState={{ phase: 'offline' }} onLogin={vi.fn()} onLogout={onLogout} />)
+
+    await user.click(screen.getByRole('button', { name: 'Wyloguj' }))
+    expect(onLogout).not.toHaveBeenCalled()
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'Masz niezsynchronizowane zmiany — zostaną usunięte bez możliwości odzyskania.',
+    )
 
     await user.click(screen.getByRole('button', { name: 'Wyloguj mimo to' }))
     expect(onLogout).toHaveBeenCalledWith({ force: true })
@@ -83,19 +97,29 @@ describe('AccountMenu', () => {
   it('pozwala anulować wylogowanie', async () => {
     const onLogout = vi.fn()
     const user = userEvent.setup()
-    render(
-      <AccountMenu
-        user={{ isLoggedIn: true, email: 'a@b.pl' }}
-        syncState={{ phase: 'error' }}
-        onLogin={vi.fn()}
-        onLogout={onLogout}
-      />,
-    )
+    render(<AccountMenu user={loggedIn} syncState={{ phase: 'error' }} onLogin={vi.fn()} onLogout={onLogout} />)
 
     await user.click(screen.getByRole('button', { name: 'Wyloguj' }))
     await user.click(screen.getByRole('button', { name: 'Anuluj' }))
 
     expect(onLogout).not.toHaveBeenCalled()
-    expect(screen.queryByText(/niezsynchronizowane zmiany/i)).not.toBeInTheDocument()
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+  })
+
+  it('komunikat potwierdzenia śledzi aktualną fazę synchronizacji', async () => {
+    const onLogout = vi.fn()
+    const user = userEvent.setup()
+    const { rerender } = render(
+      <AccountMenu user={loggedIn} syncState={{ phase: 'pushing' }} onLogin={vi.fn()} onLogout={onLogout} />,
+    )
+
+    await user.click(screen.getByRole('button', { name: 'Wyloguj' }))
+    expect(screen.getByRole('alert')).toHaveTextContent(/niezsynchronizowane zmiany/)
+
+    rerender(<AccountMenu user={loggedIn} syncState={{ phase: 'in-sync' }} onLogin={vi.fn()} onLogout={onLogout} />)
+    expect(screen.getByRole('alert')).toHaveTextContent(/wrócą po ponownym zalogowaniu/)
+
+    await user.click(screen.getByRole('button', { name: 'Wyloguj' }))
+    expect(onLogout).toHaveBeenCalledWith({ force: false })
   })
 })

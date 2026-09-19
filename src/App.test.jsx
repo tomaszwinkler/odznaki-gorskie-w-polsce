@@ -1,8 +1,9 @@
-import { describe, it, expect, vi } from 'vitest'
+import { beforeEach, describe, it, expect, vi } from 'vitest'
 import { useEffect, useState } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from './App'
+import { syncPoints } from './db/db'
 
 vi.mock('./components/MapView', () => ({
   default: ({ points }) => <div data-testid="map-view">Mapa: {points.length} punktów</div>,
@@ -52,7 +53,42 @@ vi.mock('./db/db', () => ({
   importEntries: vi.fn(),
 }))
 
+const disabledCloud = { enabled: false, user: undefined, syncState: undefined, error: null, login: () => {}, logout: () => {} }
+
 describe('App', () => {
+  beforeEach(() => {
+    cloudAccount.current = { ...disabledCloud }
+    vi.mocked(syncPoints).mockClear()
+  })
+
+  it('synchronizuje katalog ponownie po zmianie użytkownika (wylogowanie czyści tabelę points)', async () => {
+    cloudAccount.current = { ...disabledCloud, enabled: true, user: { isLoggedIn: true, userId: 'a@b.pl', email: 'a@b.pl' } }
+    const { rerender } = render(<App />)
+    await screen.findByText('Śnieżka')
+    expect(syncPoints).toHaveBeenCalledTimes(1)
+
+    cloudAccount.current = { ...disabledCloud, enabled: true, user: { isLoggedIn: false, userId: 'unauthorized' } }
+    rerender(<App />)
+
+    expect(syncPoints).toHaveBeenCalledTimes(2)
+  })
+
+  it('nie synchronizuje katalogu ponownie, gdy użytkownik się nie zmienia', async () => {
+    const { rerender } = render(<App />)
+    await screen.findByText('Śnieżka')
+    rerender(<App />)
+
+    expect(syncPoints).toHaveBeenCalledTimes(1)
+  })
+
+  it('przekazuje błąd logowania do menu konta', async () => {
+    cloudAccount.current = { ...disabledCloud, enabled: true, user: { isLoggedIn: false }, error: 'Nie udało się zalogować. Spróbuj ponownie.' }
+    render(<App />)
+    await screen.findByText('Śnieżka')
+
+    expect(screen.getByRole('alert')).toHaveTextContent('Nie udało się zalogować')
+  })
+
   it('pokazuje domyślnie listę punktów wybranego systemu (GOT)', async () => {
     render(<App />)
 
@@ -112,7 +148,6 @@ describe('App', () => {
   })
 
   it('nie pokazuje menu konta, gdy chmura jest wyłączona', async () => {
-    cloudAccount.current = { enabled: false }
     render(<App />)
     await screen.findByText('Śnieżka')
 

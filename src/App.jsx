@@ -40,9 +40,12 @@ function App() {
     )
   }
 
+  // Wylogowanie/zmiana konta w Dexie Cloud czyści wszystkie tabele lokalne,
+  // także `points` — dlatego katalog synchronizujemy ponownie przy zmianie tożsamości.
+  const userId = account.user?.userId
   useEffect(() => {
     syncPoints()
-  }, [])
+  }, [userId])
 
   const catalogPoints = useLiveQuery(
     () =>
@@ -106,6 +109,7 @@ function App() {
         <AccountMenu
           user={account.user}
           syncState={account.syncState}
+          error={account.error}
           onLogin={account.login}
           onLogout={account.logout}
         />
