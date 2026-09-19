@@ -6,7 +6,9 @@ import PointsList from './components/PointsList'
 import MapView from './components/MapView'
 import JournalView from './components/JournalView'
 import SystemPlaceholder from './components/SystemPlaceholder'
+import AccountMenu from './components/AccountMenu'
 import { db, syncPoints, importEntries } from './db/db'
+import { useCloudAccount } from './db/useCloudAccount'
 import { badgeCategories } from './data/badgeCategories'
 import { badgeSystems } from './data/badgeSystems'
 import { badgeLevelsBySystem } from './data/badgeLevels'
@@ -21,6 +23,8 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState(badgeCategories[0].id)
   const [selectedSystem, setSelectedSystem] = useState(badgeSystems[0].id)
   const [sort, setSort] = useState({ key: 'region', direction: 'asc' })
+
+  const account = useCloudAccount()
 
   const handleCategoryChange = (categoryId) => {
     setSelectedCategory(categoryId)
@@ -97,6 +101,15 @@ function App() {
   return (
     <main className="app">
       <MountainBanner />
+
+      {account.enabled && (
+        <AccountMenu
+          user={account.user}
+          syncState={account.syncState}
+          onLogin={account.login}
+          onLogout={account.logout}
+        />
+      )}
 
       {progressBySystem.map(({ system, progress }) => (
         <ProgressHeader

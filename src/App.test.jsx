@@ -35,6 +35,14 @@ const catalogPoints = [
 ]
 const entries = [{ id: 'wpis-1', date: '2026-05-01', note: '', pointIds: ['sniezka'], photos: [], gpxTrack: [] }]
 
+const cloudAccount = vi.hoisted(() => ({
+  current: { enabled: false, user: undefined, syncState: undefined, login: () => {}, logout: () => {} },
+}))
+
+vi.mock('./db/useCloudAccount', () => ({
+  useCloudAccount: () => cloudAccount.current,
+}))
+
 vi.mock('./db/db', () => ({
   db: {
     points: { toArray: () => Promise.resolve(catalogPoints) },
@@ -101,5 +109,25 @@ describe('App', () => {
     await user.click(screen.getByRole('button', { name: 'Dziennik' }))
 
     expect(await screen.findByText('2026-05-01')).toBeInTheDocument()
+  })
+
+  it('nie pokazuje menu konta, gdy chmura jest wyłączona', async () => {
+    cloudAccount.current = { enabled: false }
+    render(<App />)
+    await screen.findByText('Śnieżka')
+
+    expect(screen.queryByRole('button', { name: 'Zaloguj się' })).not.toBeInTheDocument()
+  })
+
+  it('pokazuje menu konta z przyciskiem logowania, gdy chmura jest włączona', async () => {
+    const login = vi.fn()
+    cloudAccount.current = { enabled: true, user: { isLoggedIn: false }, syncState: undefined, login, logout: vi.fn() }
+    const user = userEvent.setup()
+    render(<App />)
+    await screen.findByText('Śnieżka')
+
+    await user.click(screen.getByRole('button', { name: 'Zaloguj się' }))
+
+    expect(login).toHaveBeenCalledTimes(1)
   })
 })
