@@ -33,12 +33,12 @@ const catalogPoints = [
   { id: 'sniezka', name: 'Śnieżka', region: 'Sudety', points: 10, badgeSystem: 'GOT', lat: 50.736, lng: 15.74 },
   { id: 'rysy-kgp', name: 'Rysy', region: 'Tatry', points: 1, badgeSystem: 'KGP', lat: 49.1794, lng: 20.0881 },
 ]
-const entries = [{ id: 1, date: '2026-05-01', note: '', pointIds: ['sniezka'], photos: [], gpxTrack: [] }]
+const entries = [{ id: 'wpis-1', date: '2026-05-01', note: '', pointIds: ['sniezka'], photos: [], gpxTrack: [] }]
 
 vi.mock('./db/db', () => ({
   db: {
     points: { toArray: () => Promise.resolve(catalogPoints) },
-    entries: { toArray: () => Promise.resolve(entries) },
+    journal: { toArray: () => Promise.resolve(entries) },
   },
   syncPoints: vi.fn(() => Promise.resolve()),
   importEntries: vi.fn(),

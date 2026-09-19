@@ -1,11 +1,12 @@
 import 'fake-indexeddb/auto'
-import { beforeEach, describe, expect, it } from 'vitest'
-import { db, syncPoints, importEntries } from './db'
+import Dexie from 'dexie'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { createDb, db, syncPoints, importEntries } from './db'
 import { initialPoints } from '../data/points'
 
 beforeEach(async () => {
   await db.points.clear()
-  await db.entries.clear()
+  await db.journal.clear()
 })
 
 describe('syncPoints', () => {
@@ -37,12 +38,41 @@ describe('syncPoints', () => {
 
 describe('importEntries', () => {
   it('dokłada zaimportowane wpisy do istniejących, nadając nowe id', async () => {
-    await db.entries.add({ date: '2026-01-01', note: 'stary wpis', pointIds: [], photos: [], gpxTrack: [] })
+    await db.journal.add({ id: 'jrnstarywpis', date: '2026-01-01', note: 'stary wpis', pointIds: [], photos: [], gpxTrack: [] })
 
     await importEntries([{ date: '2026-05-01', note: 'nowy wpis', pointIds: [], photos: [], gpxTrack: [] }])
 
-    const stored = await db.entries.toArray()
+    const stored = await db.journal.toArray()
     expect(stored).toHaveLength(2)
     expect(stored.map((entry) => entry.note)).toEqual(expect.arrayContaining(['stary wpis', 'nowy wpis']))
+    expect(stored.every((entry) => typeof entry.id === 'string')).toBe(true)
+  })
+})
+
+describe('migracja bazy z wersji 2', () => {
+  const NAME = 'migracja-test'
+  afterEach(async () => {
+    await Dexie.delete(NAME)
+  })
+
+  it('przenosi wpisy z entries do journal z unikalnymi tekstowymi id i usuwa entries', async () => {
+    const legacy = new Dexie(NAME)
+    legacy.version(2).stores({ points: 'id', entries: '++id, date' })
+    await legacy.table('entries').bulkAdd([
+      { date: '2026-01-01', note: 'a', pointIds: ['sniezka'], photos: [], gpxTrack: [] },
+      { date: '2026-02-02', note: 'b', pointIds: [], photos: [], gpxTrack: [] },
+    ])
+    legacy.close()
+
+    const migrated = createDb(NAME)
+    const rows = await migrated.table('journal').toArray()
+
+    expect(rows).toHaveLength(2)
+    expect(rows.map((row) => row.note).sort()).toEqual(['a', 'b'])
+    expect(rows.every((row) => typeof row.id === 'string' && row.id.length > 0)).toBe(true)
+    expect(new Set(rows.map((row) => row.id)).size).toBe(2)
+    expect(rows.find((row) => row.note === 'a').pointIds).toEqual(['sniezka'])
+    expect(migrated.tables.map((table) => table.name)).not.toContain('entries')
+    migrated.close()
   })
 })

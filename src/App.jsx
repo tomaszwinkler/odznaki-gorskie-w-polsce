@@ -49,7 +49,7 @@ function App() {
     [],
   )
 
-  const entries = useLiveQuery(() => db.entries.toArray(), [], [])
+  const entries = useLiveQuery(() => db.journal.toArray(), [], [])
 
   const peakGroups = useMemo(() => buildPeakGroups(catalogPoints), [catalogPoints])
   const visitedIds = useMemo(() => getVisitedPointIds(entries, peakGroups), [entries, peakGroups])
@@ -62,14 +62,14 @@ function App() {
   const saveEntry = async (entry) => {
     const { id, ...fields } = entry
     if (id) {
-      await db.entries.update(id, fields)
+      await db.journal.update(id, fields)
     } else {
-      await db.entries.add(fields)
+      await db.journal.add(fields)
     }
   }
 
   const deleteEntry = async (id) => {
-    await db.entries.delete(id)
+    await db.journal.delete(id)
   }
 
   const progressBySystem = badgeSystems

@@ -1,20 +1,51 @@
 import Dexie from 'dexie'
+import dexieCloud from 'dexie-cloud-addon'
 import { initialPoints } from '../data/points'
 
-export const db = new Dexie('odznaki-gorskie')
+// Fabryka istnieje po to, żeby test migracji mógł otworzyć bazę o innej nazwie.
+export function createDb(name = 'odznaki-gorskie') {
+  const database = new Dexie(name, { addons: [dexieCloud] })
 
-db.version(1).stores({
-  points: 'id',
-})
+  database.version(1).stores({
+    points: 'id',
+  })
 
-db.version(2).stores({
-  points: 'id',
-  entries: '++id, date',
-})
+  database.version(2).stores({
+    points: 'id',
+    entries: '++id, date',
+  })
+
+  // Dexie nie pozwala zmienić klucza głównego w miejscu, więc dziennik trafia
+  // do nowej tabeli `journal` z tekstowymi id (wymaganymi przez synchronizację
+  // — auto-inkrementowane id kolidowałyby między urządzeniami).
+  database
+    .version(3)
+    .stores({
+      points: 'id',
+      entries: '++id, date',
+      journal: '@id, date',
+    })
+    .upgrade(async (tx) => {
+      const legacyEntries = await tx.table('entries').toArray()
+      await tx
+        .table('journal')
+        .bulkAdd(legacyEntries.map(({ id: _legacyId, ...entry }) => ({ id: 'jrn' + crypto.randomUUID().replaceAll('-', ''), ...entry })))
+    })
+
+  database.version(4).stores({
+    points: 'id',
+    entries: null,
+    journal: '@id, date',
+  })
+
+  return database
+}
+
+export const db = createDb()
 
 // Synchronizuje katalog punktów (nazwa, pasmo, punkty, współrzędne) z
 // aktualną zawartością src/data/points.js. Katalog nie przechowuje już
-// statusu "odwiedzony" — ten jest wyliczany z wpisów w tabeli `entries`
+// statusu "odwiedzony" — ten jest wyliczany z wpisów w tabeli `journal`
 // (zob. src/logic/visitedPoints.js), więc synchronizacja może po prostu
 // nadpisać dane katalogowe bez ryzyka utraty postępu użytkownika. Usuwa
 // też punkty, których nie ma już w src/data/points.js (np. po zmianie id
@@ -32,8 +63,8 @@ export async function syncPoints() {
 }
 
 // Dokłada zaimportowane wpisy dziennika do istniejących (merge) — nigdy nie
-// nadpisuje ani nie usuwa danych. `bulkAdd` nadaje nowe klucze `++id`, więc
+// nadpisuje ani nie usuwa danych. `bulkAdd` nadaje nowe klucze `@id`, więc
 // wielokrotny import tego samego pliku tworzy duplikaty zamiast nadpisywać.
 export async function importEntries(entries) {
-  await db.entries.bulkAdd(entries)
+  await db.journal.bulkAdd(entries)
 }

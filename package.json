@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "dexie": "^4.4.6",
+    "dexie-cloud-addon": "^4.4.15",
     "dexie-react-hooks": "^4.4.0",
     "leaflet": "^1.9.4",
     "react": "^19.2.8",
