@@ -19,7 +19,7 @@ Aplikacja (PWA) do śledzenia postępu w zdobywaniu polskich odznak turystycznyc
 - **Import tras GPX** z automatycznym dopasowaniem odwiedzonych punktów na podstawie odległości
 - **Szczegóły tras** (punkt startowy, dojazd, kolor szlaku, czas wejścia, przewyższenie) dla szczytów wszystkich dostępnych systemów
 - **PWA** — instalowalna, działa offline (cache danych i kafelków mapy)
-- Dane trzymane lokalnie w przeglądarce (IndexedDB) — bez konta, bez backendu
+- Dane trzymane lokalnie w przeglądarce (IndexedDB) — konto i synchronizacja między urządzeniami są opcjonalne (zob. „Logowanie i synchronizacja”)
 
 ## Stos technologiczny
 
@@ -35,6 +35,32 @@ npm run lint      # linter
 npm run build     # build produkcyjny (wymagany do przetestowania PWA/offline)
 npm run preview   # podgląd builda produkcyjnego
 ```
+
+## Logowanie i synchronizacja
+
+Opcjonalna synchronizacja dziennika (wpisy i zdjęcia) między urządzeniami działa przez [Dexie Cloud](https://dexie.org/cloud/). Bez konfiguracji aplikacja działa tylko lokalnie, jak dotychczas — menu konta w ogóle się nie pojawia. Katalog punktów nie jest synchronizowany (jest statyczny), synchronizowany jest wyłącznie dziennik.
+
+Konfiguracja:
+
+```bash
+npx dexie-cloud create            # zwraca URL bazy
+npx dexie-cloud whitelist http://localhost:5173
+npx dexie-cloud whitelist https://<domena-vercel>
+# ustaw VITE_DEXIE_CLOUD_URL w .env.local (wzór: .env.example) oraz w zmiennych środowiskowych Vercel
+```
+
+Logowanie odbywa się kodem jednorazowym wysyłanym e-mailem. Wpisy dziennika mają tekstowe id z prefiksem `jrn` (wymóg tabel `@id` w Dexie Cloud); przy pierwszym otwarciu nowej wersji istniejące wpisy z lokalnej bazy są automatycznie migrowane do nowej tabeli `journal` z takimi id.
+
+### Do sprawdzenia po podłączeniu bazy
+
+Poniższe kroki nie były jeszcze wykonane — wymagają założonej bazy Dexie Cloud (`VITE_DEXIE_CLOUD_URL` w `.env.local`, potem `npm run dev`):
+
+1. Stara baza z wpisami (v2) → po otwarciu wpisy widoczne w Dzienniku (migracja).
+2. „Zaloguj się” → kod z e-maila → wskaźnik przechodzi do „Zsynchronizowano”.
+3. Dodaj wpis ze zdjęciem; druga karta/przeglądarka po zalogowaniu na to samo konto pokazuje wpis i zdjęcie.
+4. Tryb offline (DevTools) → „Offline”; dodaj wpis, wróć online → synchronizacja.
+5. „Wyloguj” przy niezsynchronizowanych zmianach → ostrzeżenie; sprawdź, co dzieje się z danymi lokalnymi po wylogowaniu i dopisz obserwację tutaj.
+6. Bez `VITE_DEXIE_CLOUD_URL` → brak menu konta, aplikacja działa jak wcześniej.
 
 ## Status danych
 
