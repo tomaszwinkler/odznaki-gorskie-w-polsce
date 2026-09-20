@@ -30,4 +30,5 @@ dist-ssr
 
 # Dane uwierzytelniające Dexie Cloud (CLI zapisuje tu sekret klienta) — nigdy nie commituj
 dexie-cloud.json
+dexie-cloud.key
 .env.dexie-cloud
