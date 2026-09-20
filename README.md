@@ -61,7 +61,20 @@ Uwagi:
 
 ### Plan i limity
 
-Darmowa wersja Dexie Cloud obejmuje (wg dokumentacji Dexie) 3 użytkowników produkcyjnych, nieograniczoną liczbę urządzeń i nieograniczoną liczbę użytkowników testowych. Przed zaproszeniem większej liczby osób sprawdź aktualny cennik i zasady przejścia z trybu testowego na produkcyjny (Dexie Cloud Manager).
+Cennik Dexie Cloud (stan na 2026-09-20, źródło: https://dexie.org/cloud/pricing — sprawdź aktualne wartości przed decyzją):
+
+| | Free | Pro |
+|---|---|---|
+| Cena | €0 / mies. | €0,12 za użytkownika / mies. |
+| Użytkownicy produkcyjni | 3 | bez limitu |
+| Pamięć obiektowa | 100 MB | rośnie z liczbą miejsc (25 miejsc = 1 GB) |
+| Pamięć na zdjęcia (blob) | 75 MB | rośnie z liczbą miejsc (25 miejsc = 20 GB) |
+| Bazy danych | 10 | bez limitu |
+| Limit zapytań | 20 / s | wyższy, zależny od liczby użytkowników |
+
+- **Zdjęcia to główne ograniczenie.** 75 MB na zdjęcia w darmowym planie dotyczy całej bazy, nie pojedynczego użytkownika, więc przy kilku aktywnych osobach szybko się skończy. Nie sprawdzono, co dokładnie dzieje się po przekroczeniu limitu — zweryfikuj to, zanim więcej osób zacznie dodawać zdjęcia.
+- **Użytkownicy testowi (evaluation)** mają licencję na 30 aktywnych dni, po czym synchronizacja się wstrzymuje, dopóki konto nie zajmie miejsca produkcyjnego. W Dexie Cloud Manager sprawdź, czy Twoje konto zajmuje jedno z 3 darmowych miejsc produkcyjnych. Sposób przełączenia z trybu testowego na produkcyjny sprawdź w dokumentacji Dexie Cloud.
+- Licencje na własnym serwerze (Business €3 495, Enterprise €7 995, jednorazowo) istnieją, ale dla tego projektu nie są potrzebne.
 
 Zdjęcia w dzienniku synchronizują się domyślnie od razu (pierwsze zalogowane urządzenie pobiera wszystkie zdjęcia). Przed dużym użyciem sprawdź limity synchronizacji blobów i koszty wybranego planu.
 
