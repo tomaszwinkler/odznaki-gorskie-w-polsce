@@ -4780,7 +4780,7 @@ export const trailInfoByPointId = {
     trailColor: 'niebieski lub zielony (źródła się różnią — sprawdź na mapie)',
     ascentTime: 'ok. 2 godz. (szacunkowe)',
     elevationGain: 'ok. 450 m (szacunkowe)',
-    notes: 'Szczyt dwuwierzchołkowy (Berdo 1041 m, Rosocha 1084 m) w Bieszczadach Zachodnich, blisko granicy ze Słowacją.',
+    notes: 'Szczyt dwuwierzchołkowy (Berdo 1041 m, Rosocha 1084 m) w Bieszczadach Zachodnich, blisko granicy ze Słowacją. Na liście Bieszczadzkich Tysięczników oznaczony gwiazdką — szlak biegnie tuż obok szczytu.',
   },
   'fereczata-bt': {
     trailhead: 'Smerek',
@@ -4812,7 +4812,7 @@ export const trailInfoByPointId = {
     trailColor: 'czerwony (Główny Szlak Beskidzki; szlak prowadzi przez szczyt lub tuż obok)',
     ascentTime: 'ok. 3 godz. 30 min (szacunkowe)',
     elevationGain: 'ok. 600 m (szacunkowe)',
-    notes: 'Opłata BdPN zależy od trasy (do sprawdzenia). Nie jest pewne, czy to jeden z trzech szczytów oznaczonych gwiazdką na liście.',
+    notes: 'Opłata BdPN zależy od trasy (do sprawdzenia).',
   },
   'rosocha-bt': {
     trailhead: 'Roztoki Górne',

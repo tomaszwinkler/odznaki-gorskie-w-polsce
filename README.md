@@ -23,7 +23,9 @@ Aplikacja (PWA) do śledzenia postępu w zdobywaniu polskich odznak turystycznyc
   - **Korona Polskich Beskidów** (odznaka Oddziału PTTK w Bochni, 2002) — 10 najwyższych szczytów grup górskich polskich Beskidów (Skrzyczne, Czupel, Babia Góra, Lubomir, Mogielica, Turbacz, Radziejowa, Wysoka, Lackowa, Tarnica). To inna, mniejsza odznaka niż Korona Beskidów; wszystkie jej szczyty są wspólne z GOT, Koroną Gór Polski i Diademem, więc jedno zapisane wejście zalicza się od razu
   - Wszystkie odznaki regionalne mają już katalogi. Dawne miejsca zajęte pod robocze nazwy („Sudecka Odznaka Turystyczna”, „Beskidzka Odznaka Turystyczna”, „Odznaka Bieszczady”) zastąpiono realnymi odznakami, bo odznaki o takich nazwach nie istnieją. Odznaki szlakowe (np. Główny Szlak Beskidzki, Główny Szlak Sudecki) nie pasują do modelu listy szczytów i nie są uwzględnione
 - **Ten sam fizyczny szczyt liczy się do wielu systemów naraz** — np. wejście na Śnieżkę zaznaczone raz w dzienniku automatycznie zalicza się do GOT, Korony Gór Polski, Diademu i Korony Sudetów jednocześnie
+- **Skala katalogu:** ok. 600 pozycji w 16 systemach, ale tylko ok. 340 unikalnych lokalizacji — większość szczytów należy do kilku odznak naraz
 - **Lista i mapa** punktów z sortowaniem (odwiedzone, nazwa, pasmo, punkty) i filtrowaniem po wybranym systemie odznak
+- **Pasek postępu wybranej odznaki** (aktualny stopień i ile brakuje do następnego) pod przełącznikiem systemów; pokazywany tylko dla jednej odznaki naraz, żeby przy 16 systemach nie tworzyć długiego stosu przed listą
 - **Dziennik wypraw** — dodawanie, edycja i usuwanie wpisów (data, notatka, zdjęcia, wybrane punkty), automatyczne wyliczanie postępu na podstawie wpisów, kompresja zdjęć przed zapisem
 - **Eksport i import dziennika** do pliku JSON — kopia zapasowa niezależna od przeglądarki
 - **Import tras GPX** z automatycznym dopasowaniem odwiedzonych punktów na podstawie odległości
@@ -105,4 +107,24 @@ Wykonana ręcznie 2026-09-20 (logowanie, synchronizacja między urządzeniami, w
 
 ## Status danych
 
-Dane katalogowe (nazwy szczytów, współrzędne, wysokości, trasy) pochodzą z publicznie dostępnych źródeł turystycznych i są orientacyjne — projekt nie jest oficjalnie powiązany z PTTK ani PTT. Korona Sudetów, Korona Beskidów i Turystyczna Korona Tatr obejmują szczyty poza granicami Polski (Czechy, Słowacja, Ukraina) zgodnie z oficjalnymi regulaminami tych odznak — współrzędne i dane tras dla szczytów zagranicznych są mniej pewne niż dla polskich, region jest rzadziej opisywany w źródłach polskojęzycznych.
+Dane katalogowe (nazwy szczytów, współrzędne, wysokości, trasy) pochodzą z publicznie dostępnych źródeł turystycznych i są orientacyjne — projekt nie jest oficjalnie powiązany z PTTK ani PTT. Korona Sudetów, Korona Beskidów, Wielka Korona Beskidów i Turystyczna Korona Tatr obejmują szczyty poza granicami Polski (Czechy, Słowacja, Ukraina) zgodnie z oficjalnymi regulaminami tych odznak — współrzędne i dane tras dla szczytów zagranicznych są mniej pewne niż dla polskich, region jest rzadziej opisywany w źródłach polskojęzycznych.
+
+### Skąd pochodzą listy szczytów i jak pewne są dane
+
+- **Listy szczytów** (które szczyty należą do której odznaki) pochodzą z oficjalnych regulaminów lub wykazów organizatorów (PTTK, PTT, Klub Zdobywców Koron Górskich RP) i są najpewniejszą częścią danych. Przed dodaniem każdej odznaki sprawdzano jej regulamin; kilka nazw, pod którymi wcześniej „zajmowano miejsce” w aplikacji, okazało się nieistniejącymi odznakami i zostało zastąpione realnymi.
+- **Współrzędne** są najpewniejsze tam, gdzie podaje je sam regulamin (Dominanty Przedgórza Sudeckiego, Tysięczniki Ziemi Kłodzkiej — orientacyjne, w stopniach, minutach i sekundach). W pozostałych przypadkach pochodzą z Wikipedii, mapa-turystyczna.pl i OpenStreetMap, zwykle z jednego źródła, z dokładnością rzędu 30–200 m (przy niskich, leśnych wzgórzach nawet 300–440 m rozbieżności między źródłami).
+- **Opisy tras** (start, dojazd, kolor szlaku) są z reguły ostrożne i hedgowane. Czasy przejścia i przewyższenia oznaczone „szacunkowe” to szacunki, a „brak danych” oznacza, że źródła ich nie podają. Dla wielu niskich wzgórz (Góry Bialskie, Góry Świętokrzyskie, Przedgórze Sudeckie) nie ma znakowanego szlaku na wierzchołek i jest to zaznaczone w uwagach.
+- **Tatry Słowackie i Ukraina:** wiele szlaków słowackich jest zamkniętych zimą (zwykle od ok. 1 listopada do 15 czerwca), a wchodzenie poza szlak w TANAP jest zabronione; dostępność szczytów na Ukrainie zależy od sytuacji w kraju.
+
+### Poprawki błędów w danych
+
+W trakcie rozbudowy katalogu poprawiono współrzędne kilku wcześniej błędnych pozycji: „Trzy Korony” (Okrąglica; przesunięte o ok. 2,5 km), „Bystry Przechód” w Turystycznej Koronie Tatr (ok. 1,4 km) oraz wiersz GOT „Połonina Wetlińska” (leżał ok. 6 km od grzbietu; teraz wskazuje Roh, najwyższy szczyt masywu, i jest połączony z odpowiednikiem z Korony Najwybitniejszych Szczytów).
+
+### Znane niejasności
+
+- W Bieszczadzkich Tysięcznikach trzy szczyty są w wykazie oznaczone gwiazdką (szlak biegnie tuż obok, a nie przez wierzchołek): Kopa Bukowska, Hyrlata i Rosocha. Dla Kurnikowa Beskidu i Rypiego Wierchu pewność danych jest niska (rozbieżne wysokości i kolory szlaków).
+- Roh i Hasiakowa Skała to dwa różne szczyty Połoniny Wetlińskiej, a Smerek (Korona Bieszczadów, Bieszczadzkie Tysięczniki) to jeszcze inny szczyt ok. 5 km dalej; wejście na jeden nie zalicza pozostałych.
+
+### Odznaki, których jeszcze nie uwzględniono
+
+Istnieją jeszcze m.in. Sudecki Włóczykij, Beskidzki Włóczykij (150 szczytów), Tysięczniki Trzech Narodów (90 szczytów), Żywiecka Korona Beskidów, Korona Beskidu Wyspowego „Beskidzkie Wyspy” (40) i „102 Wyspy”, Korona Beskidu Sądeckiego i Niskiego oraz około 30 małych koron pasmowych Klubu Zdobywców Koron Górskich RP (Karkonosze, Góry Izerskie, Stołowe itd.). Odznaki zdobywane przejściem szlaku (Główny Szlak Sudecki i Beskidzki, Mały Szlak Beskidzki) nie pasują do modelu listy szczytów i nie są planowane.
