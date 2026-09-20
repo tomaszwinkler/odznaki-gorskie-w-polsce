@@ -40,32 +40,44 @@ npm run preview   # podgląd builda produkcyjnego
 
 Opcjonalna synchronizacja dziennika (wpisy i zdjęcia) między urządzeniami działa przez [Dexie Cloud](https://dexie.org/cloud/). Bez konfiguracji aplikacja działa tylko lokalnie, jak dotychczas — menu konta w ogóle się nie pojawia. Katalog punktów nie jest synchronizowany (jest statyczny), synchronizowany jest wyłącznie dziennik.
 
-Konfiguracja:
+Stan na 2026-09-20: baza Dexie Cloud jest założona, a logowanie działa lokalnie i na produkcji (Vercel). Adres bazy nie jest zapisany w repozytorium — trzymają go zmienna `VITE_DEXIE_CLOUD_URL` w `.env.local` (lokalnie) i w Environment Variables projektu na Vercel (Production). Vite wkleja ją w czasie budowania, więc po jej zmianie trzeba przebudować wdrożenie.
+
+### Konfiguracja od zera (nowa baza lub nowa domena)
 
 ```bash
-npx dexie-cloud create            # zwraca URL bazy
+npx dexie-cloud create            # interaktywne: e-mail + kod; zwraca URL bazy
 npx dexie-cloud whitelist http://localhost:5173
 npx dexie-cloud whitelist https://<domena produkcyjna>
-# ustaw VITE_DEXIE_CLOUD_URL w .env.local (wzór: .env.example) oraz w zmiennych środowiskowych Vercel
+npx dexie-cloud whitelist         # bez argumentów: wypisuje aktualną listę
+# ustaw VITE_DEXIE_CLOUD_URL w .env.local (wzór: .env.example) oraz na Vercel (Production), potem przebuduj wdrożenie
 ```
 
-Uwaga: nazwy poleceń CLI sprawdź w aktualnej dokumentacji Dexie Cloud — mogły się zmienić. Pliki `dexie-cloud.json` i `.env.dexie-cloud` (CLI zapisuje w drugim z nich `DEXIE_CLOUD_CLIENT_SECRET`) nigdy nie mogą trafić do repozytorium; oba są w `.gitignore`.
+Uwagi:
 
-Zdjęcia w dzienniku synchronizują się domyślnie od razu (pierwsze zalogowane urządzenie pobiera wszystkie zdjęcia). Przed prawdziwym użyciem sprawdź limity synchronizacji blobów i koszty wybranego planu Dexie Cloud.
+- Każdy adres, z którego ma działać logowanie (inny port lokalny, własna domena, podgląd gałęzi na Vercel), trzeba dodać poleceniem `whitelist` — inaczej Dexie Cloud odrzuci żądanie.
+- W PowerShellu na Windows `npx` może być zablokowane przez politykę wykonywania skryptów; użyj `npx.cmd ...` albo zwykłego wiersza poleceń (`cmd`). Polecenie `create` jest interaktywne, więc uruchamiaj je we własnym terminalu, nie w narzędziu, które nie przyjmuje wpisywania.
+- Pliki `dexie-cloud.json`, `dexie-cloud.key` i `.env.dexie-cloud` (CLI zapisuje w nich dane uwierzytelniające, m.in. `DEXIE_CLOUD_CLIENT_SECRET`) nigdy nie mogą trafić do repozytorium; wszystkie trzy są w `.gitignore`.
+- Nazwy poleceń CLI sprawdź w aktualnej dokumentacji Dexie Cloud — mogą się zmienić.
+
+### Plan i limity
+
+Darmowa wersja Dexie Cloud obejmuje (wg dokumentacji Dexie) 3 użytkowników produkcyjnych, nieograniczoną liczbę urządzeń i nieograniczoną liczbę użytkowników testowych. Przed zaproszeniem większej liczby osób sprawdź aktualny cennik i zasady przejścia z trybu testowego na produkcyjny (Dexie Cloud Manager).
+
+Zdjęcia w dzienniku synchronizują się domyślnie od razu (pierwsze zalogowane urządzenie pobiera wszystkie zdjęcia). Przed dużym użyciem sprawdź limity synchronizacji blobów i koszty wybranego planu.
 
 Wylogowanie zawsze wymaga potwierdzenia i usuwa z urządzenia wszystkie lokalne tabele, także katalog punktów (aplikacja synchronizuje go ponownie); dane wracają po ponownym zalogowaniu. Wylogowanie z wymuszeniem (`force: true`, „Wyloguj mimo to”) bezpowrotnie usuwa niezsynchronizowane zmiany.
 
 Logowanie odbywa się kodem jednorazowym wysyłanym e-mailem. Wpisy dziennika mają tekstowe id z prefiksem `jrn` (wymóg tabel `@id` w Dexie Cloud); przy pierwszym otwarciu nowej wersji istniejące wpisy z lokalnej bazy są automatycznie migrowane do nowej tabeli `journal` z takimi id.
 
-### Do sprawdzenia po podłączeniu bazy
+### Lista kontrolna po podłączeniu bazy
 
-Poniższe kroki nie były jeszcze wykonane — wymagają założonej bazy Dexie Cloud (`VITE_DEXIE_CLOUD_URL` w `.env.local`, potem `npm run dev`):
+Wykonana ręcznie 2026-09-20 (logowanie, synchronizacja między urządzeniami, wylogowanie z powrotem katalogu, tryb offline — wszystko działało). Przy zmianie konfiguracji (nowa baza, domena, wersja `dexie-cloud-addon`) warto powtórzyć (`VITE_DEXIE_CLOUD_URL` w `.env.local`, potem `npm run dev`):
 
 1. Stara baza z wpisami (v2) → po otwarciu wpisy widoczne w Dzienniku (migracja; działa dzięki `nameSuffix: false`, które zachowuje nazwę bazy `odznaki-gorskie`).
 2. „Zaloguj się” → kod z e-maila → wskaźnik przechodzi do „Zsynchronizowano”.
 3. Dodaj wpis ze zdjęciem; druga karta/przeglądarka po zalogowaniu na to samo konto pokazuje wpis i zdjęcie.
 4. Tryb offline (DevTools) → „Offline”; dodaj wpis, wróć online → synchronizacja.
-5. „Wyloguj” → potwierdzenie (przy niezsynchronizowanych zmianach ostrzeżenie o ich utracie). Znane zachowanie: po wylogowaniu lokalne tabele są czyszczone, a katalog punktów odtwarza aplikacja. Zweryfikuj: dziennik znika z urządzenia, katalog wraca, a po ponownym zalogowaniu wpisy wracają.
+5. „Wyloguj” → potwierdzenie (przy niezsynchronizowanych zmianach ostrzeżenie o ich utracie). Znane zachowanie: po wylogowaniu lokalne tabele są czyszczone, a katalog punktów odtwarza aplikacja. Sprawdź: dziennik znika z urządzenia, katalog wraca, a po ponownym zalogowaniu wpisy wracają.
 6. Bez `VITE_DEXIE_CLOUD_URL` → brak menu konta, aplikacja działa jak wcześniej.
 
 ## Status danych
