@@ -74,10 +74,13 @@ export const badgeSystems = [
     available: false,
   },
   {
-    id: 'BIESZCZADY_OT',
-    name: 'Odznaka Turystyczna „Bieszczady”',
+    id: 'KORONA_BIESZCZADOW',
+    // „Korona Bieszczadów" — odznaka regionalna PTTK Oddziału „Ziemia Sanocka"
+    // w Sanoku (od 1.04.2017): jednostopniowa, 15 najwyższych szczytów
+    // poszczególnych pasm i grzbietów Bieszczadów wg wykazu z regulaminu.
+    name: 'Korona Bieszczadów',
     category: 'regionalne',
     subcategory: 'Bieszczady',
-    available: false,
+    available: true,
   },
 ]

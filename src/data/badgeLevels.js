@@ -42,6 +42,15 @@ export const badgeLevelsBySystem = {
     { name: '20 zdobytych szczytów (75%)', minPoints: 20 },
     { name: 'Korona Beskidów zdobyta (27/27)', minPoints: 27 },
   ],
+  // Oficjalnie odznaka jednostopniowa (regulamin PTTK Oddziału „Ziemia
+  // Sanocka") — progi pośrednie to, tak jak w pozostałych koronach,
+  // dodatkowa motywacja w UI, nie część oficjalnego regulaminu.
+  KORONA_BIESZCZADOW: [
+    { name: '4 zdobyte szczyty (25%)', minPoints: 4 },
+    { name: '8 zdobytych szczytów (50%)', minPoints: 8 },
+    { name: '12 zdobytych szczytów (75%)', minPoints: 12 },
+    { name: 'Korona Bieszczadów zdobyta (15/15)', minPoints: 15 },
+  ],
   // Oficjalnie odznaka trójstopniowa (regulamin PTT): brąz 20, srebro 40,
   // złoto komplet — progi poniżej odpowiadają tym wprost, nie są dodatkową
   // motywacją jak w pozostałych koronach.

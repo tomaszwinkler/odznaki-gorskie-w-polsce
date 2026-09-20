@@ -20,6 +20,10 @@
 // szczyty "niezależnie od granic państwowych" (10 z 22 leży w Czechach).
 // Źródło: pttk.wroclaw.pl/wp-content/uploads/Regulamin-Odznaki-Korona-Sudetow.pdf.
 //
+// Korona Bieszczadów: pełne 15 szczytów z wykazu w regulaminie PTTK
+// Oddziału „Ziemia Sanocka" w Sanoku (od 1.04.2017), zob. sekcję na końcu
+// pliku.
+//
 // Współrzędne wszystkich punktów są przybliżone (dokładność rzędu
 // pojedynczych set metrów) — wystarczające do wyświetlenia na mapie, nie
 // do nawigacji GPS co do metra.
@@ -101,11 +105,11 @@ export const initialPoints = [
   { id: 'luban', name: 'Lubań', region: 'Gorce', points: 8, lat: 49.4893, lng: 20.339, badgeSystem: 'GOT' , sharesPeakWith: ["luban-diadem"]},
 
   // --- GOT: Bieszczady ---
-  { id: 'tarnica', name: 'Tarnica', region: 'Bieszczady', points: 8, lat: 49.0783, lng: 22.5814, badgeSystem: 'GOT' , sharesPeakWith: ["tarnica-kgp","tarnica-diadem","tarnica-kb"]},
-  { id: 'wielka-rawka', name: 'Wielka Rawka', region: 'Bieszczady', points: 9, lat: 49.0994, lng: 22.5764, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-rawka-diadem"]},
+  { id: 'tarnica', name: 'Tarnica', region: 'Bieszczady', points: 8, lat: 49.0783, lng: 22.5814, badgeSystem: 'GOT' , sharesPeakWith: ["tarnica-kgp","tarnica-diadem","tarnica-kb","tarnica-kbies"]},
+  { id: 'wielka-rawka', name: 'Wielka Rawka', region: 'Bieszczady', points: 9, lat: 49.0994, lng: 22.5764, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-rawka-diadem","wielka-rawka-kbies"]},
   { id: 'polonina-wetlinska', name: 'Połonina Wetlińska', region: 'Bieszczady', points: 9, lat: 49.1974, lng: 22.4538, badgeSystem: 'GOT' },
-  { id: 'polonina-carynska', name: 'Połonina Caryńska', region: 'Bieszczady', points: 9, lat: 49.165, lng: 22.525, badgeSystem: 'GOT' },
-  { id: 'halicz', name: 'Halicz', region: 'Bieszczady', points: 9, lat: 49.085, lng: 22.6206, badgeSystem: 'GOT' },
+  { id: 'polonina-carynska', name: 'Połonina Caryńska', region: 'Bieszczady', points: 9, lat: 49.165, lng: 22.525, badgeSystem: 'GOT', sharesPeakWith: ["polonina-carynska-kbies"] },
+  { id: 'halicz', name: 'Halicz', region: 'Bieszczady', points: 9, lat: 49.085, lng: 22.6206, badgeSystem: 'GOT', sharesPeakWith: ["halicz-kbies"] },
   { id: 'krzemien', name: 'Krzemień', region: 'Bieszczady', points: 9, lat: 49.0917, lng: 22.6033, badgeSystem: 'GOT' },
 
   // --- GOT: Góry Świętokrzyskie ---
@@ -212,9 +216,9 @@ export const initialPoints = [
   { id: 'slonny-pn-zach-diadem', name: 'Słonny (pn.-zach.)', region: 'Góry Sanocko-Turczańskie', points: 1, lat: 49.5775, lng: 22.2775, badgeSystem: 'DIADEM' },
   { id: 'slonny-pd-wsch-diadem', name: 'Słonny (pd.-wsch.)', region: 'Góry Sanocko-Turczańskie', points: 1, lat: 49.5775, lng: 22.2775, badgeSystem: 'DIADEM' },
   { id: 'jaworniki-diadem', name: 'Jaworniki', region: 'Góry Sanocko-Turczańskie', points: 1, lat: 49.3411, lng: 22.7131, badgeSystem: 'DIADEM' },
-  { id: 'trohaniec-diadem', name: 'Trohaniec', region: 'Bieszczady', points: 1, lat: 49.2342, lng: 22.6589, badgeSystem: 'DIADEM' },
-  { id: 'lopiennik-diadem', name: 'Łopiennik', region: 'Bieszczady', points: 1, lat: 49.245, lng: 22.3411, badgeSystem: 'DIADEM' },
-  { id: 'wolosan-diadem', name: 'Wołosań', region: 'Bieszczady', points: 1, lat: 49.2392, lng: 22.2533, badgeSystem: 'DIADEM' },
+  { id: 'trohaniec-diadem', name: 'Trohaniec', region: 'Bieszczady', points: 1, lat: 49.2342, lng: 22.6589, badgeSystem: 'DIADEM', sharesPeakWith: ["trohaniec-kbies"] },
+  { id: 'lopiennik-diadem', name: 'Łopiennik', region: 'Bieszczady', points: 1, lat: 49.245, lng: 22.3411, badgeSystem: 'DIADEM', sharesPeakWith: ["lopiennik-kbies"] },
+  { id: 'wolosan-diadem', name: 'Wołosań', region: 'Bieszczady', points: 1, lat: 49.2392, lng: 22.2533, badgeSystem: 'DIADEM', sharesPeakWith: ["wolosan-kbies"] },
   { id: 'wielka-rawka-diadem', name: 'Wielka Rawka', region: 'Bieszczady', points: 1, lat: 49.0994, lng: 22.5764, badgeSystem: 'DIADEM' },
   { id: 'tarnica-diadem', name: 'Tarnica', region: 'Bieszczady', points: 1, lat: 49.0783, lng: 22.5814, badgeSystem: 'DIADEM' },
   { id: 'wysoka-kopa-diadem', name: 'Wysoka Kopa', region: 'Góry Izerskie', points: 1, lat: 50.8503, lng: 15.42, badgeSystem: 'DIADEM' },
@@ -355,4 +359,32 @@ export const initialPoints = [
   { id: 'gesia-szyja-tkt', name: 'Gęsia Szyja', region: 'Tatry Zachodnie', points: 1, lat: 49.2519, lng: 19.8358, badgeSystem: 'KORONA_TATR' },
   { id: 'wielki-kopieniec-tkt', name: 'Wielki Kopieniec', region: 'Tatry Zachodnie', points: 1, lat: 49.2683, lng: 19.95, badgeSystem: 'KORONA_TATR' },
   { id: 'nosal-tkt', name: 'Nosal', region: 'Tatry Zachodnie', points: 1, lat: 49.26, lng: 19.9536, badgeSystem: 'KORONA_TATR' },
+
+  // --- Korona Bieszczadów (pełne 15 szczytów wg wykazu z regulaminu PTTK
+  // Oddziału „Ziemia Sanocka" w Sanoku, obowiązującego od 1.04.2017; odznaka
+  // jednostopniowa: najwyższe szczyty poszczególnych pasm i grzbietów) ---
+  // Siedem szczytów fizycznie tożsamych z istniejącymi wpisami (Tarnica,
+  // Wielka Rawka, Halicz, Połonina Caryńska, Wołosań, Łopiennik, Trohaniec)
+  // ma identyczne współrzędne i jest połączonych przez sharesPeakWith.
+  // Pozostałe osiem to nowe wpisy; współrzędne pochodzą z publicznych źródeł
+  // (m.in. Wikipedia, mapa-turystyczna.pl) i są orientacyjne — różnice między
+  // źródłami sięgają ok. 200 m.
+  // „Połonina Wetlińska (Smerek)" (1222 m) to osobny punkt: istniejący wiersz
+  // GOT „Połonina Wetlińska" ma współrzędne ok. 2 km od Smereka, więc nie jest
+  // z nim łączony (do wyjaśnienia, który punkt masywu ma na myśli GOT).
+  { id: 'tarnica-kbies', name: 'Tarnica', region: 'Bieszczady', points: 1, lat: 49.0783, lng: 22.5814, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'halicz-kbies', name: 'Halicz', region: 'Bieszczady', points: 1, lat: 49.085, lng: 22.6206, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'wielka-rawka-kbies', name: 'Wielka Rawka', region: 'Bieszczady', points: 1, lat: 49.0994, lng: 22.5764, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'polonina-carynska-kbies', name: 'Połonina Caryńska', region: 'Bieszczady', points: 1, lat: 49.165, lng: 22.525, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'smerek-kbies', name: 'Połonina Wetlińska (Smerek)', region: 'Bieszczady', points: 1, lat: 49.1872, lng: 22.4781, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'rabia-skala-kbies', name: 'Rabia Skała', region: 'Bieszczady', points: 1, lat: 49.1029, lng: 22.441, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'jaslo-kbies', name: 'Jasło', region: 'Bieszczady', points: 1, lat: 49.1579, lng: 22.3622, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'hyrlata-kbies', name: 'Hyrlata', region: 'Bieszczady', points: 1, lat: 49.1801, lng: 22.2822, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'wolosan-kbies', name: 'Wołosań', region: 'Bieszczady', points: 1, lat: 49.2392, lng: 22.2533, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'lopiennik-kbies', name: 'Łopiennik', region: 'Bieszczady', points: 1, lat: 49.245, lng: 22.3411, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'magura-stuposianska-kbies', name: 'Magura Stuposiańska', region: 'Bieszczady', points: 1, lat: 49.1648, lng: 22.6452, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'stryb-kbies', name: 'Stryb', region: 'Bieszczady', points: 1, lat: 49.1428, lng: 22.2803, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'dwernik-kamien-kbies', name: 'Dwernik Kamień', region: 'Bieszczady', points: 1, lat: 49.1916, lng: 22.5849, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'chryszczata-kbies', name: 'Chryszczata', region: 'Bieszczady', points: 1, lat: 49.3056, lng: 22.1881, badgeSystem: 'KORONA_BIESZCZADOW' },
+  { id: 'trohaniec-kbies', name: 'Trohaniec', region: 'Bieszczady', points: 1, lat: 49.2342, lng: 22.6589, badgeSystem: 'KORONA_BIESZCZADOW' },
 ]

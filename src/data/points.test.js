@@ -59,6 +59,30 @@ describe('initialPoints', () => {
     expect(diademPoints).toHaveLength(80)
   })
 
+  it('Korona Bieszczadów zawiera dokładnie 15 szczytów z oficjalnego wykazu PTTK „Ziemia Sanocka”', () => {
+    const officialPeaks = [
+      'Tarnica',
+      'Halicz',
+      'Wielka Rawka',
+      'Połonina Caryńska',
+      'Połonina Wetlińska (Smerek)',
+      'Rabia Skała',
+      'Jasło',
+      'Hyrlata',
+      'Wołosań',
+      'Łopiennik',
+      'Magura Stuposiańska',
+      'Stryb',
+      'Dwernik Kamień',
+      'Chryszczata',
+      'Trohaniec',
+    ]
+    const kbiesPoints = initialPoints.filter((point) => point.badgeSystem === 'KORONA_BIESZCZADOW')
+
+    expect(kbiesPoints.map((point) => point.name).sort()).toEqual([...officialPeaks].sort())
+    expect(kbiesPoints.every((point) => point.points === 1)).toBe(true)
+  })
+
   it('każde sharesPeakWith wskazuje na istniejące id i nie zawiera samego siebie', () => {
     const idsSet = new Set(initialPoints.map((point) => point.id))
     for (const point of initialPoints) {
