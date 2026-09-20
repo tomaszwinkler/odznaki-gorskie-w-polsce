@@ -7,6 +7,9 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: './src/test/setup.js',
+    // Vitest wczytuje też .env.local — bez tego testy z prawdziwym `db` łączyłyby
+    // się z chmurą Dexie Cloud, gdy deweloper ma tam ustawiony adres bazy.
+    env: { VITE_DEXIE_CLOUD_URL: '' },
   },
   plugins: [
     react(),

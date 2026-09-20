@@ -14,6 +14,9 @@ export function useCloudAccount() {
     try {
       await db.cloud.login()
     } catch (e) {
+      // Zamknięcie okna logowania dodatek zgłasza jako AbortError('User cancelled')
+      // — to świadoma decyzja użytkownika, nie awaria.
+      if (e?.name === 'AbortError') return
       console.error(e)
       setError('Nie udało się zalogować. Spróbuj ponownie.')
     }

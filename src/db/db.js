@@ -4,10 +4,23 @@ import { initialPoints } from '../data/points'
 
 // Dexie Cloud wymaga, by klucze tabel z `@id` zaczynały się od prefiksu `jrn`
 // (prefiks = pierwsze trzy litery nazwy tabeli), a resztę mogą stanowić
-// dowolne losowe, globalnie unikalne znaki. Usuwamy stare pole `id` oraz pola
-// synchronizacji (`owner`, `realmId`), żeby wpis nie przeniósł obcych metadanych.
+// dowolne losowe, globalnie unikalne znaki. `crypto.randomUUID` istnieje tylko
+// w bezpiecznym kontekście (HTTPS lub localhost) — przy otwarciu aplikacji
+// przez zwykły http na adresie sieci lokalnej (np. telefon w domowym Wi-Fi)
+// przerwałoby to migrację, więc wtedy losujemy bajty przez `getRandomValues`,
+// które działa zawsze.
+export function newJournalId() {
+  const hex =
+    typeof crypto.randomUUID === 'function'
+      ? crypto.randomUUID().replaceAll('-', '')
+      : Array.from(crypto.getRandomValues(new Uint8Array(16)), (byte) => byte.toString(16).padStart(2, '0')).join('')
+  return 'jrn' + hex
+}
+
+// Usuwamy stare pole `id` oraz pola synchronizacji (`owner`, `realmId`),
+// żeby wpis nie przeniósł obcych metadanych.
 function toJournalRow({ id: _id, owner: _owner, realmId: _realmId, ...entry }) {
-  return { id: 'jrn' + crypto.randomUUID().replaceAll('-', ''), ...entry }
+  return { id: newJournalId(), ...entry }
 }
 
 // Fabryka istnieje po to, żeby test migracji mógł otworzyć bazę o innej nazwie.

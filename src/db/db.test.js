@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto'
 import Dexie from 'dexie'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createDb, db, syncPoints, importEntries, configureCloud } from './db'
+import { createDb, db, syncPoints, importEntries, configureCloud, newJournalId } from './db'
 import { initialPoints } from '../data/points'
 
 beforeEach(async () => {
@@ -60,6 +60,31 @@ describe('importEntries', () => {
     // Addon sam dopisuje własne owner/realmId przy zapisie — ważne, że nie są to wartości z pliku.
     expect(stored.owner).not.toBe('ktos@example.com')
     expect(stored.realmId).not.toBe('cudzy-realm')
+  })
+})
+
+describe('newJournalId', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  it('tworzy id z prefiksem jrn i 32 znakami hex', () => {
+    expect(newJournalId()).toMatch(/^jrn[0-9a-f]{32}$/)
+  })
+
+  it('nie powtarza id przy kolejnych wywołaniach', () => {
+    expect(newJournalId()).not.toBe(newJournalId())
+  })
+
+  it('działa też bez crypto.randomUUID (kontekst bez HTTPS, np. adres w sieci lokalnej)', () => {
+    vi.stubGlobal('crypto', {
+      getRandomValues: (bytes) => {
+        bytes.fill(171)
+        return bytes
+      },
+    })
+
+    expect(newJournalId()).toBe('jrn' + 'ab'.repeat(16))
   })
 })
 
