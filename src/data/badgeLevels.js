@@ -62,6 +62,36 @@ export const badgeLevelsBySystem = {
     { name: '27 zdobytych pozycji (ok. 75%)', minPoints: 27 },
     { name: 'Wielka Korona Beskidów zdobyta (35/35)', minPoints: 35 },
   ],
+  // Oficjalnie odznaka ośmiostopniowa (regulamin Łukasza Kornatki): stopnie
+  // co 5 szczytów, od małej popularnej (5) po platynową (40) — progi poniżej
+  // odpowiadają im wprost.
+  BIESZCZADZKIE_TYSIECZNIKI: [
+    { name: 'Mała popularna (5/40)', minPoints: 5 },
+    { name: 'Popularna (10/40)', minPoints: 10 },
+    { name: 'Mała brązowa (15/40)', minPoints: 15 },
+    { name: 'Brązowa (20/40)', minPoints: 20 },
+    { name: 'Srebrna (25/40)', minPoints: 25 },
+    { name: 'Złota (30/40)', minPoints: 30 },
+    { name: 'Diamentowa (35/40)', minPoints: 35 },
+    { name: 'Platynowa (40/40)', minPoints: 40 },
+  ],
+  // Oficjalnie odznaka jednostopniowa (regulamin Oddziału PTTK „Ziemi
+  // Kłodzkiej") — progi pośrednie to dodatkowa motywacja w UI, nie część
+  // regulaminu.
+  TYSIECZNIKI_ZIEMI_KLODZKIEJ: [
+    { name: '8 zdobytych szczytów (25%)', minPoints: 8 },
+    { name: '16 zdobytych szczytów (50%)', minPoints: 16 },
+    { name: '24 zdobyte szczyty (75%)', minPoints: 24 },
+    { name: 'Tysięczniki Ziemi Kłodzkiej zdobyte (32/32)', minPoints: 32 },
+  ],
+  // Oficjalnie odznaka trójstopniowa (regulamin Hutniczo-Miejskiego Oddziału
+  // PTTK w Krakowie): brązowa za 20 szczytów lub przełęczy, srebrna za 35,
+  // złota za wszystkie 55 — progi poniżej odpowiadają im wprost.
+  TATRZANSKIE_DWUTYSIECZNIKI: [
+    { name: 'Brązowa Tatrzańskie Dwutysięczniki (20/55)', minPoints: 20 },
+    { name: 'Srebrna Tatrzańskie Dwutysięczniki (35/55)', minPoints: 35 },
+    { name: 'Złota Tatrzańskie Dwutysięczniki (55/55)', minPoints: 55 },
+  ],
   // Oficjalnie odznaka jednostopniowa (regulamin Oddziału Świętokrzyskiego PTTK)
   // — progi pośrednie to dodatkowa motywacja w UI, nie część regulaminu.
   KORONA_GOR_SWIETOKRZYSKICH: [

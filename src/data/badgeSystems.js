@@ -108,6 +108,39 @@ export const badgeSystems = [
     available: true,
   },
   {
+    id: 'BIESZCZADZKIE_TYSIECZNIKI',
+    // „Bieszczadzkie Tysięczniki" — odznaka turystyczna Łukasza Kornatki (od
+    // 2020 r.): 40 szczytów powyżej 1000 m w polskich Bieszczadach, na które
+    // prowadzi znakowany szlak (w trzech przypadkach biegnie tuż obok);
+    // ośmiostopniowa co 5 szczytów. To inna odznaka niż „Korona Bieszczadów".
+    name: 'Bieszczadzkie Tysięczniki',
+    category: 'regionalne',
+    subcategory: 'Bieszczady',
+    available: true,
+  },
+  {
+    id: 'TYSIECZNIKI_ZIEMI_KLODZKIEJ',
+    // „Tysięczniki Ziemi Kłodzkiej" — odznaka regionalna Komisji Turystyki
+    // Górskiej Oddziału PTTK „Ziemi Kłodzkiej" w Kłodzku: 32 szczyty powyżej
+    // 1000 m w Górach Sowich, Orlickich, Masywie Śnieżnika i Górach Bialskich;
+    // jednostopniowa. Wiele szczytów Gór Bialskich nie ma znakowanego szlaku.
+    name: 'Tysięczniki Ziemi Kłodzkiej',
+    category: 'regionalne',
+    subcategory: 'Sudety',
+    available: true,
+  },
+  {
+    id: 'TATRZANSKIE_DWUTYSIECZNIKI',
+    // „Tatrzańskie Dwutysięczniki" — odznaka regionalna Hutniczo-Miejskiego
+    // Oddziału PTTK w Krakowie (2015): 55 szczytów i przełęczy powyżej 2000 m
+    // po polskiej i słowackiej stronie Tatr, na które prowadzą znakowane
+    // szlaki (na wierzchołek lub w jego pobliże); trzy stopnie.
+    name: 'Tatrzańskie Dwutysięczniki',
+    category: 'regionalne',
+    subcategory: 'Tatry',
+    available: true,
+  },
+  {
     id: 'KORONA_GOR_SWIETOKRZYSKICH',
     // „Korona Gór Świętokrzyskich" — odznaka regionalna Oddziału
     // Świętokrzyskiego PTTK w Kielcach: 28 najwyższych wzniesień pasm Gór

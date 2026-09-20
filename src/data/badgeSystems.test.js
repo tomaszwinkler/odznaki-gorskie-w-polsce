@@ -41,6 +41,27 @@ describe('badgeSystems', () => {
     expect(badgeLevelsBySystem.WIELKA_KORONA_BESKIDOW.at(-1).minPoints).toBe(35)
   })
 
+  it('Tatrzańskie Dwutysięczniki mają trzy oficjalne stopnie: brązowy (20), srebrny (35) i złoty (55)', () => {
+    const levels = badgeLevelsBySystem.TATRZANSKIE_DWUTYSIECZNIKI
+
+    expect(levels.map((level) => level.minPoints)).toEqual([20, 35, 55])
+    expect(levels.map((level) => level.name.toLowerCase())).toEqual([
+      expect.stringContaining('brązow'),
+      expect.stringContaining('srebrn'),
+      expect.stringContaining('złot'),
+    ])
+  })
+
+  it('Bieszczadzkie Tysięczniki mają osiem oficjalnych stopni co 5 szczytów, od 5 do 40', () => {
+    const levels = badgeLevelsBySystem.BIESZCZADZKIE_TYSIECZNIKI
+
+    expect(levels.map((level) => level.minPoints)).toEqual([5, 10, 15, 20, 25, 30, 35, 40])
+  })
+
+  it('Tysięczniki Ziemi Kłodzkiej kończą się progiem 32/32', () => {
+    expect(badgeLevelsBySystem.TYSIECZNIKI_ZIEMI_KLODZKIEJ.at(-1).minPoints).toBe(32)
+  })
+
   it('Korona Gór Świętokrzyskich kończy się progiem 28/28', () => {
     expect(badgeLevelsBySystem.KORONA_GOR_SWIETOKRZYSKICH.at(-1).minPoints).toBe(28)
   })

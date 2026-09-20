@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-PWA (React + Vite) for tracking progress toward Polish mountain-hiking badges (GOT, Korona Gór Polski, Diadem Polskich Gór, Korona Najwybitniejszych Szczytów Gór Polskich, four "korony makroregionalne" — Korona Sudetów, Korona Beskidów, Wielka Korona Beskidów, Turystyczna Korona Tatr — and five regional badges: Korona Bieszczadów, Dominanty Przedgórza Sudeckiego, Korona Polskich Beskidów, Mała Korona Beskidów, Korona Gór Świętokrzyskich). All data lives client-side in IndexedDB (Dexie) — no backend of our own; accounts and cross-device sync are optional and go through Dexie Cloud (see "Optional cloud sync"). UI text, data, comments, commit messages, and test descriptions are all in Polish; keep it that way.
+PWA (React + Vite) for tracking progress toward Polish mountain-hiking badges (GOT, Korona Gór Polski, Diadem Polskich Gór, Korona Najwybitniejszych Szczytów Gór Polskich, four "korony makroregionalne" — Korona Sudetów, Korona Beskidów, Wielka Korona Beskidów, Turystyczna Korona Tatr — and eight regional badges: Tatrzańskie Dwutysięczniki, Bieszczadzkie Tysięczniki, Tysięczniki Ziemi Kłodzkiej, Korona Bieszczadów, Dominanty Przedgórza Sudeckiego, Korona Polskich Beskidów, Mała Korona Beskidów, Korona Gór Świętokrzyskich). All data lives client-side in IndexedDB (Dexie) — no backend of our own; accounts and cross-device sync are optional and go through Dexie Cloud (see "Optional cloud sync"). UI text, data, comments, commit messages, and test descriptions are all in Polish; keep it that way.
 
 ## Commands
 

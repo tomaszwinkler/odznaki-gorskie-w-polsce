@@ -347,6 +347,163 @@ describe('initialPoints', () => {
     expect(peakGroups.get('lysica-kgs')).toEqual(expect.arrayContaining(['lysica', 'lysica-kgp', 'lysica-diadem']))
   })
 
+  it('Tatrzańskie Dwutysięczniki zawierają dokładnie 55 szczytów i przełęczy z wykazu PTTK Hutniczo-Miejskiego Oddziału Kraków', () => {
+    const officialItems = [
+      'Rysy',
+      'Krywań',
+      'Sławkowski Szczyt',
+      'Mała Wysoka',
+      'Lodowa Przełęcz',
+      'Koprowy Wierch',
+      'Czerwona Ławka',
+      'Mały Krywań',
+      'Przełęcz pod Chłopkiem',
+      'Świnica',
+      'Bystra Ławka',
+      'Kozi Wierch',
+      'Rohatka',
+      'Królewski Nos',
+      'Kozie Czuby',
+      'Bystra',
+      'Zadni Granat',
+      'Pośredni Granat',
+      'Jagnięcy Szczyt',
+      'Mały Kozi Wierch',
+      'Skrajny Granat',
+      'Wielka Łomnicka Baszta',
+      'Raczkowa Czuba',
+      'Baraniec',
+      'Banówka',
+      'Starorobociański Wierch',
+      'Szpiglasowy Wierch',
+      'Mała Buczynowa Turnia',
+      'Pachoł',
+      'Hruba Kopa',
+      'Kościelec',
+      'Szczerbaty',
+      'Jałowiecki Przysłop',
+      'Jarząbczy Wierch',
+      'Trzy Kopy',
+      'Rohacz Płaczliwy',
+      'Krzesanica',
+      'Skrajna Turnia',
+      'Ciemniak',
+      'Małołączniak',
+      'Wyżnia Magura',
+      'Skrajne Solisko',
+      'Rohacz Ostry',
+      'Spalona Kopa',
+      'Smrek',
+      'Wołowiec',
+      'Pośrednia Magura',
+      'Salatyński Wierch',
+      'Mały Salatyn',
+      'Klin',
+      'Rakuska Czuba',
+      'Wrota Chałubińskiego',
+      'Beskid',
+      'Kopa Kondracka',
+      'Kończysty Wierch',
+    ]
+    const tdPoints = initialPoints.filter((point) => point.badgeSystem === 'TATRZANSKIE_DWUTYSIECZNIKI')
+
+    expect(officialItems).toHaveLength(55)
+    expect(tdPoints.map((point) => point.name).sort()).toEqual([...officialItems].sort())
+    expect(tdPoints.every((point) => point.points === 1)).toBe(true)
+  })
+
+  it('Bieszczadzkie Tysięczniki zawierają dokładnie 40 szczytów z wykazu odznaki', () => {
+    const officialPeaks = [
+      'Tarnica',
+      'Halicz',
+      'Kopa Bukowska',
+      'Szeroki Wierch',
+      'Bukowe Berdo (Połonina Dźwiniacka)',
+      'Połonina Caryńska',
+      'Rozsypaniec',
+      'Osadzki Wierch',
+      'Połonina Wetlińska (Hasiakowa Skała)',
+      'Smerek',
+      'Szołtynia',
+      'Magura Stuposiańska',
+      'Holica (Dwernik Kamień)',
+      'Wielka Rawka',
+      'Mała Rawka',
+      'Krzemieniec',
+      'Kamienna',
+      'Rabia Skała',
+      'Paportna',
+      'Dziurkowiec',
+      'Hrubki',
+      'Płasza',
+      'Czoło',
+      'Jasło',
+      'Hyrlata',
+      'Fereczata',
+      'Małe Jasło',
+      'Okrąglik',
+      'Szczawnik',
+      'Rosocha',
+      'Zwornik',
+      'Czerteż',
+      'Berdo',
+      'Kurników Beskid',
+      'Jawornik (Sękowa)',
+      'Stryb',
+      'Rypi Wierch',
+      'Wołosań',
+      'Łopiennik',
+      'Sasów',
+    ]
+    const btPoints = initialPoints.filter((point) => point.badgeSystem === 'BIESZCZADZKIE_TYSIECZNIKI')
+
+    expect(officialPeaks).toHaveLength(40)
+    expect(btPoints.map((point) => point.name).sort()).toEqual([...officialPeaks].sort())
+    expect(btPoints.every((point) => point.points === 1)).toBe(true)
+  })
+
+  it('Tysięczniki Ziemi Kłodzkiej zawierają dokładnie 32 szczyty z wykazu PTTK Oddziału Kłodzko', () => {
+    const officialPeaks = [
+      'Wielka Sowa',
+      'Orlica',
+      'Zielony Garb',
+      'Czarna Góra',
+      'Goworek',
+      'Jaworowa Kopa',
+      'Mały Śnieżnik',
+      'Puchacz',
+      'Sadzonki',
+      'Smrekowiec',
+      'Stroma',
+      'Śnieżnik',
+      'Średniak',
+      'Trójmorski Wierch',
+      'Wysoczka',
+      'Żmijowiec',
+      'Biała Kopa',
+      'Brusek',
+      'Czernica',
+      'Dział',
+      'Iwinka',
+      'Jawornicka Kopa',
+      'Jawornik Graniczny',
+      'Orlik',
+      'Płoska',
+      'Postawna',
+      'Rudawiec',
+      'Rude Krzyże',
+      'Smrecznik',
+      'Smrek Trójkrajny',
+      'Sucha Kopa',
+      'Suszyca',
+    ]
+    const tzkPoints = initialPoints.filter((point) => point.badgeSystem === 'TYSIECZNIKI_ZIEMI_KLODZKIEJ')
+
+    expect(officialPeaks).toHaveLength(32)
+    expect(tzkPoints.map((point) => point.name).sort()).toEqual([...officialPeaks].sort())
+    expect(tzkPoints.every((point) => point.points === 1)).toBe(true)
+  })
+
   it('każde sharesPeakWith wskazuje na istniejące id i nie zawiera samego siebie', () => {
     const idsSet = new Set(initialPoints.map((point) => point.id))
     for (const point of initialPoints) {
