@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { afterEach, describe, it, expect, vi } from 'vitest'
+import { act, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import AccountMenu from './AccountMenu'
 
@@ -15,6 +15,52 @@ describe('AccountMenu', () => {
     await user.click(screen.getByRole('button', { name: 'Zaloguj się' }))
 
     expect(onLogin).toHaveBeenCalledTimes(1)
+  })
+
+  describe('gdy ustalanie konta trwa zbyt długo', () => {
+    afterEach(() => {
+      vi.useRealTimers()
+    })
+
+    it('po limicie czasu pokazuje przycisk logowania zamiast wiecznego "Ładowanie konta…"', () => {
+      vi.useFakeTimers()
+      render(<AccountMenu user={{ isLoggedIn: false, isLoading: true }} onLogin={vi.fn()} onLogout={vi.fn()} />)
+      expect(screen.getByText('Ładowanie konta…')).toBeInTheDocument()
+
+      act(() => {
+        vi.advanceTimersByTime(5000)
+      })
+
+      expect(screen.queryByText('Ładowanie konta…')).not.toBeInTheDocument()
+      expect(screen.getByRole('button', { name: 'Zaloguj się' })).toBeInTheDocument()
+    })
+
+    it('nie pokazuje przycisku logowania przed upływem limitu czasu', () => {
+      vi.useFakeTimers()
+      render(<AccountMenu user={{ isLoggedIn: false, isLoading: true }} onLogin={vi.fn()} onLogout={vi.fn()} />)
+
+      act(() => {
+        vi.advanceTimersByTime(4000)
+      })
+
+      expect(screen.getByText('Ładowanie konta…')).toBeInTheDocument()
+      expect(screen.queryByRole('button', { name: 'Zaloguj się' })).not.toBeInTheDocument()
+    })
+  })
+
+  it('po wylogowaniu z innej karty nie przywraca starego potwierdzenia wylogowania po ponownym zalogowaniu', async () => {
+    const user = userEvent.setup()
+    const loggedIn = { isLoggedIn: true, email: 'a@b.pl' }
+    const props = { syncState: { phase: 'in-sync' }, onLogin: vi.fn(), onLogout: vi.fn() }
+    const { rerender } = render(<AccountMenu user={loggedIn} {...props} />)
+    await user.click(screen.getByRole('button', { name: 'Wyloguj' }))
+    expect(screen.getByRole('alert')).toBeInTheDocument()
+
+    rerender(<AccountMenu user={{ isLoggedIn: false }} {...props} />)
+    rerender(<AccountMenu user={loggedIn} {...props} />)
+
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Wyloguj' })).toBeInTheDocument()
   })
 
   it('w trakcie ustalania konta pokazuje "Ładowanie konta…" zamiast przycisku logowania', () => {

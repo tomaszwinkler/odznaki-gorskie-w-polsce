@@ -1,4 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+// Po tym czasie przestajemy czekać na ustalenie konta i pokazujemy przycisk
+// logowania — inaczej zawieszony stan `isLoading` odciąłby użytkownika od logowania.
+const LOADING_TIMEOUT_MS = 5000
 
 const SYNC_LABELS = {
   initial: 'Łączenie…',
@@ -12,8 +16,28 @@ const SYNC_LABELS = {
 
 function AccountMenu({ user, syncState, error, onLogin, onLogout }) {
   const [confirmingLogout, setConfirmingLogout] = useState(false)
+  const [loadingTimedOut, setLoadingTimedOut] = useState(false)
+  const isLoading = Boolean(user?.isLoading)
+  const isLoggedIn = Boolean(user?.isLoggedIn)
 
-  if (user?.isLoading) {
+  // Stan zależny od zmiany propsów korygujemy podczas renderowania (wzorzec z
+  // dokumentacji Reacta), a nie w efekcie. Wylogowanie z innej karty nie może
+  // zostawić otwartego potwierdzenia, które pojawiłoby się znowu po następnym
+  // zalogowaniu; koniec ładowania kasuje znacznik przekroczenia limitu czasu.
+  const [previous, setPrevious] = useState({ isLoading, isLoggedIn })
+  if (previous.isLoading !== isLoading || previous.isLoggedIn !== isLoggedIn) {
+    setPrevious({ isLoading, isLoggedIn })
+    if (!isLoading) setLoadingTimedOut(false)
+    if (!isLoggedIn) setConfirmingLogout(false)
+  }
+
+  useEffect(() => {
+    if (!isLoading) return undefined
+    const timer = setTimeout(() => setLoadingTimedOut(true), LOADING_TIMEOUT_MS)
+    return () => clearTimeout(timer)
+  }, [isLoading])
+
+  if (isLoading && !loadingTimedOut) {
     return (
       <div className="account-menu">
         <small>Ładowanie konta…</small>

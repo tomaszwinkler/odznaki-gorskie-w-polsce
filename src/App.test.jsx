@@ -148,9 +148,10 @@ describe('App', () => {
   })
 
   it('nie pokazuje menu konta, gdy chmura jest wyłączona', async () => {
-    render(<App />)
+    const { container } = render(<App />)
     await screen.findByText('Śnieżka')
 
+    expect(container.querySelector('.account-menu')).toBeNull()
     expect(screen.queryByRole('button', { name: 'Zaloguj się' })).not.toBeInTheDocument()
   })
 
