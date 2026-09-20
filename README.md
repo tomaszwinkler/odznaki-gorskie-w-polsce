@@ -1,10 +1,10 @@
 # Odznaki górskie w Polsce
 
-Aplikacja (PWA) do śledzenia postępu w zdobywaniu polskich odznak turystycznych: **GOT**, **Korona Gór Polski**, **Diadem Polskich Gór**, **Korona Sudetów**, **Korona Beskidów**, **Turystyczna Korona Tatr** i **Korona Bieszczadów** i **Dominanty Przedgórza Sudeckiego**. Pozwala oznaczać odwiedzone szczyty, prowadzić dziennik wypraw ze zdjęciami i importem tras GPX oraz przeglądać punkty na liście i interaktywnej mapie.
+Aplikacja (PWA) do śledzenia postępu w zdobywaniu polskich odznak turystycznych: **GOT**, **Korona Gór Polski**, **Diadem Polskich Gór**, **Korona Sudetów**, **Korona Beskidów**, **Turystyczna Korona Tatr** i **Korona Bieszczadów**, **Dominanty Przedgórza Sudeckiego** i **Korona Polskich Beskidów**. Pozwala oznaczać odwiedzone szczyty, prowadzić dziennik wypraw ze zdjęciami i importem tras GPX oraz przeglądać punkty na liście i interaktywnej mapie.
 
 ## Funkcje
 
-- **Osiem systemów odznak** pogrupowanych w kategorie (odznaki ogólnopolskie, korony makroregionalne, odznaki regionalne):
+- **Dziewięć systemów odznak** pogrupowanych w kategorie (odznaki ogólnopolskie, korony makroregionalne, odznaki regionalne):
   - **GOT** — 64 szczyty w całej Polsce (rozszerzony, orientacyjny zestaw; realny regulamin GOT PTTK punktuje przebyte trasy, nie sam fakt zdobycia szczytu)
   - **Korona Gór Polski** — pełna, oficjalna lista 28 szczytów
   - **Diadem Polskich Gór** — pełna, oficjalna lista 80 szczytów
@@ -13,7 +13,8 @@ Aplikacja (PWA) do śledzenia postępu w zdobywaniu polskich odznak turystycznyc
   - **Turystyczna Korona Tatr** — pełne 60 pozycji (54 szczyty + 6 przełęczy) wg regulaminu PTT, po polskiej i słowackiej stronie Tatr
   - **Korona Bieszczadów** (odznaka regionalna PTTK Oddziału „Ziemia Sanocka”) — pełne 15 szczytów z oficjalnego wykazu; 7 z nich wspólnych z GOT, Diademem lub innymi koronami. Współrzędne i dane tras ośmiu nowych szczytów są orientacyjne, a przy części źródła się różnią
   - **Dominanty Przedgórza Sudeckiego** (regionalna odznaka Komisji Turystyki Pieszej Oddziału Wrocławskiego PTTK, 2023) — pełne 41 wzgórz z oficjalnego wykazu, dwa stopnie (srebrny za 20, złoty za kolejne 21). To głównie niskie wzgórza, wiele bez znakowanego szlaku; współrzędne pochodzą z regulaminu, a czasów przejścia i przewyższeń regulamin nie podaje (w aplikacji „brak danych w regulaminie”). Ślęża jest wspólna z GOT, KGP, Diademem i Koroną Sudetów
-  - Została jeszcze jedna odznaka regionalna w przygotowaniu — miejsce zajęte pod roboczą nazwą „Beskidzka Odznaka Turystyczna”. Odznaka o takiej nazwie nie istnieje i zostanie zastąpiona realną (np. Główny Szlak Beskidzki lub inna odznaka szczytowa)
+  - **Korona Polskich Beskidów** (odznaka Oddziału PTTK w Bochni, 2002) — 10 najwyższych szczytów grup górskich polskich Beskidów (Skrzyczne, Czupel, Babia Góra, Lubomir, Mogielica, Turbacz, Radziejowa, Wysoka, Lackowa, Tarnica). To inna, mniejsza odznaka niż Korona Beskidów; wszystkie jej szczyty są wspólne z GOT, Koroną Gór Polski i Diademem, więc jedno zapisane wejście zalicza się od razu
+  - Wszystkie odznaki regionalne mają już katalogi. Dawne miejsca zajęte pod robocze nazwy („Sudecka Odznaka Turystyczna”, „Beskidzka Odznaka Turystyczna”, „Odznaka Bieszczady”) zastąpiono realnymi odznakami, bo odznaki o takich nazwach nie istnieją. Odznaki szlakowe (np. Główny Szlak Beskidzki, Główny Szlak Sudecki) nie pasują do modelu listy szczytów i nie są uwzględnione
 - **Ten sam fizyczny szczyt liczy się do wielu systemów naraz** — np. wejście na Śnieżkę zaznaczone raz w dzienniku automatycznie zalicza się do GOT, Korony Gór Polski, Diademu i Korony Sudetów jednocześnie
 - **Lista i mapa** punktów z sortowaniem (odwiedzone, nazwa, pasmo, punkty) i filtrowaniem po wybranym systemie odznak
 - **Dziennik wypraw** — dodawanie, edycja i usuwanie wpisów (data, notatka, zdjęcia, wybrane punkty), automatyczne wyliczanie postępu na podstawie wpisów, kompresja zdjęć przed zapisem

@@ -5,6 +5,20 @@ import userEvent from '@testing-library/user-event'
 import App from './App'
 import { syncPoints } from './db/db'
 
+// Wszystkie prawdziwe systemy odznak mają już katalogi, a kod nadal obsługuje
+// system bez danych (`available: false` → "dane w przygotowaniu"). Żeby ta
+// ścieżka pozostała pokryta, dokładamy do listy systemów sztuczny system testowy.
+vi.mock('./data/badgeSystems', async (importOriginal) => {
+  const actual = await importOriginal()
+  return {
+    ...actual,
+    badgeSystems: [
+      ...actual.badgeSystems,
+      { id: 'SYSTEM_TESTOWY', name: 'System testowy', category: 'regionalne', subcategory: 'Test', available: false },
+    ],
+  }
+})
+
 vi.mock('./components/MapView', () => ({
   default: ({ points }) => <div data-testid="map-view">Mapa: {points.length} punktów</div>,
 }))
@@ -122,7 +136,7 @@ describe('App', () => {
     await screen.findByText('Śnieżka')
 
     await user.click(screen.getByRole('button', { name: 'Odznaki regionalne' }))
-    await user.click(screen.getByRole('button', { name: 'Beskidzka Odznaka Turystyczna (wkrótce)' }))
+    await user.click(screen.getByRole('button', { name: 'System testowy (wkrótce)' }))
 
     expect(await screen.findByText(/w przygotowaniu/)).toBeInTheDocument()
   })

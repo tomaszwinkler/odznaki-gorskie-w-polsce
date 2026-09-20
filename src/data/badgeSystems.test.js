@@ -24,6 +24,20 @@ describe('badgeSystems', () => {
     expect(levels[1].name).toMatch(/złot/i)
   })
 
+  it('Korona Polskich Beskidów kończy się progiem 10/10', () => {
+    const levels = badgeLevelsBySystem.KORONA_POLSKICH_BESKIDOW
+
+    expect(levels.at(-1).minPoints).toBe(10)
+    expect(levels.at(-1).name).toMatch(/10\/10/)
+  })
+
+  it('wszystkie systemy odznak regionalnych są dostępne (bez placeholderów)', () => {
+    const regional = badgeSystems.filter((system) => system.category === 'regionalne')
+
+    expect(regional.length).toBeGreaterThan(0)
+    expect(regional.every((system) => system.available)).toBe(true)
+  })
+
   it('każdy dostępny system (available: true) ma zdefiniowane progi odznaki', () => {
     for (const system of badgeSystems.filter((s) => s.available)) {
       expect(badgeLevelsBySystem[system.id]).toBeDefined()

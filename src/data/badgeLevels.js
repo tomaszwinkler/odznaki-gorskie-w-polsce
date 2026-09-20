@@ -42,6 +42,15 @@ export const badgeLevelsBySystem = {
     { name: '20 zdobytych szczytów (75%)', minPoints: 20 },
     { name: 'Korona Beskidów zdobyta (27/27)', minPoints: 27 },
   ],
+  // Oficjalnie odznaka jednostopniowa (regulamin Oddziału PTTK w Bochni) —
+  // progi pośrednie to, tak jak w pozostałych koronach, dodatkowa motywacja
+  // w UI, nie część oficjalnego regulaminu.
+  KORONA_POLSKICH_BESKIDOW: [
+    { name: '3 zdobyte szczyty (25%)', minPoints: 3 },
+    { name: '5 zdobytych szczytów (50%)', minPoints: 5 },
+    { name: '8 zdobytych szczytów (75%)', minPoints: 8 },
+    { name: 'Korona Polskich Beskidów zdobyta (10/10)', minPoints: 10 },
+  ],
   // Oficjalnie odznaka dwustopniowa (regulamin Komisji Turystyki Pieszej
   // Oddziału Wrocławskiego PTTK): srebrna za 20 dominant, złota za kolejne 21
   // (razem 41) — progi poniżej odpowiadają im wprost.

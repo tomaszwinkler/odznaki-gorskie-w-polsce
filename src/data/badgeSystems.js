@@ -73,11 +73,16 @@ export const badgeSystems = [
     available: true,
   },
   {
-    id: 'BOT',
-    name: 'Beskidzka Odznaka Turystyczna',
+    id: 'KORONA_POLSKICH_BESKIDOW',
+    // „Korona Polskich Beskidów" — odznaka Oddziału PTTK w Bochni (regulamin z
+    // 2002 r.): najwyższy szczyt każdej z 10 grup górskich polskich Beskidów.
+    // To inna, mniejsza odznaka niż „Korona Beskidów" (27 szczytów w 4
+    // krajach). Zastępuje dawny placeholder „Beskidzka Odznaka Turystyczna" —
+    // odznaka o tej nazwie nie istnieje.
+    name: 'Korona Polskich Beskidów',
     category: 'regionalne',
     subcategory: 'Beskidy',
-    available: false,
+    available: true,
   },
   {
     id: 'KORONA_BIESZCZADOW',

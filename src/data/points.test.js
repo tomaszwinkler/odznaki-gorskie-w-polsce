@@ -140,6 +140,38 @@ describe('initialPoints', () => {
     expect(peakGroups.get('sleza-dps')).toEqual(expect.arrayContaining(['sleza', 'sleza-kgp', 'sleza-diadem', 'sleza-ks']))
   })
 
+  it('Korona Polskich Beskidów zawiera dokładnie 10 najwyższych szczytów grup górskich z wykazu PTTK Bochnia', () => {
+    const officialPeaks = [
+      'Skrzyczne',
+      'Czupel',
+      'Babia Góra',
+      'Lubomir',
+      'Mogielica',
+      'Turbacz',
+      'Radziejowa',
+      'Wysoka (Wysokie Skałki)',
+      'Lackowa',
+      'Tarnica',
+    ]
+    const kpbPoints = initialPoints.filter((point) => point.badgeSystem === 'KORONA_POLSKICH_BESKIDOW')
+
+    expect(kpbPoints.map((point) => point.name).sort()).toEqual([...officialPeaks].sort())
+    expect(kpbPoints.every((point) => point.points === 1)).toBe(true)
+  })
+
+  it('każdy szczyt Korony Polskich Beskidów jest tym samym szczytem co odpowiednik w GOT i Koronie Gór Polski', () => {
+    const peakGroups = buildPeakGroups(initialPoints)
+    const kpbPoints = initialPoints.filter((point) => point.badgeSystem === 'KORONA_POLSKICH_BESKIDOW')
+
+    expect(kpbPoints).toHaveLength(10)
+    for (const point of kpbPoints) {
+      const baseId = point.id.replace(/-kpb$/, '')
+      const group = peakGroups.get(point.id) ?? []
+      expect(group).toContain(baseId)
+      expect(group).toContain(`${baseId}-kgp`)
+    }
+  })
+
   it('każde sharesPeakWith wskazuje na istniejące id i nie zawiera samego siebie', () => {
     const idsSet = new Set(initialPoints.map((point) => point.id))
     for (const point of initialPoints) {
