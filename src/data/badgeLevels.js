@@ -51,6 +51,25 @@ export const badgeLevelsBySystem = {
     { name: 'Srebrna KNSGP (35/50)', minPoints: 35 },
     { name: 'Złota KNSGP (50/50)', minPoints: 50 },
   ],
+  // Oficjalnie odznaka dwustopniowa (regulamin PTT): pierwszy stopień to cztery
+  // niezależne odznaki krajowe (polska 9, czeska 6, słowacka 9, ukraińska 11
+  // pozycji), drugi — cała Wielka Korona (35). Postęp liczymy sumą pozycji
+  // (w dowolnej kolejności), więc progi to orientacyjne ćwiartki, nie
+  // odpowiedniki poszczególnych odznak krajowych.
+  WIELKA_KORONA_BESKIDOW: [
+    { name: '9 zdobytych pozycji (ok. 25%)', minPoints: 9 },
+    { name: '18 zdobytych pozycji (ok. 50%)', minPoints: 18 },
+    { name: '27 zdobytych pozycji (ok. 75%)', minPoints: 27 },
+    { name: 'Wielka Korona Beskidów zdobyta (35/35)', minPoints: 35 },
+  ],
+  // Oficjalnie odznaka jednostopniowa (regulamin Oddziału PTTK w Bielsku-Białej)
+  // — progi pośrednie to dodatkowa motywacja w UI, nie część regulaminu.
+  MALA_KORONA_BESKIDOW: [
+    { name: '4 zdobyte szczyty (25%)', minPoints: 4 },
+    { name: '8 zdobytych szczytów (50%)', minPoints: 8 },
+    { name: '12 zdobytych szczytów (75%)', minPoints: 12 },
+    { name: 'Mała Korona Beskidów zdobyta (15/15)', minPoints: 15 },
+  ],
   // Oficjalnie odznaka jednostopniowa (regulamin Oddziału PTTK w Bochni) —
   // progi pośrednie to, tak jak w pozostałych koronach, dodatkowa motywacja
   // w UI, nie część oficjalnego regulaminu.

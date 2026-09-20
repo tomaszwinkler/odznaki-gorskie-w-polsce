@@ -59,6 +59,18 @@ export const badgeSystems = [
     available: true,
   },
   {
+    id: 'WIELKA_KORONA_BESKIDOW',
+    // „Wielka Korona Beskidów" — odznaka krajoznawczo-turystyczna Polskiego
+    // Towarzystwa Tatrzańskiego (2014): 35 pozycji w Beskidach Polski, Czech,
+    // Słowacji i Ukrainy (pierwszy stopień to cztery niezależne odznaki
+    // krajowe, drugi — cała Wielka Korona). To inna odznaka niż „Korona
+    // Beskidów" PTTK Kraków (27 szczytów).
+    name: 'Wielka Korona Beskidów',
+    category: 'korony-makroregionalne',
+    subcategory: 'Beskidy',
+    available: true,
+  },
+  {
     id: 'KORONA_TATR',
     // "Korona Tatr Polskich" nie istnieje jako osobna odznaka — najbliższa
     // realna to "Turystyczna Korona Tatr" (PTT, 2015): 54 szczyty + 6
@@ -91,6 +103,15 @@ export const badgeSystems = [
     // krajach). Zastępuje dawny placeholder „Beskidzka Odznaka Turystyczna" —
     // odznaka o tej nazwie nie istnieje.
     name: 'Korona Polskich Beskidów',
+    category: 'regionalne',
+    subcategory: 'Beskidy',
+    available: true,
+  },
+  {
+    id: 'MALA_KORONA_BESKIDOW',
+    // „Mała Korona Beskidów" — odznaka Oddziału PTTK w Bielsku-Białej (2006):
+    // 15 szczytów w Beskidzie Małym, Śląskim i Żywieckim, jednostopniowa.
+    name: 'Mała Korona Beskidów',
     category: 'regionalne',
     subcategory: 'Beskidy',
     available: true,

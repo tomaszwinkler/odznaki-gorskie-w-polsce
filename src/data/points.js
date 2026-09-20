@@ -20,6 +20,9 @@
 // szczyty "niezależnie od granic państwowych" (10 z 22 leży w Czechach).
 // Źródło: pttk.wroclaw.pl/wp-content/uploads/Regulamin-Odznaki-Korona-Sudetow.pdf.
 //
+// Mała Korona Beskidów (15 szczytów, PTTK Bielsko-Biała) i Wielka Korona
+// Beskidów (35 pozycji w 4 krajach, PTT): zob. sekcje na końcu pliku.
+//
 // Korona Najwybitniejszych Szczytów Gór Polskich: 50 szczytów wg wybitności
 // (Klub Zdobywców Koron Górskich RP, koronygor.pl/knsgp); 41 już w katalogu,
 // zob. sekcję na końcu pliku.
@@ -74,28 +77,28 @@ export const initialPoints = [
   { id: 'sleza', name: 'Ślęża', region: 'Masyw Ślęży', points: 3, lat: 50.865, lng: 16.7086, badgeSystem: 'GOT' , sharesPeakWith: ["sleza-kgp","sleza-diadem","sleza-ks","sleza-dps","sleza-knsgp"]},
 
   // --- GOT: Beskidy ---
-  { id: 'skrzyczne', name: 'Skrzyczne', region: 'Beskid Śląski', points: 9, lat: 49.6836, lng: 19.0189, badgeSystem: 'GOT' , sharesPeakWith: ["skrzyczne-kgp","skrzyczne-diadem","skrzyczne-kb","skrzyczne-kpb","skrzyczne-knsgp"]},
-  { id: 'klimczok', name: 'Klimczok', region: 'Beskid Śląski', points: 8, lat: 49.7385, lng: 19.0074, badgeSystem: 'GOT' , sharesPeakWith: ["klimczok-diadem","klimczok-knsgp"]},
-  { id: 'wielka-czantoria', name: 'Wielka Czantoria', region: 'Beskid Śląski', points: 6, lat: 49.6786, lng: 18.8044, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-czantoria-diadem","czantoria-wielka-knsgp"]},
-  { id: 'barania-gora', name: 'Barania Góra', region: 'Beskid Śląski', points: 9, lat: 49.5808, lng: 19.0311, badgeSystem: 'GOT' },
-  { id: 'babia-gora', name: 'Babia Góra', region: 'Beskid Żywiecki', points: 10, lat: 49.5735, lng: 19.5283, badgeSystem: 'GOT' , sharesPeakWith: ["babia-gora-kgp","babia-gora-diadem","babia-gora-kb","babia-gora-kpb","babia-gora-knsgp"]},
-  { id: 'pilsko', name: 'Pilsko', region: 'Beskid Żywiecki', points: 12, lat: 49.5272, lng: 19.3183, badgeSystem: 'GOT' , sharesPeakWith: ["pilsko-diadem","pilsko-knsgp"]},
-  { id: 'wielka-racza', name: 'Wielka Racza', region: 'Beskid Żywiecki', points: 9, lat: 49.4133, lng: 18.9688, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-racza-diadem","wielka-racza-kb","wielka-racza-knsgp"]},
+  { id: 'skrzyczne', name: 'Skrzyczne', region: 'Beskid Śląski', points: 9, lat: 49.6836, lng: 19.0189, badgeSystem: 'GOT' , sharesPeakWith: ["skrzyczne-kgp","skrzyczne-diadem","skrzyczne-kb","skrzyczne-kpb","skrzyczne-knsgp","skrzyczne-mkb","skrzyczne-wkb"]},
+  { id: 'klimczok', name: 'Klimczok', region: 'Beskid Śląski', points: 8, lat: 49.7385, lng: 19.0074, badgeSystem: 'GOT' , sharesPeakWith: ["klimczok-diadem","klimczok-knsgp","klimczok-mkb"]},
+  { id: 'wielka-czantoria', name: 'Wielka Czantoria', region: 'Beskid Śląski', points: 6, lat: 49.6786, lng: 18.8044, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-czantoria-diadem","czantoria-wielka-knsgp","wielka-czantoria-mkb"]},
+  { id: 'barania-gora', name: 'Barania Góra', region: 'Beskid Śląski', points: 9, lat: 49.5808, lng: 19.0311, badgeSystem: 'GOT', sharesPeakWith: ["barania-gora-mkb"] },
+  { id: 'babia-gora', name: 'Babia Góra', region: 'Beskid Żywiecki', points: 10, lat: 49.5735, lng: 19.5283, badgeSystem: 'GOT' , sharesPeakWith: ["babia-gora-kgp","babia-gora-diadem","babia-gora-kb","babia-gora-kpb","babia-gora-knsgp","babia-gora-mkb","babia-gora-pl-wkb","babia-gora-sk-wkb"]},
+  { id: 'pilsko', name: 'Pilsko', region: 'Beskid Żywiecki', points: 12, lat: 49.5272, lng: 19.3183, badgeSystem: 'GOT' , sharesPeakWith: ["pilsko-diadem","pilsko-knsgp","pilsko-mkb"]},
+  { id: 'wielka-racza', name: 'Wielka Racza', region: 'Beskid Żywiecki', points: 9, lat: 49.4133, lng: 18.9688, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-racza-diadem","wielka-racza-kb","wielka-racza-knsgp","wielka-racza-mkb","wielka-racza-wkb"]},
   { id: 'jalowiec', name: 'Jałowiec', region: 'Beskid Żywiecki', points: 7, lat: 49.6609, lng: 19.4773, badgeSystem: 'GOT' , sharesPeakWith: ["jalowiec-diadem"]},
-  { id: 'romanka', name: 'Romanka', region: 'Beskid Żywiecki', points: 10, lat: 49.5194, lng: 19.2464, badgeSystem: 'GOT' },
+  { id: 'romanka', name: 'Romanka', region: 'Beskid Żywiecki', points: 10, lat: 49.5194, lng: 19.2464, badgeSystem: 'GOT', sharesPeakWith: ["romanka-mkb"] },
   { id: 'polica', name: 'Polica', region: 'Beskid Żywiecki', points: 4, lat: 49.6167, lng: 19.6167, badgeSystem: 'GOT' , sharesPeakWith: ["polica-diadem","polica-knsgp"]},
-  { id: 'czupel', name: 'Czupel', region: 'Beskid Mały', points: 5, lat: 49.7679, lng: 19.1606, badgeSystem: 'GOT' , sharesPeakWith: ["czupel-kgp","czupel-diadem","czupel-kb","czupel-kpb","czupel-knsgp"]},
-  { id: 'lamana-skala', name: 'Łamana Skała', region: 'Beskid Mały', points: 5, lat: 49.7636, lng: 19.396, badgeSystem: 'GOT' , sharesPeakWith: ["lamana-skala-diadem","lamana-skala-knsgp"]},
-  { id: 'lubomir', name: 'Lubomir', region: 'Beskid Makowski', points: 4, lat: 49.7669, lng: 20.0597, badgeSystem: 'GOT' , sharesPeakWith: ["lubomir-kgp","lubomir-diadem","lubomir-kb","lubomir-kpb","lubomir-knsgp"]},
+  { id: 'czupel', name: 'Czupel', region: 'Beskid Mały', points: 5, lat: 49.7679, lng: 19.1606, badgeSystem: 'GOT' , sharesPeakWith: ["czupel-kgp","czupel-diadem","czupel-kb","czupel-kpb","czupel-knsgp","czupel-mkb","czupel-wkb"]},
+  { id: 'lamana-skala', name: 'Łamana Skała', region: 'Beskid Mały', points: 5, lat: 49.7636, lng: 19.396, badgeSystem: 'GOT' , sharesPeakWith: ["lamana-skala-diadem","lamana-skala-knsgp","lamana-skala-mkb"]},
+  { id: 'lubomir', name: 'Lubomir', region: 'Beskid Makowski', points: 4, lat: 49.7669, lng: 20.0597, badgeSystem: 'GOT' , sharesPeakWith: ["lubomir-kgp","lubomir-diadem","lubomir-kb","lubomir-kpb","lubomir-knsgp","lubomir-wkb"]},
   { id: 'koskowa-gora', name: 'Koskowa Góra', region: 'Beskid Makowski', points: 4, lat: 49.7507, lng: 19.7829, badgeSystem: 'GOT' , sharesPeakWith: ["koskowa-gora-diadem","koskowa-gora-knsgp"]},
-  { id: 'mogielica', name: 'Mogielica', region: 'Beskid Wyspowy', points: 8, lat: 49.6552, lng: 20.2767, badgeSystem: 'GOT' , sharesPeakWith: ["mogielica-kgp","mogielica-diadem","mogielica-kb","mogielica-kpb","mogielica-knsgp"]},
+  { id: 'mogielica', name: 'Mogielica', region: 'Beskid Wyspowy', points: 8, lat: 49.6552, lng: 20.2767, badgeSystem: 'GOT' , sharesPeakWith: ["mogielica-kgp","mogielica-diadem","mogielica-kb","mogielica-kpb","mogielica-knsgp","mogielica-wkb"]},
   { id: 'lubon-wielki', name: 'Luboń Wielki', region: 'Beskid Wyspowy', points: 6, lat: 49.6536, lng: 19.9918, badgeSystem: 'GOT' , sharesPeakWith: ["lubon-wielki-diadem","lubon-wielki-knsgp"]},
   { id: 'cwilin', name: 'Ćwilin', region: 'Beskid Wyspowy', points: 6, lat: 49.6887, lng: 20.1918, badgeSystem: 'GOT' , sharesPeakWith: ["cwilin-diadem","cwilin-knsgp"]},
   { id: 'modyn', name: 'Modyń', region: 'Beskid Wyspowy', points: 6, lat: 49.6212, lng: 20.376, badgeSystem: 'GOT' , sharesPeakWith: ["modyn-diadem","modyn-knsgp"]},
-  { id: 'radziejowa', name: 'Radziejowa', region: 'Beskid Sądecki', points: 6, lat: 49.4667, lng: 20.6333, badgeSystem: 'GOT' , sharesPeakWith: ["radziejowa-kgp","radziejowa-diadem","radziejowa-kb","radziejowa-kpb","radziejowa-knsgp"]},
+  { id: 'radziejowa', name: 'Radziejowa', region: 'Beskid Sądecki', points: 6, lat: 49.4667, lng: 20.6333, badgeSystem: 'GOT' , sharesPeakWith: ["radziejowa-kgp","radziejowa-diadem","radziejowa-kb","radziejowa-kpb","radziejowa-knsgp","radziejowa-wkb"]},
   { id: 'jaworzyna-krynicka', name: 'Jaworzyna Krynicka', region: 'Beskid Sądecki', points: 7, lat: 49.4179, lng: 20.8955, badgeSystem: 'GOT' , sharesPeakWith: ["jaworzyna-krynicka-diadem","jaworzyna-krynicka-knsgp"]},
   { id: 'kraczonik', name: 'Kraczonik', region: 'Beskid Sądecki', points: 5, lat: 49.3153, lng: 20.9394, badgeSystem: 'GOT' , sharesPeakWith: ["kraczonik-diadem"]},
-  { id: 'lackowa', name: 'Lackowa', region: 'Beskid Niski', points: 6, lat: 49.4283, lng: 21.0961, badgeSystem: 'GOT' , sharesPeakWith: ["lackowa-kgp","lackowa-diadem","lackowa-kpb","lackowa-knsgp"]},
+  { id: 'lackowa', name: 'Lackowa', region: 'Beskid Niski', points: 6, lat: 49.4283, lng: 21.0961, badgeSystem: 'GOT' , sharesPeakWith: ["lackowa-kgp","lackowa-diadem","lackowa-kpb","lackowa-knsgp","lackowa-wkb"]},
   { id: 'watkowa', name: 'Wątkowa', region: 'Beskid Niski', points: 4, lat: 49.5761, lng: 21.3667, badgeSystem: 'GOT' , sharesPeakWith: ["watkowa-diadem","watkowa-knsgp"]},
   { id: 'cergowa-gora', name: 'Cergowa Góra', region: 'Beskid Niski', points: 3, lat: 49.5967, lng: 21.6167, badgeSystem: 'GOT' },
 
@@ -113,11 +116,11 @@ export const initialPoints = [
   { id: 'wysoka-pieniny', name: 'Wysoka (Wysokie Skałki)', region: 'Pieniny', points: 6, lat: 49.3803, lng: 20.5556, badgeSystem: 'GOT' , sharesPeakWith: ["wysoka-pieniny-kgp","wysoka-pieniny-diadem","wysoka-pieniny-kpb"]},
 
   // --- GOT: Gorce ---
-  { id: 'turbacz', name: 'Turbacz', region: 'Gorce', points: 6, lat: 49.5219, lng: 20.0919, badgeSystem: 'GOT' , sharesPeakWith: ["turbacz-kgp","turbacz-diadem","turbacz-kb","turbacz-kpb","turbacz-knsgp"]},
+  { id: 'turbacz', name: 'Turbacz', region: 'Gorce', points: 6, lat: 49.5219, lng: 20.0919, badgeSystem: 'GOT' , sharesPeakWith: ["turbacz-kgp","turbacz-diadem","turbacz-kb","turbacz-kpb","turbacz-knsgp","turbacz-wkb"]},
   { id: 'luban', name: 'Lubań', region: 'Gorce', points: 8, lat: 49.4893, lng: 20.339, badgeSystem: 'GOT' , sharesPeakWith: ["luban-diadem","luban-knsgp"]},
 
   // --- GOT: Bieszczady ---
-  { id: 'tarnica', name: 'Tarnica', region: 'Bieszczady', points: 8, lat: 49.0783, lng: 22.5814, badgeSystem: 'GOT' , sharesPeakWith: ["tarnica-kgp","tarnica-diadem","tarnica-kb","tarnica-kbies","tarnica-kpb","tarnica-knsgp"]},
+  { id: 'tarnica', name: 'Tarnica', region: 'Bieszczady', points: 8, lat: 49.0783, lng: 22.5814, badgeSystem: 'GOT' , sharesPeakWith: ["tarnica-kgp","tarnica-diadem","tarnica-kb","tarnica-kbies","tarnica-kpb","tarnica-knsgp","tarnica-wkb"]},
   { id: 'wielka-rawka', name: 'Wielka Rawka', region: 'Bieszczady', points: 9, lat: 49.0994, lng: 22.5764, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-rawka-diadem","wielka-rawka-kbies","wielka-rawka-knsgp"]},
   { id: 'polonina-wetlinska', name: 'Połonina Wetlińska', region: 'Bieszczady', points: 9, lat: 49.1678, lng: 22.5281, badgeSystem: 'GOT', sharesPeakWith: ["polonina-wetlinska-knsgp"] },
   { id: 'polonina-carynska', name: 'Połonina Caryńska', region: 'Bieszczady', points: 9, lat: 49.165, lng: 22.525, badgeSystem: 'GOT', sharesPeakWith: ["polonina-carynska-kbies","polonina-carynska-knsgp"] },
@@ -286,23 +289,23 @@ export const initialPoints = [
   { id: 'radziejowa-kb', name: 'Radziejowa', region: 'Beskid Sądecki', points: 1, lat: 49.4667, lng: 20.6333, badgeSystem: 'KORONA_BESKIDOW' },
   { id: 'tarnica-kb', name: 'Tarnica', region: 'Bieszczady Zachodnie', points: 1, lat: 49.0783, lng: 22.5814, badgeSystem: 'KORONA_BESKIDOW' },
   { id: 'wielka-racza-kb', name: 'Wielka Racza (Veľká Rača)', region: 'Beskidy Kisuckie', points: 1, lat: 49.4133, lng: 18.9688, badgeSystem: 'KORONA_BESKIDOW' },
-  { id: 'lysa-hora-kb', name: 'Lysá hora', region: 'Beskid Morawsko-Śląski', points: 1, lat: 49.5375, lng: 18.45, badgeSystem: 'KORONA_BESKIDOW' },
-  { id: 'pupov-kb', name: 'Pupov', region: 'Wierchowina Kisucka', points: 1, lat: 49.25, lng: 19.0, badgeSystem: 'KORONA_BESKIDOW' },
-  { id: 'mincol-oravska-magura-kb', name: 'Minčol', region: 'Magura Orawska', points: 1, lat: 49.2333, lng: 19.2667, badgeSystem: 'KORONA_BESKIDOW' },
-  { id: 'busov-kb', name: 'Bušov', region: 'Beskidy Niskie (Słowacja)', points: 1, lat: 49.3167, lng: 21.2667, badgeSystem: 'KORONA_BESKIDOW' },
-  { id: 'mincol-cergov-kb', name: 'Minčol', region: 'Czergów', points: 1, lat: 49.2833, lng: 21.2, badgeSystem: 'KORONA_BESKIDOW' },
+  { id: 'lysa-hora-kb', name: 'Lysá hora', region: 'Beskid Morawsko-Śląski', points: 1, lat: 49.5375, lng: 18.45, badgeSystem: 'KORONA_BESKIDOW', sharesPeakWith: ["lysa-hora-wkb"] },
+  { id: 'pupov-kb', name: 'Pupov', region: 'Wierchowina Kisucka', points: 1, lat: 49.25, lng: 19.0, badgeSystem: 'KORONA_BESKIDOW', sharesPeakWith: ["pupov-wkb"] },
+  { id: 'mincol-oravska-magura-kb', name: 'Minčol', region: 'Magura Orawska', points: 1, lat: 49.2333, lng: 19.2667, badgeSystem: 'KORONA_BESKIDOW', sharesPeakWith: ["mincol-oravska-magura-wkb"] },
+  { id: 'busov-kb', name: 'Bušov', region: 'Beskidy Niskie (Słowacja)', points: 1, lat: 49.3167, lng: 21.2667, badgeSystem: 'KORONA_BESKIDOW', sharesPeakWith: ["busov-wkb"] },
+  { id: 'mincol-cergov-kb', name: 'Minčol', region: 'Czergów', points: 1, lat: 49.2833, lng: 21.2, badgeSystem: 'KORONA_BESKIDOW', sharesPeakWith: ["mincol-cergov-wkb"] },
   { id: 'stebnicka-magura-kb', name: 'Stebnícka Magura', region: 'Wierchowina Ondawska', points: 1, lat: 49.34, lng: 21.25, badgeSystem: 'KORONA_BESKIDOW' },
-  { id: 'magura-limnianska-kb', name: 'Magura Łomniańska', region: 'Góry Sanocko-Turczańskie (Ukraina)', points: 1, lat: 49.4667, lng: 23.1333, badgeSystem: 'KORONA_BESKIDOW' },
-  { id: 'pikuj-kb', name: 'Pikuj', region: 'Bieszczady Wschodnie (Ukraina)', points: 1, lat: 48.9333, lng: 23.15, badgeSystem: 'KORONA_BESKIDOW' },
-  { id: 'ciuchowy-dzial-kb', name: 'Ciuchowy Dział', region: 'Beskidy Brzeżne (Ukraina)', points: 1, lat: 49.05, lng: 23.3, badgeSystem: 'KORONA_BESKIDOW' },
-  { id: 'syvulya-kb', name: 'Syvulya (Wielka Sywula)', region: 'Gorgany', points: 1, lat: 48.6667, lng: 24.2833, badgeSystem: 'KORONA_BESKIDOW' },
+  { id: 'magura-limnianska-kb', name: 'Magura Łomniańska', region: 'Góry Sanocko-Turczańskie (Ukraina)', points: 1, lat: 49.4667, lng: 23.1333, badgeSystem: 'KORONA_BESKIDOW', sharesPeakWith: ["magura-limnianska-wkb"] },
+  { id: 'pikuj-kb', name: 'Pikuj', region: 'Bieszczady Wschodnie (Ukraina)', points: 1, lat: 48.9333, lng: 23.15, badgeSystem: 'KORONA_BESKIDOW', sharesPeakWith: ["pikuj-wkb"] },
+  { id: 'ciuchowy-dzial-kb', name: 'Ciuchowy Dział', region: 'Beskidy Brzeżne (Ukraina)', points: 1, lat: 49.05, lng: 23.3, badgeSystem: 'KORONA_BESKIDOW', sharesPeakWith: ["ciuchowy-dzial-wkb"] },
+  { id: 'syvulya-kb', name: 'Syvulya (Wielka Sywula)', region: 'Gorgany', points: 1, lat: 48.6667, lng: 24.2833, badgeSystem: 'KORONA_BESKIDOW', sharesPeakWith: ["syvulya-wkb"] },
   { id: 'rivna-kb', name: 'Rivna', region: 'Pasmo Połonińskie', points: 1, lat: 48.5667, lng: 23.05, badgeSystem: 'KORONA_BESKIDOW' },
   { id: 'stiy-kb', name: 'Stiy', region: 'Połonina Borżawa', points: 1, lat: 48.6167, lng: 23.4167, badgeSystem: 'KORONA_BESKIDOW' },
   { id: 'syhlyanskyi-kb', name: 'Syhlyanskyi', region: 'Połonina Krasna', points: 1, lat: 48.4167, lng: 24.5833, badgeSystem: 'KORONA_BESKIDOW' },
-  { id: 'blyznytsia-kb', name: 'Bliźnica (Blyznytsia)', region: 'Świdowiec', points: 1, lat: 48.4167, lng: 24.15, badgeSystem: 'KORONA_BESKIDOW' },
-  { id: 'hoverla-kb', name: 'Howerla (Hoverla)', region: 'Czarnohora', points: 1, lat: 48.1594, lng: 24.5003, badgeSystem: 'KORONA_BESKIDOW' },
+  { id: 'blyznytsia-kb', name: 'Bliźnica (Blyznytsia)', region: 'Świdowiec', points: 1, lat: 48.4167, lng: 24.15, badgeSystem: 'KORONA_BESKIDOW', sharesPeakWith: ["blyznytsia-wkb"] },
+  { id: 'hoverla-kb', name: 'Howerla (Hoverla)', region: 'Czarnohora', points: 1, lat: 48.1594, lng: 24.5003, badgeSystem: 'KORONA_BESKIDOW', sharesPeakWith: ["hoverla-wkb"] },
   { id: 'pohrebatyna-kb', name: 'Pohrebatyna', region: 'Góry Hryniawskie', points: 1, lat: 47.95, lng: 24.9333, badgeSystem: 'KORONA_BESKIDOW' },
-  { id: 'rotylo-kb', name: 'Rotyło (Rotylo)', region: 'Góry Pokuckie', points: 1, lat: 48.1167, lng: 24.8, badgeSystem: 'KORONA_BESKIDOW' },
+  { id: 'rotylo-kb', name: 'Rotyło (Rotylo)', region: 'Góry Pokuckie', points: 1, lat: 48.1167, lng: 24.8, badgeSystem: 'KORONA_BESKIDOW', sharesPeakWith: ["rotylo-wkb"] },
   { id: 'yarovytsia-kb', name: 'Jarowica (Yarovytsia)', region: 'Karpaty Bukowińskie', points: 1, lat: 47.8167, lng: 25.05, badgeSystem: 'KORONA_BESKIDOW' },
 
   // --- Turystyczna Korona Tatr (pełne 60 pozycji: 54 szczyty + 6 przełęczy
@@ -539,4 +542,74 @@ export const initialPoints = [
   { id: 'watkowa-knsgp', name: 'Wątkowa', region: 'Beskid Niski', points: 1, lat: 49.5761, lng: 21.3667, badgeSystem: 'KNSGP' },
   { id: 'modyn-knsgp', name: 'Modyń', region: 'Beskid Wyspowy', points: 1, lat: 49.6212, lng: 20.376, badgeSystem: 'KNSGP' },
   { id: 'rysy-knsgp', name: 'Rysy', region: 'Tatry', points: 1, lat: 49.1794, lng: 20.0881, badgeSystem: 'KNSGP' },
+
+  // --- Mała Korona Beskidów (15 szczytów w Beskidzie Małym, Śląskim i
+  // Żywieckim wg wykazu z regulaminu Oddziału PTTK w Bielsku-Białej z 2006 r.;
+  // odznaka jednostopniowa) ---
+  // 10 szczytów jest już w katalogu (współrzędne identyczne, połączone przez
+  // sharesPeakWith), 5 to nowe wpisy; ich współrzędne pochodzą z publicznych
+  // źródeł i są orientacyjne. Regulamin wymaga, by trasy prowadziły znakowanymi
+  // szlakami, i podaje schroniska do pieczątek potwierdzających.
+  { id: 'czupel-mkb', name: 'Czupel', region: 'Beskid Mały', points: 1, lat: 49.7679, lng: 19.1606, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'lamana-skala-mkb', name: 'Łamana Skała', region: 'Beskid Mały', points: 1, lat: 49.7636, lng: 19.396, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'hrobacza-laka-mkb', name: 'Hrobacza Łąka', region: 'Beskid Mały', points: 1, lat: 49.8224, lng: 19.1646, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'klimczok-mkb', name: 'Klimczok', region: 'Beskid Śląski', points: 1, lat: 49.7385, lng: 19.0074, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'skrzyczne-mkb', name: 'Skrzyczne', region: 'Beskid Śląski', points: 1, lat: 49.6836, lng: 19.0189, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'wielka-czantoria-mkb', name: 'Wielka Czantoria', region: 'Beskid Śląski', points: 1, lat: 49.6786, lng: 18.8044, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'stozek-mkb', name: 'Stożek', region: 'Beskid Śląski', points: 1, lat: 49.6056, lng: 18.8231, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'barania-gora-mkb', name: 'Barania Góra', region: 'Beskid Śląski', points: 1, lat: 49.5808, lng: 19.0311, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'rownica-mkb', name: 'Równica', region: 'Beskid Śląski', points: 1, lat: 49.7247, lng: 18.8565, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'wielka-racza-mkb', name: 'Wielka Racza', region: 'Beskid Żywiecki', points: 1, lat: 49.4133, lng: 18.9688, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'bendoszka-wielka-mkb', name: 'Bendoszka Wielka', region: 'Beskid Żywiecki', points: 1, lat: 49.4277, lng: 19.0441, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'wielka-rycerzowa-mkb', name: 'Wielka Rycerzowa', region: 'Beskid Żywiecki', points: 1, lat: 49.4158, lng: 19.0917, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'romanka-mkb', name: 'Romanka', region: 'Beskid Żywiecki', points: 1, lat: 49.5194, lng: 19.2464, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'pilsko-mkb', name: 'Pilsko', region: 'Beskid Żywiecki', points: 1, lat: 49.5272, lng: 19.3183, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+  { id: 'babia-gora-mkb', name: 'Babia Góra', region: 'Beskid Żywiecki', points: 1, lat: 49.5735, lng: 19.5283, badgeSystem: 'MALA_KORONA_BESKIDOW' },
+
+  // --- Wielka Korona Beskidów (35 pozycji wg regulaminu odznaki krajoznawczo-
+  // turystycznej PTT: 9 polskich, 6 czeskich, 9 słowackich i 11 ukraińskich;
+  // pierwszy stopień to cztery niezależne odznaki „Korona Beskidów
+  // Polskich/Czeskich/Słowackich/Ukraińskich”, drugi — cała „Wielka Korona
+  // Beskidów”). To NIE jest Korona Beskidów (27 szczytów, PTTK Kraków) ani
+  // Korona Polskich Beskidów (10 szczytów, PTTK Bochnia) ---
+  // 23 pozycji jest już w katalogu (współrzędne identyczne, połączone przez
+  // sharesPeakWith), 12 to nowe wpisy z researchu (współrzędne orientacyjne).
+  // Babia Góra występuje w regulaminie dwa razy (lista polska i słowacka —
+  // ten sam szczyt 1725 m), więc ma dwa wiersze w jednej grupie i jedno wejście
+  // zalicza oba.
+  { id: 'babia-gora-pl-wkb', name: 'Babia Góra', region: 'Beskid Żywiecki', points: 1, lat: 49.5735, lng: 19.5283, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'tarnica-wkb', name: 'Tarnica', region: 'Bieszczady', points: 1, lat: 49.0783, lng: 22.5814, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'turbacz-wkb', name: 'Turbacz', region: 'Gorce', points: 1, lat: 49.5219, lng: 20.0919, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'radziejowa-wkb', name: 'Radziejowa', region: 'Beskid Sądecki', points: 1, lat: 49.4667, lng: 20.6333, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'skrzyczne-wkb', name: 'Skrzyczne', region: 'Beskid Śląski', points: 1, lat: 49.6836, lng: 19.0189, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'mogielica-wkb', name: 'Mogielica', region: 'Beskid Wyspowy', points: 1, lat: 49.6552, lng: 20.2767, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'lackowa-wkb', name: 'Lackowa', region: 'Beskid Niski', points: 1, lat: 49.4283, lng: 21.0961, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'czupel-wkb', name: 'Czupel', region: 'Beskid Mały', points: 1, lat: 49.7679, lng: 19.1606, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'lubomir-wkb', name: 'Lubomir', region: 'Beskid Makowski', points: 1, lat: 49.7669, lng: 20.0597, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'lysa-hora-wkb', name: 'Łysa Góra (Lysá hora)', region: 'Beskid Morawsko-Śląski', points: 1, lat: 49.5375, lng: 18.45, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'smrek-cz-wkb', name: 'Smrek (Beskidy Śląsko-Morawskie)', region: 'Beskidy Śląsko-Morawskie (Czechy)', points: 1, lat: 49.5081, lng: 18.3708, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'ropica-wkb', name: 'Ropica', region: 'Beskidy Śląsko-Morawskie (Czechy)', points: 1, lat: 49.5967, lng: 18.5869, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'wielki-polom-wkb', name: 'Wielki Połom', region: 'Beskidy Śląsko-Morawskie (Czechy)', points: 1, lat: 49.5058, lng: 18.6711, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'wielki-jawornik-wkb', name: 'Wielki Jawornik', region: 'Beskidy Śląsko-Morawskie (Czechy)', points: 1, lat: 49.5272, lng: 18.1609, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'bobek-wkb', name: 'Bobek', region: 'Beskidy Śląsko-Morawskie (Czechy)', points: 1, lat: 49.4329, lng: 18.4902, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'babia-gora-sk-wkb', name: 'Babia Góra (Beskidy Orawskie)', region: 'Beskid Żywiecki', points: 1, lat: 49.5735, lng: 19.5283, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'mincol-oravska-magura-wkb', name: 'Minčol (Magura Orawska)', region: 'Magura Orawska', points: 1, lat: 49.2333, lng: 19.2667, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'wielka-racza-wkb', name: 'Wielka Racza', region: 'Beskid Żywiecki', points: 1, lat: 49.4133, lng: 18.9688, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'kremenaros-wkb', name: 'Kremenaros (Krzemieniec)', region: 'Góry Bukowskie (Słowacja)', points: 1, lat: 49.0887, lng: 22.5678, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'mincol-cergov-wkb', name: 'Minčol (Góry Czerchowskie)', region: 'Czergów', points: 1, lat: 49.2833, lng: 21.2, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'pupov-wkb', name: 'Pupov', region: 'Wierchowina Kisucka', points: 1, lat: 49.25, lng: 19, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'eliasovka-wkb', name: 'Eliasovka', region: 'Ľubovnianska vrchovina (Słowacja)', points: 1, lat: 49.4011, lng: 20.6424, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'busov-wkb', name: 'Bušov', region: 'Beskidy Niskie (Słowacja)', points: 1, lat: 49.3167, lng: 21.2667, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'smilniansky-vrch-wkb', name: 'Smilniansky vrch', region: 'Ondavská vrchovina (Słowacja)', points: 1, lat: 49.407, lng: 21.34, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'hoverla-wkb', name: 'Howerla', region: 'Czarnohora', points: 1, lat: 48.1594, lng: 24.5003, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'blyznytsia-wkb', name: 'Bliźnica', region: 'Świdowiec', points: 1, lat: 48.4167, lng: 24.15, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'syvulya-wkb', name: 'Sywula', region: 'Gorgany', points: 1, lat: 48.6667, lng: 24.2833, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'stij-wkb', name: 'Stij', region: 'Połonina Borżawa (Ukraina)', points: 1, lat: 48.6214, lng: 23.1903, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'baba-ludowa-wkb', name: 'Baba Ludowa', region: 'Połoniny Hryniawskie (Ukraina)', points: 1, lat: 47.9258, lng: 24.7825, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'syhlanski-wkb', name: 'Syhłański', region: 'Połonina Krasna (Ukraina)', points: 1, lat: 48.3565, lng: 23.7888, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'rotylo-wkb', name: 'Rotyło', region: 'Góry Pokuckie', points: 1, lat: 48.1167, lng: 24.8, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'riwna-wkb', name: 'Riwna', region: 'Połonina Równa (Ukraina)', points: 1, lat: 48.8, lng: 22.8094, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'pikuj-wkb', name: 'Pikuj', region: 'Bieszczady Wschodnie (Ukraina)', points: 1, lat: 48.9333, lng: 23.15, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'magura-limnianska-wkb', name: 'Magura Łomniańska', region: 'Góry Sanocko-Turczańskie (Ukraina)', points: 1, lat: 49.4667, lng: 23.1333, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+  { id: 'ciuchowy-dzial-wkb', name: 'Ciuchowy Dział', region: 'Beskidy Brzeżne (Ukraina)', points: 1, lat: 49.05, lng: 23.3, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
 ]

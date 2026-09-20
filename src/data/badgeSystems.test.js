@@ -36,6 +36,11 @@ describe('badgeSystems', () => {
     ])
   })
 
+  it('Mała Korona Beskidów kończy się progiem 15/15, a Wielka Korona Beskidów 35/35', () => {
+    expect(badgeLevelsBySystem.MALA_KORONA_BESKIDOW.at(-1).minPoints).toBe(15)
+    expect(badgeLevelsBySystem.WIELKA_KORONA_BESKIDOW.at(-1).minPoints).toBe(35)
+  })
+
   it('Korona Polskich Beskidów kończy się progiem 10/10', () => {
     const levels = badgeLevelsBySystem.KORONA_POLSKICH_BESKIDOW
 

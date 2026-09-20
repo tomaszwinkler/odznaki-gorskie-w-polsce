@@ -14,6 +14,8 @@ const KNOWN_COORDINATE_COINCIDENCES = new Set(['slonny-pd-wsch-diadem|slonny-pn-
 // Karpaty Ukraińskie), więc jej punkty mają osobny, szerszy prostokąt.
 const POLAND_BOUNDS = { minLat: 49, maxLat: 55, minLng: 14, maxLng: 24 }
 const CARPATHIAN_REGION_BOUNDS = { minLat: 47, maxLat: 51, minLng: 14, maxLng: 26 }
+// Systemy z założenia międzynarodowe (Polska, Czechy, Słowacja, Ukraina).
+const INTERNATIONAL_SYSTEMS = new Set(['KORONA_BESKIDOW', 'WIELKA_KORONA_BESKIDOW'])
 
 describe('initialPoints', () => {
   it('każdy punkt ma unikalne id', () => {
@@ -21,12 +23,24 @@ describe('initialPoints', () => {
     expect(new Set(ids).size).toBe(ids.length)
   })
 
-  it('każdy punkt (poza Koroną Beskidów) ma współrzędne mieszczące się w granicach Polski', () => {
-    for (const point of initialPoints.filter((p) => p.badgeSystem !== 'KORONA_BESKIDOW')) {
+  it('każdy punkt (poza Koroną Beskidów i Wielką Koroną Beskidów) ma współrzędne mieszczące się w granicach Polski', () => {
+    for (const point of initialPoints.filter((p) => !INTERNATIONAL_SYSTEMS.has(p.badgeSystem))) {
       expect(point.lat).toBeGreaterThanOrEqual(POLAND_BOUNDS.minLat)
       expect(point.lat).toBeLessThanOrEqual(POLAND_BOUNDS.maxLat)
       expect(point.lng).toBeGreaterThanOrEqual(POLAND_BOUNDS.minLng)
       expect(point.lng).toBeLessThanOrEqual(POLAND_BOUNDS.maxLng)
+    }
+  })
+
+  it('każdy punkt Wielkiej Korony Beskidów ma współrzędne mieszczące się w regionie karpackim', () => {
+    const wkbPoints = initialPoints.filter((point) => point.badgeSystem === 'WIELKA_KORONA_BESKIDOW')
+
+    expect(wkbPoints.length).toBeGreaterThan(0)
+    for (const point of wkbPoints) {
+      expect(point.lat).toBeGreaterThanOrEqual(CARPATHIAN_REGION_BOUNDS.minLat)
+      expect(point.lat).toBeLessThanOrEqual(CARPATHIAN_REGION_BOUNDS.maxLat)
+      expect(point.lng).toBeGreaterThanOrEqual(CARPATHIAN_REGION_BOUNDS.minLng)
+      expect(point.lng).toBeLessThanOrEqual(CARPATHIAN_REGION_BOUNDS.maxLng)
     }
   })
 
@@ -250,6 +264,43 @@ describe('initialPoints', () => {
 
     expect(peakGroups.get('polonina-wetlinska-knsgp')).toContain('polonina-wetlinska')
     expect([got.lat, got.lng]).toEqual([knsgp.lat, knsgp.lng])
+  })
+
+  it('Mała Korona Beskidów zawiera dokładnie 15 szczytów z wykazu PTTK Bielsko-Biała', () => {
+    const officialPeaks = [
+      'Czupel',
+      'Łamana Skała',
+      'Hrobacza Łąka',
+      'Klimczok',
+      'Skrzyczne',
+      'Wielka Czantoria',
+      'Stożek',
+      'Barania Góra',
+      'Równica',
+      'Wielka Racza',
+      'Bendoszka Wielka',
+      'Wielka Rycerzowa',
+      'Romanka',
+      'Pilsko',
+      'Babia Góra',
+    ]
+    const mkbPoints = initialPoints.filter((point) => point.badgeSystem === 'MALA_KORONA_BESKIDOW')
+
+    expect(mkbPoints.map((point) => point.name).sort()).toEqual([...officialPeaks].sort())
+    expect(mkbPoints.every((point) => point.points === 1)).toBe(true)
+  })
+
+  it('Wielka Korona Beskidów zawiera 35 pozycji (9 polskich, 6 czeskich, 9 słowackich, 11 ukraińskich), a Babia Góra występuje dwa razy jako ten sam szczyt', () => {
+    const wkbPoints = initialPoints.filter((point) => point.badgeSystem === 'WIELKA_KORONA_BESKIDOW')
+    const babiaRows = wkbPoints.filter((point) => point.name.startsWith('Babia Góra'))
+    const peakGroups = buildPeakGroups(initialPoints)
+
+    expect(wkbPoints).toHaveLength(35)
+    expect(new Set(wkbPoints.map((point) => point.id)).size).toBe(35)
+    expect(wkbPoints.every((point) => point.points === 1)).toBe(true)
+    // Regulamin PTT zalicza Babią Górę zarówno do listy polskiej, jak i słowackiej.
+    expect(babiaRows).toHaveLength(2)
+    expect(peakGroups.get(babiaRows[0].id)).toContain(babiaRows[1].id)
   })
 
   it('każde sharesPeakWith wskazuje na istniejące id i nie zawiera samego siebie', () => {
