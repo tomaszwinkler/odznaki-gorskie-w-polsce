@@ -62,6 +62,14 @@ export const badgeLevelsBySystem = {
     { name: '27 zdobytych pozycji (ok. 75%)', minPoints: 27 },
     { name: 'Wielka Korona Beskidów zdobyta (35/35)', minPoints: 35 },
   ],
+  // Oficjalnie odznaka jednostopniowa (regulamin Oddziału Świętokrzyskiego PTTK)
+  // — progi pośrednie to dodatkowa motywacja w UI, nie część regulaminu.
+  KORONA_GOR_SWIETOKRZYSKICH: [
+    { name: '7 zdobytych szczytów (25%)', minPoints: 7 },
+    { name: '14 zdobytych szczytów (50%)', minPoints: 14 },
+    { name: '21 zdobytych szczytów (75%)', minPoints: 21 },
+    { name: 'Korona Gór Świętokrzyskich zdobyta (28/28)', minPoints: 28 },
+  ],
   // Oficjalnie odznaka jednostopniowa (regulamin Oddziału PTTK w Bielsku-Białej)
   // — progi pośrednie to dodatkowa motywacja w UI, nie część regulaminu.
   MALA_KORONA_BESKIDOW: [

@@ -303,6 +303,50 @@ describe('initialPoints', () => {
     expect(peakGroups.get(babiaRows[0].id)).toContain(babiaRows[1].id)
   })
 
+  it('Korona Gór Świętokrzyskich zawiera dokładnie 28 szczytów z aktualnego wykazu PTTK Oddziału Świętokrzyskiego', () => {
+    const officialPeaks = [
+      'Łysica',
+      'Szczytniak',
+      'Bukowa Góra',
+      'Klonówka',
+      'Kiełków',
+      'Radostowa',
+      'Drogosiowa',
+      'Siniewska',
+      'Włochy',
+      'Kamień Michniowski',
+      'Sosnowica',
+      'Altana',
+      'Osieczyńska Góra',
+      'Telegraf',
+      'Patrol',
+      'Biesak',
+      'Otrocz',
+      'Zelejowa',
+      'Dobrzeszkowska',
+      'Jaźwina',
+      'Sikorza',
+      'Góra Zamkowa',
+      'Miedzianka',
+      'Chełmowa Góra',
+      'Fajna Ryba',
+      'Karczówka',
+      'Glinianki',
+      'Grząby Bolmińskie',
+    ]
+    const kgsPoints = initialPoints.filter((point) => point.badgeSystem === 'KORONA_GOR_SWIETOKRZYSKICH')
+
+    expect(officialPeaks).toHaveLength(28)
+    expect(kgsPoints.map((point) => point.name).sort()).toEqual([...officialPeaks].sort())
+    expect(kgsPoints.every((point) => point.points === 1)).toBe(true)
+  })
+
+  it('Łysica z Korony Gór Świętokrzyskich jest tym samym szczytem co w GOT, Koronie Gór Polski i Diademie', () => {
+    const peakGroups = buildPeakGroups(initialPoints)
+
+    expect(peakGroups.get('lysica-kgs')).toEqual(expect.arrayContaining(['lysica', 'lysica-kgp', 'lysica-diadem']))
+  })
+
   it('każde sharesPeakWith wskazuje na istniejące id i nie zawiera samego siebie', () => {
     const idsSet = new Set(initialPoints.map((point) => point.id))
     for (const point of initialPoints) {

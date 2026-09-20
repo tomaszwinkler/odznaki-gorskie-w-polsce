@@ -128,7 +128,7 @@ export const initialPoints = [
   { id: 'krzemien', name: 'Krzemień', region: 'Bieszczady', points: 9, lat: 49.0917, lng: 22.6033, badgeSystem: 'GOT' },
 
   // --- GOT: Góry Świętokrzyskie ---
-  { id: 'lysica', name: 'Łysica', region: 'Góry Świętokrzyskie', points: 4, lat: 50.8814, lng: 21.0489, badgeSystem: 'GOT' , sharesPeakWith: ["lysica-kgp","lysica-diadem","lysica-knsgp"]},
+  { id: 'lysica', name: 'Łysica', region: 'Góry Świętokrzyskie', points: 4, lat: 50.8814, lng: 21.0489, badgeSystem: 'GOT' , sharesPeakWith: ["lysica-kgp","lysica-diadem","lysica-knsgp","lysica-kgs"]},
   { id: 'lysa-gora-swiety-krzyz', name: 'Łysa Góra (Święty Krzyż)', region: 'Góry Świętokrzyskie', points: 3, lat: 50.8608, lng: 21.0511, badgeSystem: 'GOT' },
 
   // --- Korona Gór Polski (pełne 28 szczytów, od najwyższego do najniższego) ---
@@ -612,4 +612,41 @@ export const initialPoints = [
   { id: 'pikuj-wkb', name: 'Pikuj', region: 'Bieszczady Wschodnie (Ukraina)', points: 1, lat: 48.9333, lng: 23.15, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
   { id: 'magura-limnianska-wkb', name: 'Magura Łomniańska', region: 'Góry Sanocko-Turczańskie (Ukraina)', points: 1, lat: 49.4667, lng: 23.1333, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
   { id: 'ciuchowy-dzial-wkb', name: 'Ciuchowy Dział', region: 'Beskidy Brzeżne (Ukraina)', points: 1, lat: 49.05, lng: 23.3, badgeSystem: 'WIELKA_KORONA_BESKIDOW' },
+
+  // --- Korona Gór Świętokrzyskich (28 szczytów wg aktualnego wykazu Oddziału
+  // Świętokrzyskiego PTTK w Kielcach, kgs.info.pl; najwyższe wzniesienia
+  // poszczególnych pasm; odznaka jednostopniowa) ---
+  // 1 szczyt (Łysica) jest już w katalogu (współrzędne identyczne, połączona
+  // przez sharesPeakWith), 27 to nowe wpisy. To niskie wzgórza (330–554 m),
+  // często leśne — ich współrzędne pochodzą z publicznych źródeł i są
+  // orientacyjne. Starszy regulamin (msw-pttk.org.pl) miał 36 pozycji, aktualny
+  // wykaz ma 28.
+  { id: 'lysica-kgs', name: 'Łysica', region: 'Góry Świętokrzyskie', points: 1, lat: 50.8814, lng: 21.0489, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'szczytniak-kgs', name: 'Szczytniak', region: 'Pasmo Jeleniowskie', points: 1, lat: 50.8261, lng: 21.1605, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'bukowa-gora-kgs', name: 'Bukowa Góra', region: 'Pasmo Klonowskie', points: 1, lat: 50.958, lng: 20.8331, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'klonowka-kgs', name: 'Klonówka', region: 'Pasmo Masłowskie', points: 1, lat: 50.9099, lng: 20.75, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'kielkow-kgs', name: 'Kiełków', region: 'Pasmo Orłowińskie', points: 1, lat: 50.7689, lng: 20.9906, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'radostowa-kgs', name: 'Radostowa', region: 'Grzbiet Krajeński', points: 1, lat: 50.8983, lng: 20.8022, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'drogosiowa-kgs', name: 'Drogosiowa', region: 'Pasmo Bielińskie', points: 1, lat: 50.8224, lng: 21.0076, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'siniewska-kgs', name: 'Siniewska', region: 'Pasmo Oblęgorskie', points: 1, lat: 50.9751, lng: 20.4449, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'wlochy-kgs', name: 'Włochy', region: 'Pasmo Cisowskie', points: 1, lat: 50.7722, lng: 20.91, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'kamien-michniowski-kgs', name: 'Kamień Michniowski', region: 'Pasmo Sieradowickie', points: 1, lat: 50.9982, lng: 20.8749, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'sosnowica-kgs', name: 'Sosnowica', region: 'Wzgórza Tumlińskie', points: 1, lat: 50.9493, lng: 20.6566, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'altana-kgs', name: 'Altana', region: 'Wzgórza Niekłańsko-Bliżyńskie', points: 1, lat: 51.1764, lng: 20.7553, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'osieczynska-gora-kgs', name: 'Osieczyńska Góra', region: 'Wzgórza Suchedniowskie', points: 1, lat: 51.022, lng: 20.7341, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'telegraf-kgs', name: 'Telegraf', region: 'Pasmo Dymińskie', points: 1, lat: 50.8383, lng: 20.6428, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'patrol-kgs', name: 'Patrol', region: 'Pasmo Zgórskie', points: 1, lat: 50.8396, lng: 20.5187, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'biesak-kgs', name: 'Biesak', region: 'Pasmo Posłowickie', points: 1, lat: 50.8335, lng: 20.57, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'otrocz-kgs', name: 'Otrocz', region: 'Grupa Otrocza', points: 1, lat: 50.8417, lng: 20.7322, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'zelejowa-kgs', name: 'Zelejowa', region: 'Pasmo Zelejowskie', points: 1, lat: 50.8197, lng: 20.455, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'dobrzeszkowska-kgs', name: 'Dobrzeszkowska', region: 'Pasmo Dobrzeszowskie', points: 1, lat: 50.9845, lng: 20.3048, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'jazwina-kgs', name: 'Jaźwina', region: 'Pasmo Ociesęckie', points: 1, lat: 50.7345, lng: 20.961, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'sikorza-kgs', name: 'Sikorza', region: 'Pasmo Brzechowskie', points: 1, lat: 50.8325, lng: 20.7656, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'gora-zamkowa-kgs', name: 'Góra Zamkowa', region: 'Pasmo Chęcińskie', points: 1, lat: 50.7971, lng: 20.4614, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'miedzianka-kgs', name: 'Miedzianka', region: 'Wzgórza Miedziankowskie', points: 1, lat: 50.8465, lng: 20.3602, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'chelmowa-gora-kgs', name: 'Chełmowa Góra', region: 'Pasmo Pokrzywiańskie', points: 1, lat: 50.885, lng: 21.1083, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'fajna-ryba-kgs', name: 'Fajna Ryba', region: 'Pasmo Przedborsko-Małogoskie', points: 1, lat: 51.0271, lng: 19.9699, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'karczowka-kgs', name: 'Karczówka', region: 'Pasmo Kadzielniańskie', points: 1, lat: 50.868, lng: 20.5878, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'glinianki-kgs', name: 'Glinianki', region: 'Grzywy Korzeczkowskie', points: 1, lat: 50.792, lng: 20.4224, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
+  { id: 'grzaby-bolminskie-kgs', name: 'Grząby Bolmińskie', region: 'Grzbiet Grząby Bolmińskie', points: 1, lat: 50.8168, lng: 20.3547, badgeSystem: 'KORONA_GOR_SWIETOKRZYSKICH' },
 ]

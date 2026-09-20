@@ -41,6 +41,10 @@ describe('badgeSystems', () => {
     expect(badgeLevelsBySystem.WIELKA_KORONA_BESKIDOW.at(-1).minPoints).toBe(35)
   })
 
+  it('Korona Gór Świętokrzyskich kończy się progiem 28/28', () => {
+    expect(badgeLevelsBySystem.KORONA_GOR_SWIETOKRZYSKICH.at(-1).minPoints).toBe(28)
+  })
+
   it('Korona Polskich Beskidów kończy się progiem 10/10', () => {
     const levels = badgeLevelsBySystem.KORONA_POLSKICH_BESKIDOW
 

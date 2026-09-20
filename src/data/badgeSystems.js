@@ -108,6 +108,17 @@ export const badgeSystems = [
     available: true,
   },
   {
+    id: 'KORONA_GOR_SWIETOKRZYSKICH',
+    // „Korona Gór Świętokrzyskich" — odznaka regionalna Oddziału
+    // Świętokrzyskiego PTTK w Kielcach: 28 najwyższych wzniesień pasm Gór
+    // Świętokrzyskich wg aktualnego wykazu, jednostopniowa. To inna odznaka niż
+    // „Korona Świętokrzyska" Klubu Zdobywców Koron Górskich RP.
+    name: 'Korona Gór Świętokrzyskich',
+    category: 'regionalne',
+    subcategory: 'Góry Świętokrzyskie',
+    available: true,
+  },
+  {
     id: 'MALA_KORONA_BESKIDOW',
     // „Mała Korona Beskidów" — odznaka Oddziału PTTK w Bielsku-Białej (2006):
     // 15 szczytów w Beskidzie Małym, Śląskim i Żywieckim, jednostopniowa.
