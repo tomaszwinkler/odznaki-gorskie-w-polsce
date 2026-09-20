@@ -60,11 +60,17 @@ export const badgeSystems = [
   },
 
   {
-    id: 'SOT',
-    name: 'Sudecka Odznaka Turystyczna',
+    id: 'DOMINANTY_PRZEDGORZA',
+    // „Dominanty Przedgórza Sudeckiego" — regionalna odznaka turystyczna
+    // Komisji Turystyki Pieszej Oddziału Wrocławskiego PTTK (regulamin z 2023 r.):
+    // dwustopniowa, 41 najwyższych dominant krajobrazowych polskiej części
+    // Przedgórza Sudeckiego (srebrna za 20, złota za kolejne 21).
+    // Zastępuje dawny placeholder „Sudecka Odznaka Turystyczna" — odznaka o tej
+    // nazwie nie istnieje.
+    name: 'Dominanty Przedgórza Sudeckiego',
     category: 'regionalne',
     subcategory: 'Sudety',
-    available: false,
+    available: true,
   },
   {
     id: 'BOT',

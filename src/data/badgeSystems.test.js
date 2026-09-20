@@ -16,6 +16,14 @@ describe('badgeSystems', () => {
     }
   })
 
+  it('Dominanty Przedgórza Sudeckiego mają dwa oficjalne stopnie: srebrny (20) i złoty (41)', () => {
+    const levels = badgeLevelsBySystem.DOMINANTY_PRZEDGORZA
+
+    expect(levels.map((level) => level.minPoints)).toEqual([20, 41])
+    expect(levels[0].name).toMatch(/srebrn/i)
+    expect(levels[1].name).toMatch(/złot/i)
+  })
+
   it('każdy dostępny system (available: true) ma zdefiniowane progi odznaki', () => {
     for (const system of badgeSystems.filter((s) => s.available)) {
       expect(badgeLevelsBySystem[system.id]).toBeDefined()

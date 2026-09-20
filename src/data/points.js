@@ -20,6 +20,10 @@
 // szczyty "niezależnie od granic państwowych" (10 z 22 leży w Czechach).
 // Źródło: pttk.wroclaw.pl/wp-content/uploads/Regulamin-Odznaki-Korona-Sudetow.pdf.
 //
+// Dominanty Przedgórza Sudeckiego: pełne 41 wzgórz z wykazu w regulaminie
+// Komisji Turystyki Pieszej Oddziału Wrocławskiego PTTK (2023), zob. sekcję
+// na końcu pliku.
+//
 // Korona Bieszczadów: pełne 15 szczytów z wykazu w regulaminie PTTK
 // Oddziału „Ziemia Sanocka" w Sanoku (od 1.04.2017), zob. sekcję na końcu
 // pliku.
@@ -59,7 +63,7 @@ export const initialPoints = [
   { id: 'kowadlo', name: 'Kowadło', region: 'Góry Złote', points: 5, lat: 50.2644, lng: 17.0132, badgeSystem: 'GOT' , sharesPeakWith: ["kowadlo-kgp","kowadlo-diadem"]},
   { id: 'wysoka-kopa', name: 'Wysoka Kopa', region: 'Góry Izerskie', points: 6, lat: 50.8503, lng: 15.42, badgeSystem: 'GOT' , sharesPeakWith: ["wysoka-kopa-kgp","wysoka-kopa-diadem","wysoka-kopa-ks"]},
   { id: 'biskupia-kopa', name: 'Biskupia Kopa', region: 'Góry Opawskie', points: 4, lat: 50.2567, lng: 17.4286, badgeSystem: 'GOT' , sharesPeakWith: ["biskupia-kopa-kgp","biskupia-kopa-diadem"]},
-  { id: 'sleza', name: 'Ślęża', region: 'Masyw Ślęży', points: 3, lat: 50.865, lng: 16.7086, badgeSystem: 'GOT' , sharesPeakWith: ["sleza-kgp","sleza-diadem","sleza-ks"]},
+  { id: 'sleza', name: 'Ślęża', region: 'Masyw Ślęży', points: 3, lat: 50.865, lng: 16.7086, badgeSystem: 'GOT' , sharesPeakWith: ["sleza-kgp","sleza-diadem","sleza-ks","sleza-dps"]},
 
   // --- GOT: Beskidy ---
   { id: 'skrzyczne', name: 'Skrzyczne', region: 'Beskid Śląski', points: 9, lat: 49.6836, lng: 19.0189, badgeSystem: 'GOT' , sharesPeakWith: ["skrzyczne-kgp","skrzyczne-diadem","skrzyczne-kb"]},
@@ -387,4 +391,60 @@ export const initialPoints = [
   { id: 'dwernik-kamien-kbies', name: 'Dwernik Kamień', region: 'Bieszczady', points: 1, lat: 49.1916, lng: 22.5849, badgeSystem: 'KORONA_BIESZCZADOW' },
   { id: 'chryszczata-kbies', name: 'Chryszczata', region: 'Bieszczady', points: 1, lat: 49.3056, lng: 22.1881, badgeSystem: 'KORONA_BIESZCZADOW' },
   { id: 'trohaniec-kbies', name: 'Trohaniec', region: 'Bieszczady', points: 1, lat: 49.2342, lng: 22.6589, badgeSystem: 'KORONA_BIESZCZADOW' },
+
+  // --- Dominanty Przedgórza Sudeckiego (pełne 41 wzgórz z wykazu regulaminu
+  // Regionalnej Odznaki Turystycznej Komisji Turystyki Pieszej Oddziału
+  // Wrocławskiego PTTK, uchwała 10/87/2023; odznaka dwustopniowa: srebrna za
+  // 20, złota za kolejne 21 wzgórz) ---
+  // Współrzędne pochodzą z wykazu w regulaminie (stopnie i minuty dziesiętne,
+  // przeliczone na stopnie dziesiętne) i są orientacyjne. Wiele wzgórz to
+  // niskie wzniesienia na polach lub w lasach, często bez znakowanego szlaku —
+  // regulamin nie każe wchodzić na uprawy, wystarczy podejść w pobliże
+  // wierzchołka. Wzgórza z dwoma wierzchołkami o tej samej wysokości
+  // (Szczytna, Kozie Chrzepty) mają jeden wiersz (wierzchołek I); wystarczy
+  // zdobyć jeden. Za niedostępne Radunię, Kamionkę i Widnogórę regulamin
+  // zaleca Czernicę, Ubocze i Garbatkę. Ślęża jest tym samym szczytem co w
+  // GOT, KGP, Diademie i Koronie Sudetów (połączona przez sharesPeakWith,
+  // współrzędne jak w tamtych wierszach).
+  { id: 'lasek-samojednego-dps', name: 'Lasek Samojednego', region: 'Wzgórza Granowickie', points: 1, lat: 51.0591, lng: 16.3343, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'jagodne-dps', name: 'Jagodne', region: 'Wzgórza Goczałkowickie', points: 1, lat: 51.029, lng: 16.362, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'jedlice-dps', name: 'Jedlice', region: 'Rogoźnickie Wzgórza', points: 1, lat: 50.9949, lng: 16.3062, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'kopista-dps', name: 'Kopista', region: 'Wysoczyzna Średzka', points: 1, lat: 51.0136, lng: 16.5236, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'pyszczynska-gora-dps', name: 'Pyszczyńska Góra', region: 'Wzgórza Imbramowickie', points: 1, lat: 50.9815, lng: 16.5459, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'popielec-dps', name: 'Popielec', region: 'Równina Świdnicka', points: 1, lat: 50.8085, lng: 16.5121, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'stoszow-dps', name: 'Stoszów', region: 'Kotlina Dzierżoniowska', points: 1, lat: 50.779, lng: 16.7054, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'gogolow-dps', name: 'Gogołów', region: 'Równina Świdnicka', points: 1, lat: 50.8355, lng: 16.5946, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'sleza-dps', name: 'Ślęża', region: 'Masyw Ślęży', points: 1, lat: 50.865, lng: 16.7086, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'czernica-dps', name: 'Czernica', region: 'Masyw Raduni', points: 1, lat: 50.8284, lng: 16.7022, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'szczytna-dps', name: 'Szczytna', region: 'Wzgórza Kiełczyńskie', points: 1, lat: 50.8202, lng: 16.6295, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'oleszenka-dps', name: 'Oleszenka', region: 'Wzgórza Oleszeńskie', points: 1, lat: 50.8378, lng: 16.7498, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'polna-gora-dps', name: 'Polna Góra', region: 'Wzgórza Łagiewnickie', points: 1, lat: 50.8336, lng: 16.8338, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'piekielnik-dps', name: 'Piekielnik', region: 'Kotlina Dzierżoniowska', points: 1, lat: 50.7431, lng: 16.7217, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'stolazek-dps', name: 'Stołążek', region: 'Wzgórza Krzyżowe', points: 1, lat: 50.7493, lng: 16.7519, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'gil-dps', name: 'Gil', region: 'Wzgórza Gilowskie', points: 1, lat: 50.7209, lng: 16.736, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'lupkowa-dps', name: 'Łupkowa', region: 'Wzgórza Gumińskie', points: 1, lat: 50.7047, lng: 16.789, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'dzialynia-dps', name: 'Działynia', region: 'Wzgórza Bielawskie', points: 1, lat: 50.6262, lng: 16.6962, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'lopien-dps', name: 'Łopień', region: 'Obniżenie Stoszowic', points: 1, lat: 50.59, lng: 16.7573, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'ostrosz-dps', name: 'Ostrosz', region: 'Wzgórza Dębowe', points: 1, lat: 50.7049, lng: 16.8645, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'geba-dps', name: 'Gęba', region: 'Wzgórza Szklarskie', points: 1, lat: 50.6274, lng: 16.8314, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'kozie-chrzepty-dps', name: 'Kozie Chrzepty', region: 'Masyw Brzeźnicy', points: 1, lat: 50.5583, lng: 16.7198, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'studew-dps', name: 'Studew', region: 'Obniżenie Podsudeckie', points: 1, lat: 50.5371, lng: 16.757, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'stolniczka-dps', name: 'Stolniczka', region: 'Wzgórza Dobrzenickie', points: 1, lat: 50.5989, lng: 16.8762, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'zarzycka-gora-dps', name: 'Zarzycka Góra', region: 'Wzgórza Lipowe', points: 1, lat: 50.7144, lng: 16.9601, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'lesniak-dps', name: 'Leśniak', region: 'Wysoczyzna Ziębicka', points: 1, lat: 50.5969, lng: 16.8955, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'gromnik-dps', name: 'Gromnik', region: 'Wzgórza Strzelińskie', points: 1, lat: 50.702, lng: 17.1099, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'miednik-dps', name: 'Miednik', region: 'Wzgórza Wawrzyszowsko-Szklarskie', points: 1, lat: 50.6149, lng: 17.2303, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'gleboka-dps', name: 'Głęboka', region: 'Wysoczyzna Nyska', points: 1, lat: 50.5301, lng: 17.0585, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'rzymiany-dps', name: 'Rzymiany', region: 'Równina Grodkowska', points: 1, lat: 50.5776, lng: 17.2771, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'lezek-dps', name: 'Łężek', region: 'Wysoczyzna Chojnowska', points: 1, lat: 50.9819, lng: 16.2148, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'bojanice-dps', name: 'Bojanice', region: 'Obniżenie Podsudeckie', points: 1, lat: 50.7834, lng: 16.5036, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'zameczno-dps', name: 'Zameczno', region: 'Obniżenie Ząbkowickie', points: 1, lat: 50.5266, lng: 16.8976, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'kopiasta-dps', name: 'Kopiasta', region: 'Obniżenie Otmuchowskie', points: 1, lat: 50.4751, lng: 16.9397, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'gruda-dps', name: 'Gruda', region: 'Przedgórze Paczkowskie', points: 1, lat: 50.5033, lng: 16.8415, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'ubocze-dps', name: 'Ubocze', region: 'Przedgórze Paczkowskie', points: 1, lat: 50.3535, lng: 17.2574, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'mlynska-gora-dps', name: 'Młyńska Góra', region: 'Masyw Biskupiej Kopy', points: 1, lat: 50.2865, lng: 17.4801, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'dlugota-dps', name: 'Długota', region: 'Las Prudnicki', points: 1, lat: 50.2796, lng: 17.5269, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'lipowiec-dps', name: 'Lipowiec', region: 'Trzebiński Las', points: 1, lat: 50.269, lng: 17.6102, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'golabki-dps', name: 'Gołąbki', region: 'Południowo-wschodnia część Gór Opawskich', points: 1, lat: 50.1639, lng: 17.6418, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
+  { id: 'garbatka-dps', name: 'Garbatka', region: 'Płaskowyż Głubczycki', points: 1, lat: 50.1112, lng: 17.7426, badgeSystem: 'DOMINANTY_PRZEDGORZA' },
 ]

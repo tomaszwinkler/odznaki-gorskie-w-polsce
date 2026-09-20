@@ -83,6 +83,63 @@ describe('initialPoints', () => {
     expect(kbiesPoints.every((point) => point.points === 1)).toBe(true)
   })
 
+  it('Dominanty Przedgórza Sudeckiego zawierają dokładnie 41 wzgórz z wykazu regulaminu PTTK Oddziału Wrocławskiego', () => {
+    const officialHills = [
+      'Lasek Samojednego',
+      'Jagodne',
+      'Jedlice',
+      'Kopista',
+      'Pyszczyńska Góra',
+      'Popielec',
+      'Stoszów',
+      'Gogołów',
+      'Ślęża',
+      'Czernica',
+      'Szczytna',
+      'Oleszenka',
+      'Polna Góra',
+      'Piekielnik',
+      'Stołążek',
+      'Gil',
+      'Łupkowa',
+      'Działynia',
+      'Łopień',
+      'Ostrosz',
+      'Gęba',
+      'Kozie Chrzepty',
+      'Studew',
+      'Stolniczka',
+      'Zarzycka Góra',
+      'Leśniak',
+      'Gromnik',
+      'Miednik',
+      'Głęboka',
+      'Rzymiany',
+      'Łężek',
+      'Bojanice',
+      'Zameczno',
+      'Kopiasta',
+      'Gruda',
+      'Ubocze',
+      'Młyńska Góra',
+      'Długota',
+      'Lipowiec',
+      'Gołąbki',
+      'Garbatka',
+    ]
+    const dpsPoints = initialPoints.filter((point) => point.badgeSystem === 'DOMINANTY_PRZEDGORZA')
+
+    expect(officialHills).toHaveLength(41)
+    expect(dpsPoints.map((point) => point.name).sort()).toEqual([...officialHills].sort())
+    expect(dpsPoints.every((point) => point.points === 1)).toBe(true)
+  })
+
+  it('Ślęża z Dominant Przedgórza Sudeckiego jest tym samym szczytem co w pozostałych systemach', () => {
+    const peakGroups = buildPeakGroups(initialPoints)
+
+    expect(peakGroups.get('sleza-dps')).toEqual(expect.arrayContaining(['sleza', 'sleza-kgp', 'sleza-diadem', 'sleza-ks']))
+  })
+
   it('każde sharesPeakWith wskazuje na istniejące id i nie zawiera samego siebie', () => {
     const idsSet = new Set(initialPoints.map((point) => point.id))
     for (const point of initialPoints) {

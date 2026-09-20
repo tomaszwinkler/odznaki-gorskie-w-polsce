@@ -42,6 +42,13 @@ export const badgeLevelsBySystem = {
     { name: '20 zdobytych szczytów (75%)', minPoints: 20 },
     { name: 'Korona Beskidów zdobyta (27/27)', minPoints: 27 },
   ],
+  // Oficjalnie odznaka dwustopniowa (regulamin Komisji Turystyki Pieszej
+  // Oddziału Wrocławskiego PTTK): srebrna za 20 dominant, złota za kolejne 21
+  // (razem 41) — progi poniżej odpowiadają im wprost.
+  DOMINANTY_PRZEDGORZA: [
+    { name: 'Srebrna Dominanty Przedgórza Sudeckiego (20/41)', minPoints: 20 },
+    { name: 'Złota Dominanty Przedgórza Sudeckiego (41/41)', minPoints: 41 },
+  ],
   // Oficjalnie odznaka jednostopniowa (regulamin PTTK Oddziału „Ziemia
   // Sanocka") — progi pośrednie to, tak jak w pozostałych koronach,
   // dodatkowa motywacja w UI, nie część oficjalnego regulaminu.
