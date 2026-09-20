@@ -109,6 +109,37 @@ describe('App', () => {
     expect(await screen.findByText('Śnieżka')).toBeInTheDocument()
   })
 
+  it('pokazuje pasek postępu tylko dla wybranego systemu, a nie dla wszystkich naraz', async () => {
+    render(<App />)
+    await screen.findByText('Śnieżka')
+
+    expect(screen.getByRole('heading', { name: 'Mój postęp — GOT' })).toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { name: /Mój postęp/ })).toHaveLength(1)
+  })
+
+  it('po przełączeniu systemu pokazuje pasek postępu nowego systemu zamiast poprzedniego', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await screen.findByText('Śnieżka')
+
+    await user.click(screen.getByRole('button', { name: 'Korona Gór Polski' }))
+
+    expect(await screen.findByRole('heading', { name: 'Mój postęp — Korona Gór Polski' })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'Mój postęp — GOT' })).not.toBeInTheDocument()
+  })
+
+  it('nie pokazuje paska postępu dla systemu bez danych', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await screen.findByText('Śnieżka')
+
+    await user.click(screen.getByRole('button', { name: 'Odznaki regionalne' }))
+    await user.click(screen.getByRole('button', { name: 'System testowy (wkrótce)' }))
+
+    expect(await screen.findByText(/w przygotowaniu/)).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /Mój postęp/ })).not.toBeInTheDocument()
+  })
+
   it('przełącza system odznaki w ramach tej samej kategorii', async () => {
     const user = userEvent.setup()
     render(<App />)

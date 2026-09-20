@@ -79,22 +79,22 @@ function App() {
     await db.journal.delete(id)
   }
 
-  const progressBySystem = badgeSystems
-    .filter((system) => system.available)
-    .map((system) => ({
-      system,
-      progress: calculateProgress(
-        points.filter((point) => point.badgeSystem === system.id),
-        badgeLevelsBySystem[system.id],
-      ),
-    }))
-
   const currentSystem = badgeSystems.find((system) => system.id === selectedSystem)
   const systemsInCategory = badgeSystems.filter((system) => system.category === selectedCategory)
 
   const pointsForSelectedSystem = useMemo(
     () => points.filter((point) => point.badgeSystem === selectedSystem),
     [points, selectedSystem],
+  )
+
+  // Postęp liczymy tylko dla wybranego systemu — przy kilkunastu odznakach
+  // pokazywanie pasków wszystkich naraz tworzyło długi stos przed listą.
+  const selectedProgress = useMemo(
+    () =>
+      currentSystem.available
+        ? calculateProgress(pointsForSelectedSystem, badgeLevelsBySystem[currentSystem.id])
+        : null,
+    [currentSystem, pointsForSelectedSystem],
   )
   const sortedPoints = useMemo(
     () => sortPoints(pointsForSelectedSystem, sort.key, sort.direction),
@@ -114,17 +114,6 @@ function App() {
           onLogout={account.logout}
         />
       )}
-
-      {progressBySystem.map(({ system, progress }) => (
-        <ProgressHeader
-          key={system.id}
-          systemName={system.name}
-          totalPoints={progress.totalPoints}
-          currentLevel={progress.currentLevel}
-          nextLevel={progress.nextLevel}
-          pointsToNextLevel={progress.pointsToNextLevel}
-        />
-      ))}
 
       <div className="category-switcher">
         {badgeCategories.map((category) => (
@@ -152,6 +141,16 @@ function App() {
           </button>
         ))}
       </div>
+
+      {selectedProgress && (
+        <ProgressHeader
+          systemName={currentSystem.name}
+          totalPoints={selectedProgress.totalPoints}
+          currentLevel={selectedProgress.currentLevel}
+          nextLevel={selectedProgress.nextLevel}
+          pointsToNextLevel={selectedProgress.pointsToNextLevel}
+        />
+      )}
 
       <div className="view-switcher">
         <button type="button" className={view === 'list' ? 'active' : ''} onClick={() => setView('list')}>
