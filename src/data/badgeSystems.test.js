@@ -24,6 +24,18 @@ describe('badgeSystems', () => {
     expect(levels[1].name).toMatch(/złot/i)
   })
 
+  it('Korona Najwybitniejszych Szczytów Gór Polskich ma cztery stopnie: popularny (5), brązowy (20), srebrny (35), złoty (50)', () => {
+    const levels = badgeLevelsBySystem.KNSGP
+
+    expect(levels.map((level) => level.minPoints)).toEqual([5, 20, 35, 50])
+    expect(levels.map((level) => level.name.toLowerCase())).toEqual([
+      expect.stringContaining('popularn'),
+      expect.stringContaining('brązow'),
+      expect.stringContaining('srebrn'),
+      expect.stringContaining('złot'),
+    ])
+  })
+
   it('Korona Polskich Beskidów kończy się progiem 10/10', () => {
     const levels = badgeLevelsBySystem.KORONA_POLSKICH_BESKIDOW
 

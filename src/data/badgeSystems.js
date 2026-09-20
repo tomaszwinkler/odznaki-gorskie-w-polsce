@@ -24,6 +24,17 @@ export const badgeSystems = [
     subcategory: 'Diademy krajowe',
     available: true,
   },
+  {
+    id: 'KNSGP',
+    // „Korona Najwybitniejszych Szczytów Gór Polskich" — odznaka Klubu
+    // Zdobywców Koron Górskich RP: 50 szczytów wybranych metodą wybitności
+    // (wysokości względnej), czterostopniowa. To inna lista niż KGP (28 szczytów
+    // najwyższych w pasmach) i Diadem.
+    name: 'Korona Najwybitniejszych Szczytów Gór Polskich',
+    category: 'ogolnopolskie',
+    subcategory: 'Korony wybitności',
+    available: true,
+  },
 
   {
     id: 'KORONA_SUDETOW',

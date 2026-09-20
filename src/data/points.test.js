@@ -172,6 +172,86 @@ describe('initialPoints', () => {
     }
   })
 
+  it('Korona Najwybitniejszych Szczytów Gór Polskich zawiera dokładnie 50 szczytów z listy Klubu Zdobywców Koron Górskich RP', () => {
+    const officialPeaks = [
+      'Śnieżka',
+      'Babia Góra',
+      'Pilsko',
+      'Śnieżnik',
+      'Turbacz',
+      'Skrzyczne',
+      'Radziejowa',
+      'Czupel',
+      'Wielka Rawka',
+      'Luboń Wielki',
+      'Tarnica',
+      'Wielka Sowa',
+      'Ślęża',
+      'Jaworzyna Krynicka',
+      'Połonina Caryńska',
+      'Lubogoszcz',
+      'Mogielica',
+      'Ćwilin',
+      'Jaworz',
+      'Wielka Racza',
+      'Klimczok',
+      'Połonina Wetlińska',
+      'Wołosań',
+      'Lubań',
+      'Waligóra',
+      'Łysica',
+      'Lackowa',
+      'Łamana Skała',
+      'Polica',
+      'Świnica',
+      'Lubomir',
+      'Śnieżnica',
+      'Kamionna',
+      'Szczebel',
+      'Łopiennik',
+      'Wielki Szyszak',
+      'Trohaniec',
+      'Okrąglica (Trzy Korony)',
+      'Maślana Góra',
+      'Ciecień',
+      'Krzesanica',
+      'Koskowa Góra',
+      'Czantoria Wielka',
+      'Jaworniki',
+      'Jaworze',
+      'Czerenina',
+      'Paportna',
+      'Wątkowa',
+      'Modyń',
+      'Rysy',
+    ]
+    const knsgpPoints = initialPoints.filter((point) => point.badgeSystem === 'KNSGP')
+
+    expect(officialPeaks).toHaveLength(50)
+    expect(knsgpPoints.map((point) => point.name).sort()).toEqual([...officialPeaks].sort())
+    expect(knsgpPoints.every((point) => point.points === 1)).toBe(true)
+  })
+
+  it('szczyty Korony Najwybitniejszych Szczytów, które są też w Koronie Gór Polski, tworzą z nimi jedną grupę', () => {
+    const peakGroups = buildPeakGroups(initialPoints)
+
+    const sharedWithKgp = ['sniezka', 'babia-gora', 'turbacz', 'skrzyczne', 'radziejowa', 'czupel', 'tarnica', 'sleza']
+
+    for (const baseId of sharedWithKgp) {
+      const group = peakGroups.get(`${baseId}-knsgp`) ?? []
+      expect(group).toContain(`${baseId}-kgp`)
+    }
+  })
+
+  it('Połonina Wetlińska (Roh) z Korony Najwybitniejszych Szczytów jest tym samym punktem co wiersz GOT o tej nazwie', () => {
+    const peakGroups = buildPeakGroups(initialPoints)
+    const got = initialPoints.find((point) => point.id === 'polonina-wetlinska')
+    const knsgp = initialPoints.find((point) => point.id === 'polonina-wetlinska-knsgp')
+
+    expect(peakGroups.get('polonina-wetlinska-knsgp')).toContain('polonina-wetlinska')
+    expect([got.lat, got.lng]).toEqual([knsgp.lat, knsgp.lng])
+  })
+
   it('każde sharesPeakWith wskazuje na istniejące id i nie zawiera samego siebie', () => {
     const idsSet = new Set(initialPoints.map((point) => point.id))
     for (const point of initialPoints) {

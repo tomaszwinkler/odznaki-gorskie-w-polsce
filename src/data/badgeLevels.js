@@ -42,6 +42,15 @@ export const badgeLevelsBySystem = {
     { name: '20 zdobytych szczytów (75%)', minPoints: 20 },
     { name: 'Korona Beskidów zdobyta (27/27)', minPoints: 27 },
   ],
+  // Oficjalnie odznaka czterostopniowa (Klub Zdobywców Koron Górskich RP):
+  // popularna 5, brązowa 20, srebrna 35, złota 50 szczytów — progi poniżej
+  // odpowiadają im wprost.
+  KNSGP: [
+    { name: 'Popularna KNSGP (5/50)', minPoints: 5 },
+    { name: 'Brązowa KNSGP (20/50)', minPoints: 20 },
+    { name: 'Srebrna KNSGP (35/50)', minPoints: 35 },
+    { name: 'Złota KNSGP (50/50)', minPoints: 50 },
+  ],
   // Oficjalnie odznaka jednostopniowa (regulamin Oddziału PTTK w Bochni) —
   // progi pośrednie to, tak jak w pozostałych koronach, dodatkowa motywacja
   // w UI, nie część oficjalnego regulaminu.

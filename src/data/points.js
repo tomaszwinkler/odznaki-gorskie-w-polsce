@@ -20,6 +20,10 @@
 // szczyty "niezależnie od granic państwowych" (10 z 22 leży w Czechach).
 // Źródło: pttk.wroclaw.pl/wp-content/uploads/Regulamin-Odznaki-Korona-Sudetow.pdf.
 //
+// Korona Najwybitniejszych Szczytów Gór Polskich: 50 szczytów wg wybitności
+// (Klub Zdobywców Koron Górskich RP, koronygor.pl/knsgp); 41 już w katalogu,
+// zob. sekcję na końcu pliku.
+//
 // Korona Polskich Beskidów: 10 najwyższych szczytów grup górskich polskich
 // Beskidów wg wykazu Oddziału PTTK w Bochni; wszystkie już w katalogu
 // (połączone przez sharesPeakWith), zob. sekcję na końcu pliku.
@@ -47,14 +51,14 @@
 // każdy system liczy postęp niezależnie.
 export const initialPoints = [
   // --- GOT: Sudety ---
-  { id: 'sniezka', name: 'Śnieżka', region: 'Karkonosze', points: 10, lat: 50.736, lng: 15.74, badgeSystem: 'GOT' , sharesPeakWith: ["sniezka-kgp","sniezka-diadem","sniezka-ks"]},
-  { id: 'sniezniki', name: 'Śnieżnik', region: 'Masyw Śnieżnika', points: 8, lat: 50.2011, lng: 16.8433, badgeSystem: 'GOT' , sharesPeakWith: ["snieznik-kgp","snieznik-diadem","snieznik-ks"]},
-  { id: 'wielka-sowa', name: 'Wielka Sowa', region: 'Góry Sowie', points: 5, lat: 50.6667, lng: 16.4667, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-sowa-kgp","wielka-sowa-diadem","wielka-sowa-ks"]},
+  { id: 'sniezka', name: 'Śnieżka', region: 'Karkonosze', points: 10, lat: 50.736, lng: 15.74, badgeSystem: 'GOT' , sharesPeakWith: ["sniezka-kgp","sniezka-diadem","sniezka-ks","sniezka-knsgp"]},
+  { id: 'sniezniki', name: 'Śnieżnik', region: 'Masyw Śnieżnika', points: 8, lat: 50.2011, lng: 16.8433, badgeSystem: 'GOT' , sharesPeakWith: ["snieznik-kgp","snieznik-diadem","snieznik-ks","snieznik-knsgp"]},
+  { id: 'wielka-sowa', name: 'Wielka Sowa', region: 'Góry Sowie', points: 5, lat: 50.6667, lng: 16.4667, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-sowa-kgp","wielka-sowa-diadem","wielka-sowa-ks","wielka-sowa-knsgp"]},
   { id: 'chojnik', name: 'Chojnik', region: 'Karkonosze', points: 3, lat: 50.9333, lng: 15.6333, badgeSystem: 'GOT' },
   { id: 'szrenica', name: 'Szrenica', region: 'Karkonosze', points: 7, lat: 50.7667, lng: 15.5167, badgeSystem: 'GOT' },
-  { id: 'wielki-szyszak', name: 'Wielki Szyszak', region: 'Karkonosze', points: 6, lat: 50.735, lng: 15.723, badgeSystem: 'GOT' },
+  { id: 'wielki-szyszak', name: 'Wielki Szyszak', region: 'Karkonosze', points: 6, lat: 50.735, lng: 15.723, badgeSystem: 'GOT', sharesPeakWith: ["wielki-szyszak-knsgp"] },
   { id: 'skalnik', name: 'Skalnik', region: 'Rudawy Janowickie', points: 5, lat: 50.8085, lng: 15.9003, badgeSystem: 'GOT' , sharesPeakWith: ["skalnik-kgp","skalnik-diadem","skalnik-ks"]},
-  { id: 'waligora', name: 'Waligóra', region: 'Góry Kamienne', points: 5, lat: 50.6808, lng: 16.2781, badgeSystem: 'GOT' , sharesPeakWith: ["waligora-kgp","waligora-diadem","waligora-ks"]},
+  { id: 'waligora', name: 'Waligóra', region: 'Góry Kamienne', points: 5, lat: 50.6808, lng: 16.2781, badgeSystem: 'GOT' , sharesPeakWith: ["waligora-kgp","waligora-diadem","waligora-ks","waligora-knsgp"]},
   { id: 'chelmiec', name: 'Chełmiec', region: 'Góry Wałbrzyskie', points: 4, lat: 50.7792, lng: 16.2103, badgeSystem: 'GOT' , sharesPeakWith: ["chelmiec-kgp","chelmiec-diadem"]},
   { id: 'trojgarb', name: 'Trójgarb', region: 'Góry Wałbrzyskie', points: 3, lat: 50.8129, lng: 16.1633, badgeSystem: 'GOT' , sharesPeakWith: ["trojgarb-diadem"]},
   { id: 'wlodarz', name: 'Włodarz', region: 'Góry Sowie', points: 4, lat: 50.6956, lng: 16.4098, badgeSystem: 'GOT' , sharesPeakWith: ["wlodarz-diadem"]},
@@ -67,61 +71,61 @@ export const initialPoints = [
   { id: 'kowadlo', name: 'Kowadło', region: 'Góry Złote', points: 5, lat: 50.2644, lng: 17.0132, badgeSystem: 'GOT' , sharesPeakWith: ["kowadlo-kgp","kowadlo-diadem"]},
   { id: 'wysoka-kopa', name: 'Wysoka Kopa', region: 'Góry Izerskie', points: 6, lat: 50.8503, lng: 15.42, badgeSystem: 'GOT' , sharesPeakWith: ["wysoka-kopa-kgp","wysoka-kopa-diadem","wysoka-kopa-ks"]},
   { id: 'biskupia-kopa', name: 'Biskupia Kopa', region: 'Góry Opawskie', points: 4, lat: 50.2567, lng: 17.4286, badgeSystem: 'GOT' , sharesPeakWith: ["biskupia-kopa-kgp","biskupia-kopa-diadem"]},
-  { id: 'sleza', name: 'Ślęża', region: 'Masyw Ślęży', points: 3, lat: 50.865, lng: 16.7086, badgeSystem: 'GOT' , sharesPeakWith: ["sleza-kgp","sleza-diadem","sleza-ks","sleza-dps"]},
+  { id: 'sleza', name: 'Ślęża', region: 'Masyw Ślęży', points: 3, lat: 50.865, lng: 16.7086, badgeSystem: 'GOT' , sharesPeakWith: ["sleza-kgp","sleza-diadem","sleza-ks","sleza-dps","sleza-knsgp"]},
 
   // --- GOT: Beskidy ---
-  { id: 'skrzyczne', name: 'Skrzyczne', region: 'Beskid Śląski', points: 9, lat: 49.6836, lng: 19.0189, badgeSystem: 'GOT' , sharesPeakWith: ["skrzyczne-kgp","skrzyczne-diadem","skrzyczne-kb","skrzyczne-kpb"]},
-  { id: 'klimczok', name: 'Klimczok', region: 'Beskid Śląski', points: 8, lat: 49.7385, lng: 19.0074, badgeSystem: 'GOT' , sharesPeakWith: ["klimczok-diadem"]},
-  { id: 'wielka-czantoria', name: 'Wielka Czantoria', region: 'Beskid Śląski', points: 6, lat: 49.6786, lng: 18.8044, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-czantoria-diadem"]},
+  { id: 'skrzyczne', name: 'Skrzyczne', region: 'Beskid Śląski', points: 9, lat: 49.6836, lng: 19.0189, badgeSystem: 'GOT' , sharesPeakWith: ["skrzyczne-kgp","skrzyczne-diadem","skrzyczne-kb","skrzyczne-kpb","skrzyczne-knsgp"]},
+  { id: 'klimczok', name: 'Klimczok', region: 'Beskid Śląski', points: 8, lat: 49.7385, lng: 19.0074, badgeSystem: 'GOT' , sharesPeakWith: ["klimczok-diadem","klimczok-knsgp"]},
+  { id: 'wielka-czantoria', name: 'Wielka Czantoria', region: 'Beskid Śląski', points: 6, lat: 49.6786, lng: 18.8044, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-czantoria-diadem","czantoria-wielka-knsgp"]},
   { id: 'barania-gora', name: 'Barania Góra', region: 'Beskid Śląski', points: 9, lat: 49.5808, lng: 19.0311, badgeSystem: 'GOT' },
-  { id: 'babia-gora', name: 'Babia Góra', region: 'Beskid Żywiecki', points: 10, lat: 49.5735, lng: 19.5283, badgeSystem: 'GOT' , sharesPeakWith: ["babia-gora-kgp","babia-gora-diadem","babia-gora-kb","babia-gora-kpb"]},
-  { id: 'pilsko', name: 'Pilsko', region: 'Beskid Żywiecki', points: 12, lat: 49.5272, lng: 19.3183, badgeSystem: 'GOT' , sharesPeakWith: ["pilsko-diadem"]},
-  { id: 'wielka-racza', name: 'Wielka Racza', region: 'Beskid Żywiecki', points: 9, lat: 49.4133, lng: 18.9688, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-racza-diadem","wielka-racza-kb"]},
+  { id: 'babia-gora', name: 'Babia Góra', region: 'Beskid Żywiecki', points: 10, lat: 49.5735, lng: 19.5283, badgeSystem: 'GOT' , sharesPeakWith: ["babia-gora-kgp","babia-gora-diadem","babia-gora-kb","babia-gora-kpb","babia-gora-knsgp"]},
+  { id: 'pilsko', name: 'Pilsko', region: 'Beskid Żywiecki', points: 12, lat: 49.5272, lng: 19.3183, badgeSystem: 'GOT' , sharesPeakWith: ["pilsko-diadem","pilsko-knsgp"]},
+  { id: 'wielka-racza', name: 'Wielka Racza', region: 'Beskid Żywiecki', points: 9, lat: 49.4133, lng: 18.9688, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-racza-diadem","wielka-racza-kb","wielka-racza-knsgp"]},
   { id: 'jalowiec', name: 'Jałowiec', region: 'Beskid Żywiecki', points: 7, lat: 49.6609, lng: 19.4773, badgeSystem: 'GOT' , sharesPeakWith: ["jalowiec-diadem"]},
   { id: 'romanka', name: 'Romanka', region: 'Beskid Żywiecki', points: 10, lat: 49.5194, lng: 19.2464, badgeSystem: 'GOT' },
-  { id: 'polica', name: 'Polica', region: 'Beskid Żywiecki', points: 4, lat: 49.6167, lng: 19.6167, badgeSystem: 'GOT' , sharesPeakWith: ["polica-diadem"]},
-  { id: 'czupel', name: 'Czupel', region: 'Beskid Mały', points: 5, lat: 49.7679, lng: 19.1606, badgeSystem: 'GOT' , sharesPeakWith: ["czupel-kgp","czupel-diadem","czupel-kb","czupel-kpb"]},
-  { id: 'lamana-skala', name: 'Łamana Skała', region: 'Beskid Mały', points: 5, lat: 49.7636, lng: 19.396, badgeSystem: 'GOT' , sharesPeakWith: ["lamana-skala-diadem"]},
-  { id: 'lubomir', name: 'Lubomir', region: 'Beskid Makowski', points: 4, lat: 49.7669, lng: 20.0597, badgeSystem: 'GOT' , sharesPeakWith: ["lubomir-kgp","lubomir-diadem","lubomir-kb","lubomir-kpb"]},
-  { id: 'koskowa-gora', name: 'Koskowa Góra', region: 'Beskid Makowski', points: 4, lat: 49.7507, lng: 19.7829, badgeSystem: 'GOT' , sharesPeakWith: ["koskowa-gora-diadem"]},
-  { id: 'mogielica', name: 'Mogielica', region: 'Beskid Wyspowy', points: 8, lat: 49.6552, lng: 20.2767, badgeSystem: 'GOT' , sharesPeakWith: ["mogielica-kgp","mogielica-diadem","mogielica-kb","mogielica-kpb"]},
-  { id: 'lubon-wielki', name: 'Luboń Wielki', region: 'Beskid Wyspowy', points: 6, lat: 49.6536, lng: 19.9918, badgeSystem: 'GOT' , sharesPeakWith: ["lubon-wielki-diadem"]},
-  { id: 'cwilin', name: 'Ćwilin', region: 'Beskid Wyspowy', points: 6, lat: 49.6887, lng: 20.1918, badgeSystem: 'GOT' , sharesPeakWith: ["cwilin-diadem"]},
-  { id: 'modyn', name: 'Modyń', region: 'Beskid Wyspowy', points: 6, lat: 49.6212, lng: 20.376, badgeSystem: 'GOT' , sharesPeakWith: ["modyn-diadem"]},
-  { id: 'radziejowa', name: 'Radziejowa', region: 'Beskid Sądecki', points: 6, lat: 49.4667, lng: 20.6333, badgeSystem: 'GOT' , sharesPeakWith: ["radziejowa-kgp","radziejowa-diadem","radziejowa-kb","radziejowa-kpb"]},
-  { id: 'jaworzyna-krynicka', name: 'Jaworzyna Krynicka', region: 'Beskid Sądecki', points: 7, lat: 49.4179, lng: 20.8955, badgeSystem: 'GOT' , sharesPeakWith: ["jaworzyna-krynicka-diadem"]},
+  { id: 'polica', name: 'Polica', region: 'Beskid Żywiecki', points: 4, lat: 49.6167, lng: 19.6167, badgeSystem: 'GOT' , sharesPeakWith: ["polica-diadem","polica-knsgp"]},
+  { id: 'czupel', name: 'Czupel', region: 'Beskid Mały', points: 5, lat: 49.7679, lng: 19.1606, badgeSystem: 'GOT' , sharesPeakWith: ["czupel-kgp","czupel-diadem","czupel-kb","czupel-kpb","czupel-knsgp"]},
+  { id: 'lamana-skala', name: 'Łamana Skała', region: 'Beskid Mały', points: 5, lat: 49.7636, lng: 19.396, badgeSystem: 'GOT' , sharesPeakWith: ["lamana-skala-diadem","lamana-skala-knsgp"]},
+  { id: 'lubomir', name: 'Lubomir', region: 'Beskid Makowski', points: 4, lat: 49.7669, lng: 20.0597, badgeSystem: 'GOT' , sharesPeakWith: ["lubomir-kgp","lubomir-diadem","lubomir-kb","lubomir-kpb","lubomir-knsgp"]},
+  { id: 'koskowa-gora', name: 'Koskowa Góra', region: 'Beskid Makowski', points: 4, lat: 49.7507, lng: 19.7829, badgeSystem: 'GOT' , sharesPeakWith: ["koskowa-gora-diadem","koskowa-gora-knsgp"]},
+  { id: 'mogielica', name: 'Mogielica', region: 'Beskid Wyspowy', points: 8, lat: 49.6552, lng: 20.2767, badgeSystem: 'GOT' , sharesPeakWith: ["mogielica-kgp","mogielica-diadem","mogielica-kb","mogielica-kpb","mogielica-knsgp"]},
+  { id: 'lubon-wielki', name: 'Luboń Wielki', region: 'Beskid Wyspowy', points: 6, lat: 49.6536, lng: 19.9918, badgeSystem: 'GOT' , sharesPeakWith: ["lubon-wielki-diadem","lubon-wielki-knsgp"]},
+  { id: 'cwilin', name: 'Ćwilin', region: 'Beskid Wyspowy', points: 6, lat: 49.6887, lng: 20.1918, badgeSystem: 'GOT' , sharesPeakWith: ["cwilin-diadem","cwilin-knsgp"]},
+  { id: 'modyn', name: 'Modyń', region: 'Beskid Wyspowy', points: 6, lat: 49.6212, lng: 20.376, badgeSystem: 'GOT' , sharesPeakWith: ["modyn-diadem","modyn-knsgp"]},
+  { id: 'radziejowa', name: 'Radziejowa', region: 'Beskid Sądecki', points: 6, lat: 49.4667, lng: 20.6333, badgeSystem: 'GOT' , sharesPeakWith: ["radziejowa-kgp","radziejowa-diadem","radziejowa-kb","radziejowa-kpb","radziejowa-knsgp"]},
+  { id: 'jaworzyna-krynicka', name: 'Jaworzyna Krynicka', region: 'Beskid Sądecki', points: 7, lat: 49.4179, lng: 20.8955, badgeSystem: 'GOT' , sharesPeakWith: ["jaworzyna-krynicka-diadem","jaworzyna-krynicka-knsgp"]},
   { id: 'kraczonik', name: 'Kraczonik', region: 'Beskid Sądecki', points: 5, lat: 49.3153, lng: 20.9394, badgeSystem: 'GOT' , sharesPeakWith: ["kraczonik-diadem"]},
-  { id: 'lackowa', name: 'Lackowa', region: 'Beskid Niski', points: 6, lat: 49.4283, lng: 21.0961, badgeSystem: 'GOT' , sharesPeakWith: ["lackowa-kgp","lackowa-diadem","lackowa-kpb"]},
-  { id: 'watkowa', name: 'Wątkowa', region: 'Beskid Niski', points: 4, lat: 49.5761, lng: 21.3667, badgeSystem: 'GOT' , sharesPeakWith: ["watkowa-diadem"]},
+  { id: 'lackowa', name: 'Lackowa', region: 'Beskid Niski', points: 6, lat: 49.4283, lng: 21.0961, badgeSystem: 'GOT' , sharesPeakWith: ["lackowa-kgp","lackowa-diadem","lackowa-kpb","lackowa-knsgp"]},
+  { id: 'watkowa', name: 'Wątkowa', region: 'Beskid Niski', points: 4, lat: 49.5761, lng: 21.3667, badgeSystem: 'GOT' , sharesPeakWith: ["watkowa-diadem","watkowa-knsgp"]},
   { id: 'cergowa-gora', name: 'Cergowa Góra', region: 'Beskid Niski', points: 3, lat: 49.5967, lng: 21.6167, badgeSystem: 'GOT' },
 
   // --- GOT: Tatry ---
-  { id: 'rysy', name: 'Rysy', region: 'Tatry', points: 12, lat: 49.1794, lng: 20.0881, badgeSystem: 'GOT' , sharesPeakWith: ["rysy-kgp","rysy-diadem","rysy-tkt"]},
+  { id: 'rysy', name: 'Rysy', region: 'Tatry', points: 12, lat: 49.1794, lng: 20.0881, badgeSystem: 'GOT' , sharesPeakWith: ["rysy-kgp","rysy-diadem","rysy-tkt","rysy-knsgp"]},
   { id: 'giewont', name: 'Giewont', region: 'Tatry', points: 10, lat: 49.2447, lng: 19.9339, badgeSystem: 'GOT', sharesPeakWith: ["giewont-tkt"] },
   { id: 'kasprowy-wierch', name: 'Kasprowy Wierch', region: 'Tatry', points: 8, lat: 49.2319, lng: 19.9814, badgeSystem: 'GOT', sharesPeakWith: ["kasprowy-wierch-tkt"] },
-  { id: 'swinica', name: 'Świnica', region: 'Tatry', points: 14, lat: 49.2194, lng: 20.0093, badgeSystem: 'GOT' , sharesPeakWith: ["swinica-diadem","swinica-tkt"]},
-  { id: 'krzesanica', name: 'Krzesanica', region: 'Tatry', points: 13, lat: 49.2317, lng: 19.9095, badgeSystem: 'GOT' , sharesPeakWith: ["krzesanica-diadem","krzesanica-tkt"]},
+  { id: 'swinica', name: 'Świnica', region: 'Tatry', points: 14, lat: 49.2194, lng: 20.0093, badgeSystem: 'GOT' , sharesPeakWith: ["swinica-diadem","swinica-tkt","swinica-knsgp"]},
+  { id: 'krzesanica', name: 'Krzesanica', region: 'Tatry', points: 13, lat: 49.2317, lng: 19.9095, badgeSystem: 'GOT' , sharesPeakWith: ["krzesanica-diadem","krzesanica-tkt","krzesanica-knsgp"]},
   { id: 'kopa-kondracka', name: 'Kopa Kondracka', region: 'Tatry', points: 13, lat: 49.2367, lng: 19.9414, badgeSystem: 'GOT', sharesPeakWith: ["kopa-kondracka-tkt"] },
   { id: 'wolowiec', name: 'Wołowiec', region: 'Tatry', points: 13, lat: 49.1994, lng: 19.8791, badgeSystem: 'GOT', sharesPeakWith: ["wolowiec-tkt"] },
 
   // --- GOT: Pieniny ---
-  { id: 'trzy-korony', name: 'Trzy Korony', region: 'Pieniny', points: 5, lat: 49.4256, lng: 20.4442, badgeSystem: 'GOT' , sharesPeakWith: ["trzy-korony-diadem"]},
+  { id: 'trzy-korony', name: 'Trzy Korony', region: 'Pieniny', points: 5, lat: 49.4138, lng: 20.4142, badgeSystem: 'GOT' , sharesPeakWith: ["trzy-korony-diadem","okraglica-knsgp"]},
   { id: 'wysoka-pieniny', name: 'Wysoka (Wysokie Skałki)', region: 'Pieniny', points: 6, lat: 49.3803, lng: 20.5556, badgeSystem: 'GOT' , sharesPeakWith: ["wysoka-pieniny-kgp","wysoka-pieniny-diadem","wysoka-pieniny-kpb"]},
 
   // --- GOT: Gorce ---
-  { id: 'turbacz', name: 'Turbacz', region: 'Gorce', points: 6, lat: 49.5219, lng: 20.0919, badgeSystem: 'GOT' , sharesPeakWith: ["turbacz-kgp","turbacz-diadem","turbacz-kb","turbacz-kpb"]},
-  { id: 'luban', name: 'Lubań', region: 'Gorce', points: 8, lat: 49.4893, lng: 20.339, badgeSystem: 'GOT' , sharesPeakWith: ["luban-diadem"]},
+  { id: 'turbacz', name: 'Turbacz', region: 'Gorce', points: 6, lat: 49.5219, lng: 20.0919, badgeSystem: 'GOT' , sharesPeakWith: ["turbacz-kgp","turbacz-diadem","turbacz-kb","turbacz-kpb","turbacz-knsgp"]},
+  { id: 'luban', name: 'Lubań', region: 'Gorce', points: 8, lat: 49.4893, lng: 20.339, badgeSystem: 'GOT' , sharesPeakWith: ["luban-diadem","luban-knsgp"]},
 
   // --- GOT: Bieszczady ---
-  { id: 'tarnica', name: 'Tarnica', region: 'Bieszczady', points: 8, lat: 49.0783, lng: 22.5814, badgeSystem: 'GOT' , sharesPeakWith: ["tarnica-kgp","tarnica-diadem","tarnica-kb","tarnica-kbies","tarnica-kpb"]},
-  { id: 'wielka-rawka', name: 'Wielka Rawka', region: 'Bieszczady', points: 9, lat: 49.0994, lng: 22.5764, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-rawka-diadem","wielka-rawka-kbies"]},
-  { id: 'polonina-wetlinska', name: 'Połonina Wetlińska', region: 'Bieszczady', points: 9, lat: 49.1974, lng: 22.4538, badgeSystem: 'GOT' },
-  { id: 'polonina-carynska', name: 'Połonina Caryńska', region: 'Bieszczady', points: 9, lat: 49.165, lng: 22.525, badgeSystem: 'GOT', sharesPeakWith: ["polonina-carynska-kbies"] },
+  { id: 'tarnica', name: 'Tarnica', region: 'Bieszczady', points: 8, lat: 49.0783, lng: 22.5814, badgeSystem: 'GOT' , sharesPeakWith: ["tarnica-kgp","tarnica-diadem","tarnica-kb","tarnica-kbies","tarnica-kpb","tarnica-knsgp"]},
+  { id: 'wielka-rawka', name: 'Wielka Rawka', region: 'Bieszczady', points: 9, lat: 49.0994, lng: 22.5764, badgeSystem: 'GOT' , sharesPeakWith: ["wielka-rawka-diadem","wielka-rawka-kbies","wielka-rawka-knsgp"]},
+  { id: 'polonina-wetlinska', name: 'Połonina Wetlińska', region: 'Bieszczady', points: 9, lat: 49.1678, lng: 22.5281, badgeSystem: 'GOT', sharesPeakWith: ["polonina-wetlinska-knsgp"] },
+  { id: 'polonina-carynska', name: 'Połonina Caryńska', region: 'Bieszczady', points: 9, lat: 49.165, lng: 22.525, badgeSystem: 'GOT', sharesPeakWith: ["polonina-carynska-kbies","polonina-carynska-knsgp"] },
   { id: 'halicz', name: 'Halicz', region: 'Bieszczady', points: 9, lat: 49.085, lng: 22.6206, badgeSystem: 'GOT', sharesPeakWith: ["halicz-kbies"] },
   { id: 'krzemien', name: 'Krzemień', region: 'Bieszczady', points: 9, lat: 49.0917, lng: 22.6033, badgeSystem: 'GOT' },
 
   // --- GOT: Góry Świętokrzyskie ---
-  { id: 'lysica', name: 'Łysica', region: 'Góry Świętokrzyskie', points: 4, lat: 50.8814, lng: 21.0489, badgeSystem: 'GOT' , sharesPeakWith: ["lysica-kgp","lysica-diadem"]},
+  { id: 'lysica', name: 'Łysica', region: 'Góry Świętokrzyskie', points: 4, lat: 50.8814, lng: 21.0489, badgeSystem: 'GOT' , sharesPeakWith: ["lysica-kgp","lysica-diadem","lysica-knsgp"]},
   { id: 'lysa-gora-swiety-krzyz', name: 'Łysa Góra (Święty Krzyż)', region: 'Góry Świętokrzyskie', points: 3, lat: 50.8608, lng: 21.0511, badgeSystem: 'GOT' },
 
   // --- Korona Gór Polski (pełne 28 szczytów, od najwyższego do najniższego) ---
@@ -202,20 +206,20 @@ export const initialPoints = [
   { id: 'cwilin-diadem', name: 'Ćwilin', region: 'Beskid Wyspowy', points: 1, lat: 49.6887, lng: 20.1918, badgeSystem: 'DIADEM' },
   { id: 'mogielica-diadem', name: 'Mogielica', region: 'Beskid Wyspowy', points: 1, lat: 49.6552, lng: 20.2767, badgeSystem: 'DIADEM' },
   { id: 'modyn-diadem', name: 'Modyń', region: 'Beskid Wyspowy', points: 1, lat: 49.6212, lng: 20.376, badgeSystem: 'DIADEM' },
-  { id: 'jaworz-diadem', name: 'Jaworz', region: 'Beskid Wyspowy', points: 1, lat: 49.7207, lng: 20.5212, badgeSystem: 'DIADEM' },
+  { id: 'jaworz-diadem', name: 'Jaworz', region: 'Beskid Wyspowy', points: 1, lat: 49.7207, lng: 20.5212, badgeSystem: 'DIADEM', sharesPeakWith: ["jaworz-knsgp"] },
   { id: 'turbacz-diadem', name: 'Turbacz', region: 'Gorce', points: 1, lat: 49.5219, lng: 20.0919, badgeSystem: 'DIADEM' },
   { id: 'luban-diadem', name: 'Lubań', region: 'Gorce', points: 1, lat: 49.4893, lng: 20.339, badgeSystem: 'DIADEM' },
   { id: 'radziejowa-diadem', name: 'Radziejowa', region: 'Beskid Sądecki', points: 1, lat: 49.4667, lng: 20.6333, badgeSystem: 'DIADEM' },
   { id: 'jaworzyna-krynicka-diadem', name: 'Jaworzyna Krynicka', region: 'Beskid Sądecki', points: 1, lat: 49.4179, lng: 20.8955, badgeSystem: 'DIADEM' },
   { id: 'kraczonik-diadem', name: 'Kraczonik', region: 'Beskid Sądecki', points: 1, lat: 49.3153, lng: 20.9394, badgeSystem: 'DIADEM' },
-  { id: 'jaworze-diadem', name: 'Jaworze', region: 'Beskid Niski', points: 1, lat: 49.5748, lng: 20.913, badgeSystem: 'DIADEM' },
+  { id: 'jaworze-diadem', name: 'Jaworze', region: 'Beskid Niski', points: 1, lat: 49.5748, lng: 20.913, badgeSystem: 'DIADEM', sharesPeakWith: ["jaworze-knsgp"] },
   { id: 'lackowa-diadem', name: 'Lackowa', region: 'Beskid Niski', points: 1, lat: 49.4283, lng: 21.0961, badgeSystem: 'DIADEM' },
   { id: 'watkowa-diadem', name: 'Wątkowa', region: 'Beskid Niski', points: 1, lat: 49.5761, lng: 21.3667, badgeSystem: 'DIADEM' },
   { id: 'baranie-diadem', name: 'Baranie', region: 'Beskid Niski', points: 1, lat: 49.4372, lng: 21.5964, badgeSystem: 'DIADEM' },
   { id: 'kamien-diadem', name: 'Kamień', region: 'Beskid Niski', points: 1, lat: 49.3957, lng: 21.8205, badgeSystem: 'DIADEM' },
   { id: 'tokarnia-diadem', name: 'Tokarnia', region: 'Beskid Niski', points: 1, lat: 49.4331, lng: 22.0319, badgeSystem: 'DIADEM' },
   { id: 'zar-diadem', name: 'Żar', region: 'Pieniny', points: 1, lat: 49.4183, lng: 20.2297, badgeSystem: 'DIADEM' },
-  { id: 'trzy-korony-diadem', name: 'Trzy Korony', region: 'Pieniny', points: 1, lat: 49.4256, lng: 20.4442, badgeSystem: 'DIADEM' },
+  { id: 'trzy-korony-diadem', name: 'Trzy Korony', region: 'Pieniny', points: 1, lat: 49.4138, lng: 20.4142, badgeSystem: 'DIADEM' },
   { id: 'wysoka-pieniny-diadem', name: 'Wysoka', region: 'Pieniny', points: 1, lat: 49.3803, lng: 20.5556, badgeSystem: 'DIADEM' },
   { id: 'starorobocianski-wierch-diadem', name: 'Starorobociański Wierch', region: 'Tatry', points: 1, lat: 49.1994, lng: 19.8199, badgeSystem: 'DIADEM', sharesPeakWith: ["starorobocianski-wierch-tkt"] },
   { id: 'krzesanica-diadem', name: 'Krzesanica', region: 'Tatry', points: 1, lat: 49.2317, lng: 19.9095, badgeSystem: 'DIADEM' },
@@ -223,10 +227,10 @@ export const initialPoints = [
   { id: 'rysy-diadem', name: 'Rysy', region: 'Tatry', points: 1, lat: 49.1794, lng: 20.0881, badgeSystem: 'DIADEM' },
   { id: 'slonny-pn-zach-diadem', name: 'Słonny (pn.-zach.)', region: 'Góry Sanocko-Turczańskie', points: 1, lat: 49.5775, lng: 22.2775, badgeSystem: 'DIADEM' },
   { id: 'slonny-pd-wsch-diadem', name: 'Słonny (pd.-wsch.)', region: 'Góry Sanocko-Turczańskie', points: 1, lat: 49.5775, lng: 22.2775, badgeSystem: 'DIADEM' },
-  { id: 'jaworniki-diadem', name: 'Jaworniki', region: 'Góry Sanocko-Turczańskie', points: 1, lat: 49.3411, lng: 22.7131, badgeSystem: 'DIADEM' },
-  { id: 'trohaniec-diadem', name: 'Trohaniec', region: 'Bieszczady', points: 1, lat: 49.2342, lng: 22.6589, badgeSystem: 'DIADEM', sharesPeakWith: ["trohaniec-kbies"] },
-  { id: 'lopiennik-diadem', name: 'Łopiennik', region: 'Bieszczady', points: 1, lat: 49.245, lng: 22.3411, badgeSystem: 'DIADEM', sharesPeakWith: ["lopiennik-kbies"] },
-  { id: 'wolosan-diadem', name: 'Wołosań', region: 'Bieszczady', points: 1, lat: 49.2392, lng: 22.2533, badgeSystem: 'DIADEM', sharesPeakWith: ["wolosan-kbies"] },
+  { id: 'jaworniki-diadem', name: 'Jaworniki', region: 'Góry Sanocko-Turczańskie', points: 1, lat: 49.3411, lng: 22.7131, badgeSystem: 'DIADEM', sharesPeakWith: ["jaworniki-knsgp"] },
+  { id: 'trohaniec-diadem', name: 'Trohaniec', region: 'Bieszczady', points: 1, lat: 49.2342, lng: 22.6589, badgeSystem: 'DIADEM', sharesPeakWith: ["trohaniec-kbies","trohaniec-knsgp"] },
+  { id: 'lopiennik-diadem', name: 'Łopiennik', region: 'Bieszczady', points: 1, lat: 49.245, lng: 22.3411, badgeSystem: 'DIADEM', sharesPeakWith: ["lopiennik-kbies","lopiennik-knsgp"] },
+  { id: 'wolosan-diadem', name: 'Wołosań', region: 'Bieszczady', points: 1, lat: 49.2392, lng: 22.2533, badgeSystem: 'DIADEM', sharesPeakWith: ["wolosan-kbies","wolosan-knsgp"] },
   { id: 'wielka-rawka-diadem', name: 'Wielka Rawka', region: 'Bieszczady', points: 1, lat: 49.0994, lng: 22.5764, badgeSystem: 'DIADEM' },
   { id: 'tarnica-diadem', name: 'Tarnica', region: 'Bieszczady', points: 1, lat: 49.0783, lng: 22.5814, badgeSystem: 'DIADEM' },
   { id: 'wysoka-kopa-diadem', name: 'Wysoka Kopa', region: 'Góry Izerskie', points: 1, lat: 50.8503, lng: 15.42, badgeSystem: 'DIADEM' },
@@ -470,4 +474,69 @@ export const initialPoints = [
   { id: 'wysoka-pieniny-kpb', name: 'Wysoka (Wysokie Skałki)', region: 'Pieniny', points: 1, lat: 49.3803, lng: 20.5556, badgeSystem: 'KORONA_POLSKICH_BESKIDOW' },
   { id: 'lackowa-kpb', name: 'Lackowa', region: 'Beskid Niski', points: 1, lat: 49.4283, lng: 21.0961, badgeSystem: 'KORONA_POLSKICH_BESKIDOW' },
   { id: 'tarnica-kpb', name: 'Tarnica', region: 'Bieszczady', points: 1, lat: 49.0783, lng: 22.5814, badgeSystem: 'KORONA_POLSKICH_BESKIDOW' },
+
+  // --- Korona Najwybitniejszych Szczytów Gór Polskich (50 szczytów wybranych
+  // metodą wybitności, Klub Zdobywców Koron Górskich RP; odznaka czterostopniowa:
+  // popularna 5, brązowa 20, srebrna 35, złota 50; lista z koronygor.pl/knsgp) ---
+  // 41 szczytów jest już w katalogu (współrzędne identyczne, połączone przez
+  // sharesPeakWith), 9 to nowe wpisy; ich współrzędne pochodzą głównie z jednego
+  // źródła (Wikipedia, dokładność ok. 30 m) i są orientacyjne. Lista nie podaje
+  // współrzędnych.
+  // „Połonina Wetlińska" (1255 m) to Roh — najwyższy szczyt masywu, bez
+  // znakowanego szlaku. Jest połączona z wierszem GOT „Połonina Wetlińska",
+  // któremu przeniesiono współrzędne na Roh (poprzednie leżały ok. 6 km od
+  // grzbietu). Smerek z Korony Bieszczadów to inny szczyt (ok. 3 km dalej) i
+  // nie jest z nimi łączony.
+  // „Okrąglica (Trzy Korony)" jest połączona z wierszami „Trzy Korony" (GOT,
+  // Diadem), którym poprawiono współrzędne (były przesunięte o ok. 2,5 km).
+  { id: 'sniezka-knsgp', name: 'Śnieżka', region: 'Karkonosze', points: 1, lat: 50.736, lng: 15.74, badgeSystem: 'KNSGP' },
+  { id: 'babia-gora-knsgp', name: 'Babia Góra', region: 'Beskid Żywiecki', points: 1, lat: 49.5735, lng: 19.5283, badgeSystem: 'KNSGP' },
+  { id: 'pilsko-knsgp', name: 'Pilsko', region: 'Beskid Żywiecki', points: 1, lat: 49.5272, lng: 19.3183, badgeSystem: 'KNSGP' },
+  { id: 'snieznik-knsgp', name: 'Śnieżnik', region: 'Masyw Śnieżnika', points: 1, lat: 50.2011, lng: 16.8433, badgeSystem: 'KNSGP' },
+  { id: 'turbacz-knsgp', name: 'Turbacz', region: 'Gorce', points: 1, lat: 49.5219, lng: 20.0919, badgeSystem: 'KNSGP' },
+  { id: 'skrzyczne-knsgp', name: 'Skrzyczne', region: 'Beskid Śląski', points: 1, lat: 49.6836, lng: 19.0189, badgeSystem: 'KNSGP' },
+  { id: 'radziejowa-knsgp', name: 'Radziejowa', region: 'Beskid Sądecki', points: 1, lat: 49.4667, lng: 20.6333, badgeSystem: 'KNSGP' },
+  { id: 'czupel-knsgp', name: 'Czupel', region: 'Beskid Mały', points: 1, lat: 49.7679, lng: 19.1606, badgeSystem: 'KNSGP' },
+  { id: 'wielka-rawka-knsgp', name: 'Wielka Rawka', region: 'Bieszczady', points: 1, lat: 49.0994, lng: 22.5764, badgeSystem: 'KNSGP' },
+  { id: 'lubon-wielki-knsgp', name: 'Luboń Wielki', region: 'Beskid Wyspowy', points: 1, lat: 49.6536, lng: 19.9918, badgeSystem: 'KNSGP' },
+  { id: 'tarnica-knsgp', name: 'Tarnica', region: 'Bieszczady', points: 1, lat: 49.0783, lng: 22.5814, badgeSystem: 'KNSGP' },
+  { id: 'wielka-sowa-knsgp', name: 'Wielka Sowa', region: 'Góry Sowie', points: 1, lat: 50.6667, lng: 16.4667, badgeSystem: 'KNSGP' },
+  { id: 'sleza-knsgp', name: 'Ślęża', region: 'Masyw Ślęży', points: 1, lat: 50.865, lng: 16.7086, badgeSystem: 'KNSGP' },
+  { id: 'jaworzyna-krynicka-knsgp', name: 'Jaworzyna Krynicka', region: 'Beskid Sądecki', points: 1, lat: 49.4179, lng: 20.8955, badgeSystem: 'KNSGP' },
+  { id: 'polonina-carynska-knsgp', name: 'Połonina Caryńska', region: 'Bieszczady', points: 1, lat: 49.165, lng: 22.525, badgeSystem: 'KNSGP' },
+  { id: 'lubogoszcz-knsgp', name: 'Lubogoszcz', region: 'Beskid Wyspowy', points: 1, lat: 49.7126, lng: 20.0988, badgeSystem: 'KNSGP' },
+  { id: 'mogielica-knsgp', name: 'Mogielica', region: 'Beskid Wyspowy', points: 1, lat: 49.6552, lng: 20.2767, badgeSystem: 'KNSGP' },
+  { id: 'cwilin-knsgp', name: 'Ćwilin', region: 'Beskid Wyspowy', points: 1, lat: 49.6887, lng: 20.1918, badgeSystem: 'KNSGP' },
+  { id: 'jaworz-knsgp', name: 'Jaworz', region: 'Beskid Wyspowy', points: 1, lat: 49.7207, lng: 20.5212, badgeSystem: 'KNSGP' },
+  { id: 'wielka-racza-knsgp', name: 'Wielka Racza', region: 'Beskid Żywiecki', points: 1, lat: 49.4133, lng: 18.9688, badgeSystem: 'KNSGP' },
+  { id: 'klimczok-knsgp', name: 'Klimczok', region: 'Beskid Śląski', points: 1, lat: 49.7385, lng: 19.0074, badgeSystem: 'KNSGP' },
+  { id: 'polonina-wetlinska-knsgp', name: 'Połonina Wetlińska', region: 'Bieszczady', points: 1, lat: 49.1678, lng: 22.5281, badgeSystem: 'KNSGP' },
+  { id: 'wolosan-knsgp', name: 'Wołosań', region: 'Bieszczady', points: 1, lat: 49.2392, lng: 22.2533, badgeSystem: 'KNSGP' },
+  { id: 'luban-knsgp', name: 'Lubań', region: 'Gorce', points: 1, lat: 49.4893, lng: 20.339, badgeSystem: 'KNSGP' },
+  { id: 'waligora-knsgp', name: 'Waligóra', region: 'Góry Kamienne', points: 1, lat: 50.6808, lng: 16.2781, badgeSystem: 'KNSGP' },
+  { id: 'lysica-knsgp', name: 'Łysica', region: 'Góry Świętokrzyskie', points: 1, lat: 50.8814, lng: 21.0489, badgeSystem: 'KNSGP' },
+  { id: 'lackowa-knsgp', name: 'Lackowa', region: 'Beskid Niski', points: 1, lat: 49.4283, lng: 21.0961, badgeSystem: 'KNSGP' },
+  { id: 'lamana-skala-knsgp', name: 'Łamana Skała', region: 'Beskid Mały', points: 1, lat: 49.7636, lng: 19.396, badgeSystem: 'KNSGP' },
+  { id: 'polica-knsgp', name: 'Polica', region: 'Beskid Żywiecki', points: 1, lat: 49.6167, lng: 19.6167, badgeSystem: 'KNSGP' },
+  { id: 'swinica-knsgp', name: 'Świnica', region: 'Tatry', points: 1, lat: 49.2194, lng: 20.0093, badgeSystem: 'KNSGP' },
+  { id: 'lubomir-knsgp', name: 'Lubomir', region: 'Beskid Wyspowy', points: 1, lat: 49.7669, lng: 20.0597, badgeSystem: 'KNSGP' },
+  { id: 'sniezica-knsgp', name: 'Śnieżnica', region: 'Beskid Wyspowy', points: 1, lat: 49.716, lng: 20.1781, badgeSystem: 'KNSGP' },
+  { id: 'kamionna-knsgp', name: 'Kamionna', region: 'Beskid Wyspowy', points: 1, lat: 49.7782, lng: 20.3944, badgeSystem: 'KNSGP' },
+  { id: 'szczebel-knsgp', name: 'Szczebel', region: 'Beskid Wyspowy', points: 1, lat: 49.6885, lng: 20.0104, badgeSystem: 'KNSGP' },
+  { id: 'lopiennik-knsgp', name: 'Łopiennik', region: 'Bieszczady', points: 1, lat: 49.245, lng: 22.3411, badgeSystem: 'KNSGP' },
+  { id: 'wielki-szyszak-knsgp', name: 'Wielki Szyszak', region: 'Karkonosze', points: 1, lat: 50.735, lng: 15.723, badgeSystem: 'KNSGP' },
+  { id: 'trohaniec-knsgp', name: 'Trohaniec', region: 'Bieszczady', points: 1, lat: 49.2342, lng: 22.6589, badgeSystem: 'KNSGP' },
+  { id: 'okraglica-knsgp', name: 'Okrąglica (Trzy Korony)', region: 'Pieniny', points: 1, lat: 49.4138, lng: 20.4142, badgeSystem: 'KNSGP' },
+  { id: 'maslana-gora-knsgp', name: 'Maślana Góra', region: 'Beskid Niski', points: 1, lat: 49.6444, lng: 21.0583, badgeSystem: 'KNSGP' },
+  { id: 'ciecien-knsgp', name: 'Ciecień', region: 'Beskid Wyspowy', points: 1, lat: 49.7738, lng: 20.1504, badgeSystem: 'KNSGP' },
+  { id: 'krzesanica-knsgp', name: 'Krzesanica', region: 'Tatry', points: 1, lat: 49.2317, lng: 19.9095, badgeSystem: 'KNSGP' },
+  { id: 'koskowa-gora-knsgp', name: 'Koskowa Góra', region: 'Beskid Makowski', points: 1, lat: 49.7507, lng: 19.7829, badgeSystem: 'KNSGP' },
+  { id: 'czantoria-wielka-knsgp', name: 'Czantoria Wielka', region: 'Beskid Śląski', points: 1, lat: 49.6786, lng: 18.8044, badgeSystem: 'KNSGP' },
+  { id: 'jaworniki-knsgp', name: 'Jaworniki', region: 'Góry Sanocko-Turczańskie', points: 1, lat: 49.3411, lng: 22.7131, badgeSystem: 'KNSGP' },
+  { id: 'jaworze-knsgp', name: 'Jaworze', region: 'Beskid Niski', points: 1, lat: 49.5748, lng: 20.913, badgeSystem: 'KNSGP' },
+  { id: 'czerenina-knsgp', name: 'Czerenina', region: 'Bieszczady', points: 1, lat: 49.2136, lng: 22.4064, badgeSystem: 'KNSGP' },
+  { id: 'paportna-knsgp', name: 'Paportna', region: 'Bieszczady', points: 1, lat: 49.1133, lng: 22.4444, badgeSystem: 'KNSGP' },
+  { id: 'watkowa-knsgp', name: 'Wątkowa', region: 'Beskid Niski', points: 1, lat: 49.5761, lng: 21.3667, badgeSystem: 'KNSGP' },
+  { id: 'modyn-knsgp', name: 'Modyń', region: 'Beskid Wyspowy', points: 1, lat: 49.6212, lng: 20.376, badgeSystem: 'KNSGP' },
+  { id: 'rysy-knsgp', name: 'Rysy', region: 'Tatry', points: 1, lat: 49.1794, lng: 20.0881, badgeSystem: 'KNSGP' },
 ]

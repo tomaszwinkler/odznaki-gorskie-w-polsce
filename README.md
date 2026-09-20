@@ -1,13 +1,14 @@
 # Odznaki górskie w Polsce
 
-Aplikacja (PWA) do śledzenia postępu w zdobywaniu polskich odznak turystycznych: **GOT**, **Korona Gór Polski**, **Diadem Polskich Gór**, **Korona Sudetów**, **Korona Beskidów**, **Turystyczna Korona Tatr** i **Korona Bieszczadów**, **Dominanty Przedgórza Sudeckiego** i **Korona Polskich Beskidów**. Pozwala oznaczać odwiedzone szczyty, prowadzić dziennik wypraw ze zdjęciami i importem tras GPX oraz przeglądać punkty na liście i interaktywnej mapie.
+Aplikacja (PWA) do śledzenia postępu w zdobywaniu polskich odznak turystycznych: **GOT**, **Korona Gór Polski**, **Diadem Polskich Gór**, **Korona Najwybitniejszych Szczytów Gór Polskich**, **Korona Sudetów**, **Korona Beskidów**, **Turystyczna Korona Tatr** i **Korona Bieszczadów**, **Dominanty Przedgórza Sudeckiego** i **Korona Polskich Beskidów**. Pozwala oznaczać odwiedzone szczyty, prowadzić dziennik wypraw ze zdjęciami i importem tras GPX oraz przeglądać punkty na liście i interaktywnej mapie.
 
 ## Funkcje
 
-- **Dziewięć systemów odznak** pogrupowanych w kategorie (odznaki ogólnopolskie, korony makroregionalne, odznaki regionalne):
+- **Dziesięć systemów odznak** pogrupowanych w kategorie (odznaki ogólnopolskie, korony makroregionalne, odznaki regionalne):
   - **GOT** — 64 szczyty w całej Polsce (rozszerzony, orientacyjny zestaw; realny regulamin GOT PTTK punktuje przebyte trasy, nie sam fakt zdobycia szczytu)
   - **Korona Gór Polski** — pełna, oficjalna lista 28 szczytów
   - **Diadem Polskich Gór** — pełna, oficjalna lista 80 szczytów
+  - **Korona Najwybitniejszych Szczytów Gór Polskich** (Klub Zdobywców Koron Górskich RP) — 50 szczytów wybranych metodą wybitności, cztery stopnie (popularna 5, brązowa 20, srebrna 35, złota 50); 41 szczytów wspólnych z innymi systemami. Lista pochodzi z koronygor.pl i nie zawiera współrzędnych, więc dane 9 nowych szczytów (Lubogoszcz, Śnieżnica, Kamionna, Szczebel, Maślana Góra, Ciecień, Czerenina, Paportna, Połonina Wetlińska) są orientacyjne, a „Połonina Wetlińska” to Roh — najwyższy szczyt masywu, bez znakowanego szlaku; jest połączona z wierszem GOT o tej nazwie (jego współrzędne przeniesiono na Roh)
   - **Korona Sudetów** — pełne 22 szczyty wg regulaminu PTTK, w tym 10 w Czechach (odznaka niezależna od granic państwowych)
   - **Korona Beskidów** — pełne 27 szczytów wg regulaminu PTTK, odznaka międzynarodowa: Polska, Czechy, Słowacja i Ukraina
   - **Turystyczna Korona Tatr** — pełne 60 pozycji (54 szczyty + 6 przełęczy) wg regulaminu PTT, po polskiej i słowackiej stronie Tatr
